@@ -123,7 +123,7 @@ include_once "libs/start.php";
 								<textarea class="blured" placeholder="Расскажите о себе, о своем опыте и умениях, применяемых при работе няней, поделитесь почему и как вы решили стать няней, почему вы любите свою работу и так далее.."></textarea>
 
 								<div class="counter-textarea">
-									<p class="bolshe">100</p>
+									<p class="bolshe">0</p>
 									<p><span>Минимальная 100 символов<br>
 									Макс 950 символов</span></p>
 								</div>
@@ -223,6 +223,12 @@ include_once "libs/start.php";
 											<option>1</option>
 											<option>2</option>
 											<option>3</option>
+											<option>4</option>
+											<option>5</option>
+											<option>6</option>
+											<option>7</option>
+											<option>8</option>
+											<option>9</option>
 										</select>
 									</div>
 								</div>

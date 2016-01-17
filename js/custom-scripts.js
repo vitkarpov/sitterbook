@@ -219,6 +219,33 @@ function snapEventCloseForCountiesOnMain() {
   });
 };
 
+// Проверка кол-ва символов, введенных в поле "О себе"
+var taCont = $('.textarea'),
+    taField = taCont.children('textarea'),
+    taCounter = taCont.find('.bolshe'),
+
+    textMin = 100,
+    textMax = 950;
+
+taField.on('keyup', function() {
+  if ( taField.val().length < 100 ) {
+    // Мало символов
+    console.log('мало');
+    taCounter.html(taField.val().length);
+    taCounter.removeClass('menshe').addClass('bolshe');
+  } else if ( taField.val().length > 950 ) {
+    // Много символов
+    console.log('много');
+    taCounter.html(taField.val().length);
+    taCounter.removeClass('menshe').addClass('bolshe');
+  } else {
+    // То что нужно символов
+    console.log('то что нужно');
+    taCounter.html(taField.val().length);
+    taCounter.removeClass('bolshe').addClass('menshe');
+  }
+});
+
 // Добавить/удалить рекомендации
 $(document).on("click", ".add-recommend", function() {
   $(".recommend .add-recommend")
