@@ -10,7 +10,7 @@ if( isset($_POST['get_option']) ) {
 
 	if($option === "1") {
 		echo "<div class='sel seld-old'>
-						<span class='sel seld-old-title'>Округ</span>
+						<span class='sel seld-old-title'>Округа</span>
 
 						<div class='all-city'>
 							<p>Выберите округ(а)</p>
@@ -18,7 +18,7 @@ if( isset($_POST['get_option']) ) {
 							<div class='checkbox all'>
 								<label>
 									<input class='ch' type='checkbox' value='all'>
-
+									<span class='checkbox_box'></span>
 									<span class='lab'>Все округа</span>
 								</label>
 							</div>";
@@ -33,7 +33,7 @@ if( isset($_POST['get_option']) ) {
 		echo "		<div class='checkbox'>
 								<label>
 									<input class='ch' type='checkbox' name='test' id='$id_county' value='$county_name'>
-
+									<span class='checkbox_box'></span>
 									<span class='lab'>$county_name</span>
 								</label>
 							</div>";

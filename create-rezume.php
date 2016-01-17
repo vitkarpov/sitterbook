@@ -92,17 +92,16 @@ include_once "libs/start.php";
 
 								<select class="fetched-cities-invisible"></select>
 
-								<div class="wrap-sel">
+								<div class="wrap-sel" data-b="select-city">
 									<div class="sel seld-title">
-										<select name="city" class="city">
+										<select name="city" class="city js-city-select">
 											<option disabled="disabled" selected="selected">-- Выберите город --</option>
 											<!-- Вывод списка городов -->
-											<?php //include_once "act/fetch_select_cities.php"; ?>
 										</select>
 									</div>
 
 									<!--Подгружаем сюда карты/округа/районы города-->
-									<div class="ajax-form">
+									<div class="ajax-form js-ajax-form">
 										
 									</div>
 
@@ -702,6 +701,7 @@ include_once "libs/start.php";
 	<!-- JS -->
 
 	<script src="js/vendor/jquery.min.js"></script>
+	<script src="https://cdn.rawgit.com/vitkarpov/jblocks/master/dist/jblocks.js"></script>
 	<script src="js/vendor/jquery-ui.min.js"></script>
 	<script src="js/datepicker-ru-init.js"></script>
 	<script src="js/vendor/croppic.js"></script>

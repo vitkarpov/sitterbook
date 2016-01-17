@@ -212,8 +212,8 @@
           overflow: hidden;
           margin: 0 0 0 12px;
           label {
-            // display: inline-block;
-            // float: left;
+            display: inline-block;
+            float: left;
             height: 19px;
             margin: 0 7px 7px 0;
             position: relative;
@@ -237,10 +237,10 @@
             margin: 7px 0 0 26px;
           }
           input[type="checkbox"] {
-            //display: none;
+            display: none;
           }
           input[type="checkbox"]:checked + span {
-            //background: rgba(0, 0, 0, 0) url("../img/ch-active.png") no-repeat scroll 0 0;
+            background: rgba(0, 0, 0, 0) url("../img/ch-active.png") no-repeat scroll 0 0;
           }
         }
       }
@@ -432,6 +432,7 @@
           padding: 4px 10px;
           margin: 10px 0 0 0;
           font-family: $opensansR;
+          box-sizing: border-box;
         }
 
         .calendar {

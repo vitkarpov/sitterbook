@@ -17,7 +17,7 @@ include_once "libs/start.php";
 
 	<?php
 	// Немного PHP, определим что агент содержит слово iPhone и все
-	if (strpos($_SERVER['HTTP_USER_AGENT'],"iPhone")){ ?>
+	if (strpos($_SERVER['HTTP_USER_AGENT'],"iPhone")) { ?>
 
 	<!-- Важный метатэг для портативных устройств на Safari, убирает пинч-зум, который используется при открытии любого сайта не под iPhone -->
 	<meta name="viewport" content="width=1150">

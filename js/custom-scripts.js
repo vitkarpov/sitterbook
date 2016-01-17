@@ -4,6 +4,8 @@
 
 $(document).ready(function() {
   fetch_select_cities();
+  // Инициализируем все блоки в документе для jBlocks
+  $(document).jblocks('init');
 });
 
 
@@ -37,40 +39,96 @@ function get_cities_from_invisible_field() {
 $(document).on('change', 'select.city', function() {
   changedThis = $(this);
   fetch_select_counties(this.value, changedThis);
-  console.log('Done');
 });
 
 // AJAX-подгрузка округов на основную страницу
-function fetch_select_counties(val, changedThis) {
-  $.ajax({
-    type: 'post',
-    url: 'act/fetch_select_counties.php',
-    data: {
-      get_option: val
+
+// Блок селекта для выбора города
+$.jblocks({
+  name: 'select-city',
+  events: {
+    'b-inited': 'oninit',
+    'change .js-city-select': 'onChangeSelect'
+  },
+  methods: {
+    // блок проинциализировался
+    oninit: function() {
+      // заранее найден элементы, с которыми будем работать
+      // в рамках данного блока
+      this.select = this.$node.find('.js-city-select');
+      this.ajaxForm = this.$node.find('.js-ajax-form');
     },
-    success: function (response) {
+
+    // Вызывается при измении селекта
+    onChangeSelect: function(e) {
+      // e — объект jquery-события, может пригодится
+      this.fetchCities()
+    },
+
+    // запросим города
+    fetchCities: function() {
+      $.ajax({
+        type: 'post',
+        url: 'act/fetch_select_counties.php',
+        data: {
+          get_option: this.select.val()
+        },
+        success: this.onSuccessCitiesRequest.bind(this)
+      });
+    },
+
+    // вызывается, когда приехали города
+    onSuccessCitiesRequest: function(response) {
       // Сначала удаляем содержимое .ajax-form для данного города
-      changedThis
-        .parent()
-        .siblings('.ajax-form')
-        .children()
-        .remove();
-      // и затем вставляем список округов и ссылки вновь
-      changedThis
-        .parent()
-        .next()
-        .append(response);
+      this.ajaxForm.html(response);
 
-      // Выполняем подгрузку содержимого модальных окон
+      // TODO: может эти методы можно по аналогии можно занести
+      // в декларацию этого блока?
+      //
+      // Таким образом хорошо структурируется код:
+      // - ты понимаешь, с каким компонентом идет работа
+      // - все методы по смыслу сгруппированы в одном объекте (декларации)
+      // - поток выполнения программы более предсказуемый — меньше вероятность запутаться
+      // - подобные описания компонентов можно разнести по разным файликам
+      //   и такое разбиение на файлы получается очень логичное
+
       openModal();
-
-      // Привязываем обработчики чекбоксов и кнопок
-      // выпадающего списка округов на основной странице
       snapEventCheckboxesCountiesOnMain();
-      snapEventOkCloseButtonForCountiesOnMain();
+      snapEventCloseForCountiesOnMain();
     }
-  });
-}
+  }
+});
+
+// function fetch_select_counties(val, changedThis) {
+//   $.ajax({
+//     type: 'post',
+//     url: 'act/fetch_select_counties.php',
+//     data: {
+//       get_option: val
+//     },
+//     success: function (response) {
+//       // Сначала удаляем содержимое .ajax-form для данного города
+//       changedThis
+//         .parent()
+//         .siblings('.ajax-form')
+//         .children()
+//         .remove();
+//       // и затем вставляем список округов и ссылки вновь
+//       changedThis
+//         .parent()
+//         .next()
+//         .append(response);
+
+//       // Выполняем подгрузку содержимого модальных окон
+//       openModal();
+
+//       // Привязываем обработчики чекбоксов и кнопок
+//       // выпадающего списка округов на основной странице
+//       snapEventCheckboxesCountiesOnMain();
+//       snapEventCloseForCountiesOnMain();
+//     }
+//   });
+// }
 
 // Показать поле городов на странице "Создание резюме"
 $(document).on("click", ".select-city .sel", function() {
@@ -122,41 +180,43 @@ function snapEventCheckboxesCountiesOnMain() {
   var // Чекбокс "Все"
       allToggle = $('.all-city .checkbox.all'),
       allToggleInput = allToggle.children().children('input'),
-      allToggleLabel = allToggle.children(),
-      //allToggleCheckbox = allToggle.children().children('.checkbox_box'),
       allToggleClick = allToggle.children().children('.lab'),
       // Остальные чекбоксы
       allCheckboxes = allToggle.nextAll('.checkbox'),
       allCheckboxesInput = allCheckboxes.children().children('input');
 
   // При нажатии на "Все", чекаем/анчекаем все остальные элементы
-  allToggle.on('click', function(e) {
+  allToggleClick.on('click', function(e) {
     e.preventDefault();
 
-    if ( allToggleInput.attr('checked') ) {
+    if ( allToggleInput.is(':checked') ) {
       // Если "Все" отмечено
-      console.log('Was checked');
-      console.log('before: ' + allToggleInput.attr('checked'));
-      allToggleInput.removeAttr('checked');
-      allCheckboxesInput.removeAttr('checked');
-      console.log('after: ' + allToggleInput.attr('checked'));
-      console.log('===');
+      allToggleInput.prop('checked', false);
+      allCheckboxesInput.prop('checked', false);
     } else {
       // Если "Все" НЕ отмечено
-      console.log('Was NOT checked');
-      console.log('before: ' + allToggleInput.attr('checked'));
-      allToggleInput.attr('checked', true);
-      allCheckboxesInput.attr('checked', true);
-      console.log('after: ' + allToggleInput.attr('checked'));
-      console.log('===');
+      allToggleInput.prop('checked', true);
+      allCheckboxesInput.prop('checked', true);
     }
   });
 };
 
-// Закрытие окна с выбором округов на главной по клику на OK
-function snapEventOkCloseButtonForCountiesOnMain() {
+// Закрытие окна с выбором округов на главной
+// по клику на OK и при потере фокуса
+function snapEventCloseForCountiesOnMain() {
+  // Закрываем при нажатии на ОК
   $('.all-city .btn-rounded').on('click', function() {
     $(this).parent().fadeOut(10);
+  });
+
+  // Закрываем выпадашку при клике вне её
+  $('body').on('click', function(e) {
+    if ( ($(e.target).hasClass('all-city') === true) ||
+          $(e.target).closest('.all-city').length > 0) {
+      // 
+    } else {
+      $('.all-city').fadeOut(10);
+    }
   });
 };
 
