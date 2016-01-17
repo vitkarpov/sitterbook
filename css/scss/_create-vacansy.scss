@@ -1,0 +1,849 @@
+.create-vacansy {
+  margin: 100px 0 0 0;
+
+  h1 {
+    @include fs(30px);
+    color: #25343f;
+    font-family: $opensansL;
+    font-weight: normal;
+    margin: 0 0 20px 40px;
+  }
+
+  .title-border {
+    border-bottom: 1px solid #25343f;
+    color: #25343f;
+    display: inline-block;
+    font-family: OpenSansL;
+    font-size: 30px;
+    margin: 0 0 20px;
+    padding: 0 0 5px;
+  }
+
+  .work-map {
+    @include form-block-container;
+
+    .select-city {
+      .mb {
+        margin-bottom: 7px;
+      }
+
+      p {
+        @include fs(16px);
+        color: #25343f;
+        font-family: OpenSansSB;
+      }
+    }
+
+    .wrap-sel {
+      .sel {
+        @include br(3px);
+        cursor: pointer;
+        margin: 0 10px 0 0;
+        position: relative;
+        float: left;
+
+        &.seld-old {
+          background-color: transparent;
+          border: 0;
+
+          &-title {
+            box-sizing: border-box;
+          }
+        }
+      }
+      .seld-title {
+        background: url("../img/arrow-select.png") 180px center no-repeat #fff;
+        border: 1px solid #dcdcdc;
+        margin: 0 10px 0 0;
+        overflow: hidden;
+        border: 1px solid #dcdcdc;
+        width: 203px;
+        border: 1px solid #dcdcdc;
+        @include br(5px);
+        cursor: pointer;
+        position: relative;
+        float: left;
+
+        select {
+          background: transparent none repeat scroll 0 0;
+          clip: rect(0px, 237px, 26px, 210px);
+          font-family: OpenSansR;
+          font-size: 16px;
+          padding: 5px 0 5px 5px;
+          height: 30px;
+          line-height: 30px;
+          @include br(5px);
+          overflow-y: hidden;
+          color: #25343f;
+          width: 230px;
+        }
+      }
+    }
+  }
+
+  .mbb {
+    margin: 0 0 10px 0;
+    float: left;
+  }
+
+  .all-city2 {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    padding-bottom: 0 !important;
+    p {
+      margin: 0 !important;
+      span {
+        display: block !important;
+        padding: 5px 25px 5px 45px !important;
+        margin: 0 !important;
+      }
+    }
+    p:hover {
+      span {
+        background: #2495dd;
+        color: #fff !important;
+      }
+    }
+    p:first-child {
+      padding: 0 25px;
+    }
+  }
+
+  .dva {
+    overflow: hidden;
+
+    & > p {
+      float: right;
+      @include fs(14px);
+      color: #c71b11;
+      margin: 15px 30px 0 0;
+    }
+  }
+
+  .mb {
+    span {
+      color: #c71b11;
+    }
+  }
+
+  .o-sebe {
+    @include form-block-container;
+
+    .main-face {
+      margin: 0 0 25px 0;
+      .title {
+        @include fs(16px);
+        color: #25343f;
+        font-family: $opensansSB;
+        margin: 0 0 8px 0;
+        span {
+          color: #c71b11;
+        }
+      }
+      input {
+        border: 1px solid #dcdcdc;
+        color: #25343f;
+        @include fs(16px);
+        @include br(3px);
+        font-family: $opensansR;
+        padding: 4px 0 4px 10px;
+        width: 390px;
+      }
+    }
+    .textarea {
+      margin: 0 0 20px 0;
+      overflow: hidden;
+
+      .title {
+        @include fs(16px);
+        color: #25343f;
+        font-family: $opensansSB;
+        margin: 0 0 8px 0;
+      }
+
+      textarea {
+        width: 615px;
+        height: 150px;
+        border: 1px solid #dcdcdc;
+        @include br(5px);
+        background: #fff;
+        @include fs(16px);
+        color: #000;
+        padding: 10px;
+        font-family: $opensansR;
+        float: left;
+        resize: vertical;
+      }
+      .counter-textarea {
+        float: right;
+        width: 204px;
+        p {
+          color: #fff;
+          @include fs(14px);
+        }
+        .nol {
+          background: url("../img/nol.png") no-repeat;
+          width: 39px;
+          padding: 6px 0 11px;
+          text-align: center;
+        }
+        .bolshe {
+          background: url("../img/bolshe.png") no-repeat;
+          width: 39px;
+          padding: 6px 0 11px;
+          text-align: center;
+        }
+        .menshe {
+          background: url("../img/menshe.png") no-repeat;
+          width: 39px;
+          padding: 6px 0 11px;
+          text-align: center;
+        }
+        p {
+          @include lh(16px);
+          span {
+            color: #a9b2b9;
+            @include fs(12px);
+          }
+        }
+      }
+    }
+  }
+
+  .two-block {
+    margin: 0 0 35px 0;
+    width: auto;
+
+    .title {
+      @include fs(16px);
+      color: #25343f;
+      font-family: $opensansSB;
+    }
+
+    .sel {
+      .styled-select {
+        background: #fff url("../img/arrow-select.png") no-repeat scroll 210px center;
+        border: 1px solid #dcdcdc;
+        margin: 10px 0 0 0;
+        overflow: hidden;
+        width: 235px;
+        height: 30px;
+        line-height: 30px;
+        @include br(5px);
+
+        select {
+          background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+          border-radius: 5px;
+          clip: rect(0px, 237px, 26px, 210px);
+          color: #000;
+          font-family: $opensansR;
+          @include fs(16px);
+          padding: 5px 0 5px 5px;
+          top: 1px;
+          width: 263px;
+        }
+      }
+    }
+    .sel2 {
+      .styled-select {
+        width: 155px !important;
+        background: #fff url("../img/arrow-select.png") no-repeat scroll 135px center !important;
+        select {
+          width: 185px !important;
+        }
+      }
+    }
+  }
+
+  .checking-box {
+    width: 630px;
+    overflow: hidden;
+    .title {
+      margin: 0 0 20px 0;
+      font-family: $opensansSB;
+      span {
+        color: #c71b11;
+      }
+    }
+    .checkbox {
+      float: left;
+      width: 210px;
+      label {
+        display: inline-block;
+        float: left;
+        height: 19px;
+        margin: 0 7px 25px 0;
+        position: relative;
+        width: 19px;
+        span {
+          background: transparent url("../img/ch.png") no-repeat scroll 0 0;
+          cursor: pointer;
+          float: none;
+          height: 100%;
+          left: 0;
+          position: absolute;
+          top: 5px;
+          width: 100%;
+        }
+      }
+      .lab {
+        @include fs(14px);
+        @include lh(18px);
+        margin: 5px 0 0 0;
+        color: #25343f;
+        display: inline-block;
+      }
+      input[type="checkbox"] {
+        display: none;
+      }
+      input[type="checkbox"]:checked + span {
+        background: rgba(0, 0, 0, 0) url("../img/ch-active.png") no-repeat scroll 0 0;
+      }
+    }
+    .w185 {
+      width: 185px;
+    }
+  }
+
+  .graph {
+    @include form-block-container;
+
+    padding: 0;
+    margin: 10px 0;
+    .checking-box {
+      width: 630px;
+      overflow: hidden;
+      .title {
+        margin: 0 0 20px 0;
+      }
+      .checkbox {
+        float: left;
+        width: 210px;
+        label {
+          display: inline-block;
+          float: left;
+          height: 19px;
+          margin: 0 7px 25px 0;
+          position: relative;
+          width: 19px;
+          span {
+            background: transparent url("../img/ch.png") no-repeat scroll 0 0;
+            cursor: pointer;
+            float: none;
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 5px;
+            width: 100%;
+          }
+        }
+        .lab {
+          @include fs(14px);
+          @include lh(18px);
+          margin: 5px 0 0 0;
+          color: #25343f;
+          display: inline-block;
+        }
+        input[type="checkbox"] {
+          display: none;
+        }
+        input[type="checkbox"]:checked + span {
+          background: rgba(0, 0, 0, 0) url("../img/ch-active.png") no-repeat scroll 0 0;
+        }
+      }
+      .w185 {
+        width: 185px;
+      }
+    }
+    .inp-rad {
+      overflow: hidden;
+      width: 395px;
+      margin: 30px 0 0 0;
+      .radio {
+        float: left;
+        margin: 5px 30px 0 0;
+        label {
+          display: inline-block;
+          float: left;
+          height: 19px;
+          margin: 0;
+          position: relative;
+          width: 19px;
+          span {
+            background: transparent url("../img/radio.png") no-repeat scroll 0 0;
+            cursor: pointer;
+            float: none;
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 2px;
+            width: 100%;
+          }
+        }
+        input[type="radio"] {
+          display: none;
+        }
+        input[type="radio"]:checked + span {
+          background: rgba(0, 0, 0, 0) url("../img/radio-active.png") no-repeat scroll 0 0;
+        }
+        .lab {
+          color: #25343f;
+          @include fs(14px);
+          padding-left: 5px;
+          line-height: 24px;
+        }
+      }
+      .w60 {
+        margin-right: 60px;
+      }
+      .w42 {
+        margin-right: 42px;
+      }
+    }
+  }
+
+  .zarplata {
+    @include form-block-container;
+
+    padding: 0;
+    margin: 25px 0 0 0;
+
+    .title {
+      span {
+        color: #c71b11;
+      }
+    }
+
+    .in {
+      float: left;
+      width: 160px;
+      margin: 0 0 5px 0;
+
+      input {
+        width: 115px;
+        border: 1px solid #dcdcdc;
+        @include br(5px);
+        @include fs(16px);
+        color: #969ea5;
+        padding: 4px 10px;
+        margin: 10px 0 0 0;
+        font-family: $opensansR;
+      }
+    }
+    .inp-rad {
+      overflow: hidden;
+      width: 395px;
+      margin: 10px 0 0 0;
+
+      .radio {
+        float: left;
+        margin: 4px 25px 0 0;
+
+        label {
+          display: inline-block;
+          float: left;
+          height: 19px;
+          margin: 0;
+          position: relative;
+          width: 19px;
+          span {
+            background: transparent url("../img/radio.png") no-repeat scroll 0 0;
+            cursor: pointer;
+            float: none;
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 3px;
+            width: 100%;
+          }
+        }
+        input[type="radio"] {
+          display: none;
+        }
+        input[type="radio"]:checked + span {
+          background: rgba(0, 0, 0, 0) url("../img/radio-active.png") no-repeat scroll 0 0;
+        }
+        .lab {
+          color: #25343f;
+          @include fs(14px);
+          padding-left: 5px;
+          line-height: 24px;
+          font-family: $opensansR;
+        }
+      }
+      .w60 {
+        margin-right: 60px;
+      }
+      .w42 {
+        margin-right: 42px;
+      }
+    }
+    .two-block {
+      margin-bottom: 0;
+    }
+  }
+
+  .trebovania {
+    @include form-block-container;
+
+    .checking-box {
+      margin: 32px 0 0 0;
+      width: auto;
+      float: left;
+
+      .title {
+        margin: 0 0 5px 0;
+      }
+    }
+    .two-block {
+      width: auto;
+      overflow: hidden;
+      margin-bottom: 0;
+
+      .sel {
+        margin: 27px 0 0 395px;
+        .title {
+          font-family: $opensansSB;
+        }
+        .styled-select {
+          background: #fff url("../img/arrow-select.png") no-repeat scroll 210px center !important;
+          border: 1px solid #dcdcdc;
+          margin: 10px 0 0 0;
+          overflow: hidden;
+          width: 235px !important;
+          select {
+            background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+            border-radius: 5px;
+            clip: rect(0px, 237px, 26px, 210px);
+            color: #707b83;
+            font-family: $opensansR;
+            @include fs(16px);
+            padding: 5px 0 5px 5px;
+            top: 1px;
+            width: 263px !important;
+          }
+        }
+      }
+      .sel2 {
+        margin: 32px 0 0 0;
+        float: left;
+        width: 395px;
+      }
+      .sel3 {
+        margin: 0 0 10px 0;
+      }
+      .checking-box {
+        width: 400px;
+        .title {
+          margin: 0 0 12px 0;
+        }
+        .checkbox {
+          label {
+            margin: 0 7px 17px 0;
+          }
+        }
+      }
+    }
+
+    .inp-rad {
+      overflow: hidden;
+      width: 395px;
+      margin: 0;
+      float: left;
+
+      .title {
+        color: #25343f;
+        @include fs(16px);
+        font-family: $opensansSB;
+      }
+      .radio {
+        float: left;
+        margin: 14px 25px 0 0;
+        label {
+          display: inline-block;
+          float: left;
+          height: 19px;
+          margin: 0;
+          position: relative;
+          width: 19px;
+          span {
+            background: transparent url("../img/radio.png") no-repeat scroll 0 0;
+            cursor: pointer;
+            float: none;
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 3px;
+            width: 100%;
+          }
+        }
+        input[type="radio"] {
+          display: none;
+        }
+        input[type="radio"]:checked + span {
+          background: rgba(0, 0, 0, 0) url("../img/radio-active.png") no-repeat scroll 0 0;
+        }
+        .lab {
+          color: #25343f;
+          @include fs(14px);
+          padding-left: 5px;
+          line-height: 24px;
+          font-family: $opensansR;
+        }
+      }
+      .w60 {
+        margin-right: 60px;
+      }
+      .w42 {
+        margin-right: 42px;
+      }
+    }
+
+    .two-block2 {
+      .checking-box {
+        margin-top: 0;
+      }
+    }
+
+    #options {
+      margin: 27px 0 10px 0;
+      width: 230px;
+      float: left;
+
+      #slider_price {
+        margin-left: 10px;
+      }
+
+      #slider_price3 {
+        margin-left: 10px;
+      }
+      p {
+        @include fs(16px);
+        color: #25343f;
+        font-family: $opensansSB;
+        margin: 0 0 13px 0;
+      }
+      label {
+        @include fs(14px);
+        @include br(5px);
+        background: $color_white;
+        padding: 4px 0 4px 10px;
+        color: $color_black;
+        border: 1px solid #d6d6d6;
+        height: 30px;
+      }
+      .m-l {
+        margin: 0 20px 0 0;
+      }
+      input {
+        width: 66px;
+        color: #707b83;
+        @include fs(16px);
+      }
+    }
+  }
+
+  .dop-treb {
+    @include form-block-container;
+    overflow: hidden;
+
+    .chh {
+      @include fs(18px);
+      color: #25343f;
+      margin: 0 0 25px;
+    }
+    .two-block {
+      width: auto;
+      margin: 10px 0;
+    }
+    .checking-box {
+      width: 395px;
+      float: left;
+      .title {
+        margin: 0 0 5px 0;
+      }
+      .checkbox {}
+    }
+  }
+
+  .count-sel-and-map {
+    margin: 0 0 0 600px;
+    span {
+      @include fs(12px);
+      color: #a9b2b9;
+      float: left;
+      margin: 9px 20px 0 0;
+    }
+    p {
+      background: url("../img/map-icon.png") left center no-repeat;
+      padding: 0 0 0 33px;
+      display: inline-block;
+      margin: 32px 0 0 0;
+      a {
+        color: #0098df;
+        @include fs(14px);
+        font-family: $opensansR;
+        border-bottom: 1px dashed #0098df;
+      }
+      a:hover {
+        text-decoration: none;
+      }
+    }
+  }
+
+  .count-sel-and-map2 {
+    margin: 0 0 0 440px;
+  }
+
+  .dop-input {
+    margin: 10px 0;
+    .inp {
+      float: left;
+      margin: 0 10px 0 0;
+      .title {
+        @include fs(16px);
+        color: #25343f;
+        font-family: $opensansSB;
+        margin: 0 0 7px 0;
+      }
+      input {
+        width: 123px;
+        padding: 4px 0 4px 10px;
+        border: 1px solid #dcdcdc;
+        @include br(3px);
+        @include fs(16px);
+        color: #969ea5;
+      }
+    }
+    .inp2 {
+      float: none;
+      input {
+        width: 430px;
+      }
+    }
+  }
+
+  .photograph {
+    @include form-block-container;
+
+    .icons {
+      float: left;
+      margin: 0 40px 0 0;
+
+      .img {
+        position: relative;
+        float: left;
+
+        .del {
+          position: absolute;
+          top: 0;
+          background: rgba(0, 0, 0, 0.7);
+          width: 121px;
+          height: 121px;
+          @include br(10px);
+          overflow: hidden;
+          display: none;
+
+          a {
+            color: #fff;
+            @include fs(12px);
+            float: right;
+            margin: 5px 10px 0 0;
+          }
+
+          a:hover {
+            text-decoration: none;
+          }
+        }
+
+        img {
+          margin-right: 15px;
+        }
+      }
+
+      .img:hover {
+        .del {
+          display: block;
+        }
+      }
+    }
+
+    .info {
+      p {
+        @include fs(16px);
+        color: #25343f;
+        margin: 0 0 10px 0;
+
+        span {
+          display: block;
+          @include fs(12px);
+          color: #a9b2b9;
+        }
+      }
+    }
+  }
+
+  .contacts {
+    @include form-block-container;
+
+    .two-block {
+      margin-bottom: 0;
+    }
+
+    .in {
+      float: left;
+      width: 395px;
+      margin: 0 0 5px 0;
+
+      input {
+        width: 220px;
+        border: 1px solid #dcdcdc;
+        @include br(5px);
+        @include fs(16px);
+        color: #969ea5;
+        padding: 4px 10px;
+        margin: 10px 0 0 0;
+        font-family: $opensansR;
+      }
+    }
+  }
+
+  .buttons {
+    margin: 20px 0 50px 45px;
+
+    .save {
+      background: #1ed88f;
+      width: 165px;
+      display: inline-block;
+      color: #fff;
+      @include fs(14px);
+      font-family: $opensansSB;
+      text-align: center;
+      @include br(25px);
+      padding: 8px 0;
+      margin: 0 7px 0 0;
+    }
+
+    .save:hover {
+      background: #31e7a0;
+      text-decoration: none;
+    }
+
+    .cancel {
+      width: 208px;
+      background: #dcdcdc;
+      color: #fff;
+      @include fs(14px);
+      text-align: center;
+      display: inline-block;
+      @include br(25px);
+      padding: 8px 0;
+    }
+
+    .cancel:hover {
+      background: #e8e8e8;
+      color: #c3c3c3;
+      text-decoration: none;
+    }
+  }
+}

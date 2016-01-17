@@ -1,0 +1,76 @@
+@mixin w($w, $mw) {
+  max-width: $w;
+  min-width: $mw;
+}
+
+@mixin wrap($w) {
+  width: $w;
+  margin: 0 auto;
+}
+
+@mixin br($r) {
+  -webkit-border-radius: $r;
+  -moz-border-radius: $r;
+  -ms-border-radius: $r;
+  border-radius: $r;
+}
+
+@mixin brAll($tl, $tr, $br, $bl) {
+  -webkit-border-radius: $tl $tr $br $bl;
+  -moz-border-radius: $tl $tr $br $bl;
+  -ms-border-radius: $tl $tr $br $bl;
+  border-radius: $tl $tr $br $bl;
+}
+
+@mixin fs($size) {
+  font-size: $size;
+}
+
+@mixin lh($line) {
+  line-height: $line;
+}
+
+@mixin title {
+  @include fs(30px);
+  margin: 30px 0 25px;
+  text-align: center;
+  span {
+    padding: 0 0 15px 0;
+    border-bottom: 1px solid $color_black;
+  }
+}
+
+@mixin checkbox {
+  float: left;
+  label {
+    display: inline-block;
+    height: 12px;
+    margin: 0 5px 0 3px;
+    position: relative;
+    width: 12px;
+  }
+  input {
+    display: none;
+  }
+  input + span {
+    background: rgba(0, 0, 0, 0) url("../img/checkbox.png") no-repeat scroll 0 0;
+    cursor: pointer;
+    float: none;
+    height: 100%;
+    left: 0;
+    margin: 0 20px 0 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+  input:checked + span {
+    background: rgba(0, 0, 0, 0) url("../img/checkbox-active.png") no-repeat scroll 0 0;
+  }
+}
+
+@mixin form-block-container {
+  background: #f6f6f6;
+  @include br(10px);
+  padding: 15px 45px;
+  margin: 0 0 10px 0;
+}

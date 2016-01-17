@@ -1,0 +1,186 @@
+.content {
+  .parents-nanny {
+    background: #f6f6f6;
+    overflow: hidden;
+    @include br(10px);
+  }
+
+  .block {
+    background: url("../img/border.jpg") right center no-repeat;
+    width: 474px;
+    float: left;
+  }
+
+  .block p {
+    text-align: center;
+    color: $color_gray;
+    padding: 0 30px;
+    @include fs(18px);
+    @include lh(22px);
+  }
+
+  .work .title {
+    @include title;
+  }
+
+  .block .title {
+    @include title;
+    color: $color_green;
+    @include fs(30px);
+  }
+
+  .block .title span {
+    display: inline-block;
+    padding: 0 35px 30px 35px;
+    border-bottom: 1px solid $color_green;
+  }
+
+  .block .button {
+    @include br(25px);
+    background: $color_green;
+    margin: 25px auto;
+    padding: 0;
+    text-align: center;
+    width: 275px;
+  }
+
+  .block .button:hover {
+    cursor: pointer;
+    background: $color_green_active;
+  }
+
+  .block .button:hover a {
+    text-decoration: none;
+  }
+
+  .block .button a {
+    color: $color_white;
+    font-family: $opensansSB;
+    padding: 15px 0 15px 25px;
+    display: inline-block;
+    background: url("../img/search-icon.png") left center no-repeat;
+  }
+
+  .block-right {
+    background: none;
+  }
+
+  .work {}
+
+  .nooverflow {}
+
+  .work p {
+    font-family: $opensansL;
+    text-align: center;
+    color: $color_black;
+    @include fs(18px);
+  }
+
+  .work .block {
+    background: url("../img/border-block.jpg") right center no-repeat;
+    margin: 50px 0 0 0;
+  }
+
+  .work .block-right {
+    background: none;
+  }
+
+  .work .block img {
+    margin: 0 auto;
+    display: block;
+  }
+
+  .work .block .step {
+    padding: 0 0 30px 0;
+    margin: 15px 0 0 0;
+    background: url("../img/borders.jpg") center bottom no-repeat;
+  }
+
+  .work .block .step-none {
+    background: none;
+  }
+
+  .work .block .step p {
+    font-family: $opensansR;
+    margin: 15px auto;
+    display: block;
+  }
+
+  .work .block .step p span {
+    color: $color_blue;
+    font-family: $opensansSB;
+  }
+
+  .vibor .title {
+    @include title;
+    margin: 30px auto;
+  }
+
+  .vibor p {
+    @include fs(18px);
+    font-family: $opensansL;
+    text-align: center;
+    @include wrap(580px);
+  }
+
+  .vibor p a {
+    text-decoration: underline;
+    color: $color_blue;
+    font-family: $opensansSB;
+    @include fs(18px);
+  }
+
+  .pictures {
+    position: relative;
+    margin: 70px 0 43px 0;
+  }
+
+  .pictures .href {
+    position: absolute;
+    top: 35px;
+    left: 55px;
+    width: 310px;
+  }
+
+  .pictures .href a {
+    background: url("../img/next.png") right 9px no-repeat;
+    color: $color_gray;
+    @include fs(30px);
+    @include lh(32px);
+    padding: 0 40px 0 0;
+  }
+}
+
+#ui-datepicker-div {
+    width: 320px !important; 
+    border-radius: 10px !important;
+    box-shadow: 1px 7px 20px 0 rgba(50, 50, 50, 0.5) !important;
+    margin: 10px 0 25px 200px !important;
+    border: 0 !important;
+    padding: 0 !important;
+}
+
+#ui-datepicker-div thead {
+    background: #39db97 !important;
+    color: #fff !important;
+    font-size: 16px !important;
+    font-family: OpenSansSB !important;
+    text-align: center !important;
+    margin: 8px 0 0 0 !important;
+}
+
+#ui-datepicker-div tbody {
+    font-size: 14px !important;
+    font-family: OpenSansSB;
+}
+
+.ui-datepicker-title select {
+    padding: 5px 0 5px 15px !important;
+    font-size: 16px !important;
+    font-family: OpenSansR !important;
+    color: #25343f !important;
+}
+
+.ui-state-disabled span {
+    color: #a9b2b9 !important;
+}

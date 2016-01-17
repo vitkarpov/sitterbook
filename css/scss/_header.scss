@@ -1,0 +1,362 @@
+.header {
+  background: rgba(56, 158, 222, 0.9);
+  width: 100%;
+  min-width: 1150px;
+  position: absolute;
+  top: 0;
+  @include fs(16px);
+
+  .logo {
+    float: left;
+    padding: 8px 0 5px;
+  }
+
+  .registration {
+    float: right;
+    margin: 13px 0 0 0;
+  }
+
+  .registration a {
+    border: 1px solid $color_white;
+    padding: 10px 25px;
+    color: $color_white;
+    float: left;
+    @include fs(14px);
+    @include br(25px);
+  }
+
+  .registration .hov:hover {
+    background: $color_white;
+    text-decoration: none;
+    color: $color_blue;
+  }
+
+  .registration .auth a:hover {
+    text-decoration: none;
+  }
+
+  .registration .auth {
+    position: relative;
+    float: right;
+    margin: 0 0 0 5px;
+    padding: 9px 15px 24px 15px;
+    top: 0;
+  }
+
+  .registration .success-auth {
+    position: relative;
+    float: right;
+    margin: 0 0 0 5px;
+    padding: 10px 15px 24px 15px;
+    top: 2px;
+  }
+
+  .registration .auth2 {
+    background: rgba(246, 246, 246, 0.9);
+    @include brAll(10px, 10px, 0, 0);
+  }
+
+  .registration .auth2 a {
+    color: #389dde;
+  }
+
+  .registration .form-auth {
+    background: rgba(246, 246, 246, 0.9);
+    position: absolute;
+    @include brAll(10px, 0, 10px, 10px);
+    top: 56px;
+    left: -212px;
+    width: 280px;
+    padding: 17px 10px;
+    display: none;
+    z-index: 100;
+  }
+
+  .registration .form-auth input {
+    width: 270px;
+    border: 1px solid #dcdcdc;
+    @include br(5px);
+    @include fs(14px);
+    display: block;
+    color: $color_black;
+    padding: 10px 0 10px 7px;
+    margin: 0 0 10px 0;
+  }
+
+  .registration .form-auth input[type="text"] {
+    background: url("../img/icon-login.png") 250px center no-repeat $color_white;
+  }
+
+  .registration .form-auth input[type="password"] {
+    background: url("../img/icon-pass.png") 250px center no-repeat $color_white;
+  }
+
+  .registration .form-auth input[type="submit"] {
+    background: $color_green;
+    cursor: pointer;
+    width: 277px;
+    border: none;
+    @include br(25px);
+    padding: 10px 0;
+    color: $color_white;
+    @include fs(14px);
+    font-family: $opensansSB;
+  }
+
+  .registration .form-auth input[type="submit"]:hover {
+    background: $color_green_active;
+  }
+
+  .registration .auth a {
+    background: url("../img/arrow-bottom.png") left center no-repeat;
+    padding: 0 0 0 15px;
+    float: none;
+    border: none;
+    font-family: $opensansSB;
+  }
+
+  .registration .success-auth a {
+    background: url("../img/arrow-bottom.png") right center no-repeat;
+    padding: 0 15px 0 0;
+    float: none;
+    border: none;
+    font-family: $opensansSB;
+  }
+
+  .registration .success-auth a:hover {
+    text-decoration: none;
+  }
+
+  .header-menu {
+    margin: 23px 0 0 50px;
+    float: left;
+  }
+
+  .header-menu ul li {
+    float: left;
+    margin-right: 35px;
+  }
+
+  .header-menu ul li:last-child {
+    margin-right: 0;
+  }
+
+  .header-menu ul li a {
+    color: $color_white;
+  }
+
+  .form-auth .checkbox {
+    @include checkbox;
+  }
+
+  .form-auth .checkbox .lab {
+    color: $color_gray;
+    @include fs(14px);
+  }
+
+  .registration .form-auth .for-pass {
+    background: none;
+    font-family: $opensansR;
+    color: $color_blue;
+    text-decoration: underline;
+    float: right;
+    padding: 0;
+    margin: 1px 5px 0 0;
+  }
+
+  .registration .form-auth .for-pass:hover {
+    color: $color_blue;
+  }
+
+  .registration .form-auth .soc {
+    background: url("../img/bord-soc.png") center center no-repeat;
+    color: #969ea5;
+    text-align: center;
+    @include fs(14px);
+    margin: 10px 0 0 0;
+  }
+
+  .form-auth .social {
+    overflow: hidden;
+  }
+
+  .form-auth .social ul {
+    overflow: hidden;
+    @include wrap(135px);
+    margin: 15px auto 0;
+  }
+
+  .form-auth .social ul li {
+    float: left;
+  }
+
+  .form-auth .social ul li a {
+    display: block;
+    width: 34px;
+    height: 33px;
+    @include br(0px);
+    padding: 0;
+    margin: 0 15px 0 0;
+  }
+
+  .form-auth .social ul li .od {
+    background: url("../img/od.png") no-repeat;
+  }
+
+  .form-auth .social ul li .vk {
+    background: url("../img/vko.png") no-repeat;
+  }
+
+  .form-auth .social ul li .fb {
+    background: url("../img/fb.png") no-repeat;
+    margin: 0;
+  }
+}
+
+.registration {
+  margin: 200px 0 0;
+  .top-reg {
+    overflow: hidden;
+    h1 {
+      @include fs(30px);
+      color: #25343f;
+      font-family: $opensansL;
+      font-weight: normal;
+      float: left;
+      margin: 0 0 0 45px;
+    }
+    p {
+      @include fs(16px);
+      color: #25343f;
+      float: right;
+      margin: 14px 0 0 0;
+      a {
+        color: #2495dd;
+      }
+    }
+  }
+
+  .forma {
+    background: #f6f6f6;
+    @include br(15px);
+    overflow: hidden;
+    margin: 15px 0 35px 0;
+    .left-form {
+      width: 490px;
+      padding: 20px 0 30px 0;
+      margin: 0 0 0 50px;
+      float: left;
+      .bord {
+        border-bottom: 1px solid #dcdcdc;
+      }
+      label {
+        @include fs(16px);
+        color: #25343f;
+        font-family: $opensansSB;
+        display: block;
+        margin: 11px 0 11px 0;
+      }
+      input {
+        width: 225px;
+        border: 1px solid #dcdcdc;
+        @include br(5px);
+        padding: 7px 0 7px 10px;
+        @include fs(16px);
+        color: #969ea5;
+      }
+      .two-input {
+        overflow: hidden;
+        input {
+          float: left;
+          margin: 0 15px 0 0;
+        }
+        input:last-child {
+          float: none;
+          margin: 0;
+        }
+      }
+      .social {
+        margin: 20px 0 0 0;
+        p {
+          @include fs(16px);
+          color: #25343f;
+          font-family: $opensansSB;
+          margin: 0 0 10px 0;
+        }
+        a {
+          display: inline-block;
+          margin: 0 10px 0 0;
+        }
+      }
+      .input2 {
+        overflow: hidden;
+        input {
+          float: left;
+        }
+        p {
+          @include fs(14px);
+          color: #707b83;
+          margin: 0 0 0 250px;
+          padding: 7px 0 0 0;
+        }
+      }
+      input[type="submit"] {
+        width: 235px;
+        background: #1ed88f;
+        text-align: center;
+        color: #fff;
+        @include fs(14px);
+        font-family: $opensansSB;
+        padding: 7px 0;
+        border: none;
+        @include br(20px);
+        cursor: pointer;
+        margin: 0 0 25px 0;
+      }
+      input[type="submit"]:hover {
+        background: #31e7a0;
+      }
+      .check {
+        margin: 20px 0 30px 0;
+        label {
+          display: inline-block;
+          height: 19px;
+          position: relative;
+          width: 19px;
+          float: left;
+          margin: 0;
+          input[type="checkbox"]:checked + span {
+            background: url("../img/ch-active.png") no-repeat;
+          }
+          span {
+            background: rgba(0, 0, 0, 0) url("../img/ch.png") no-repeat;
+            cursor: pointer;
+            float: none;
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 1px;
+            width: 100%;
+          }
+        }
+        .txt {
+          @include fs(16px);
+          color: #626f78;
+          padding: 10px 0 0 10px;
+          a {
+            color: #2495dd;
+          }
+        }
+        input[type="checkbox"] {
+          display: none;
+        }
+      }
+    }
+    .right-form {
+      float: right;
+      img {
+        display: block;
+      }
+    }
+  }
+}

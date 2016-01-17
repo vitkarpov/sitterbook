@@ -1,0 +1,1161 @@
+.create-rezume {
+  margin: 100px 0 0 0;
+
+  h1 {
+    @include fs(30px);
+    color: #25343f;
+    font-family: $opensansL;
+    font-weight: normal;
+    margin: 0 0 20px 40px;
+  }
+
+  .work-map {
+    @include form-block-container;
+
+    .title-border {
+      border-bottom: 1px solid #25343f;
+      color: #25343f;
+      display: inline-block;
+      font-family: OpenSansL;
+      font-size: 30px;
+      margin: 0 0 20px;
+      padding: 0 0 5px;
+    }
+
+    .select-city {
+      p {
+        @include fs(16px);
+        color: #25343f;
+        font-family: OpenSansSB;
+      }
+
+      .fetched-cities-invisible {
+        display: none;
+      }
+
+      .wrap-sel {
+        padding-top: 10px;
+
+        .sel {
+          @include br(3px);
+          cursor: pointer;
+          margin: 0 10px 0 0;
+          position: relative;
+          float: left;
+
+          &.seld-old {
+            background-color: transparent;
+            border: 0;
+
+            &-title {
+              box-sizing: border-box;
+            }
+          }
+        }
+        .seld-title {
+          background: url("../img/arrow-select.png") 180px center no-repeat #fff;
+          border: 1px solid #dcdcdc;
+          margin: 0 10px 0 0;
+          overflow: hidden;
+          border: 1px solid #dcdcdc;
+          width: 203px;
+          border: 1px solid #dcdcdc;
+          @include br(5px);
+          cursor: pointer;
+          position: relative;
+          float: left;
+
+          select {
+            background: transparent none repeat scroll 0 0;
+            clip: rect(0px, 237px, 26px, 210px);
+            font-family: OpenSansR;
+            font-size: 16px;
+            padding: 5px 0 5px 5px;
+            height: 30px;
+            line-height: 30px;
+            @include br(5px);
+            overflow-y: hidden;
+            color: #25343f;
+            width: 230px;
+          }
+        }
+        .ajax-form {
+          float: left;
+          max-width: 624px;
+        }
+      }
+      .wrap-sel2 {
+        padding: 0 0 0 30px;
+        position: relative;
+        .remove {
+          background: url("../img/remove.png") no-repeat;
+          width: 19px;
+          height: 19px;
+          position: absolute;
+          left: 3px;
+          top: 9px;
+          cursor: pointer;
+        }
+        .remove:hover {
+          background: url("../img/remove-hover.png") no-repeat;
+          width: 19px;
+          height: 19px;
+          position: absolute;
+          left: 3px;
+          top: 9px;
+          cursor: pointer;
+        }
+      }
+      .sel {
+        background: url("../img/arrow-select.png") 159px center no-repeat #fff;
+        width: 182px;
+        border: 1px solid #dcdcdc;
+        @include br(3px);
+        cursor: pointer;
+        margin: 0 10px 2px 0;
+        position: relative;
+        float: left;
+        span {
+          color: #25343f;
+          @include fs(16px);
+          display: block;
+          padding: 4px 10px;
+        }
+      }
+      .sel2 {
+        background: url("../img/arrow-select.png") 150px center no-repeat #fff;
+        width: 173px;
+      }
+      .count-sel-and-map {
+        float: left;
+
+        span {
+          @include fs(12px);
+          color: #a9b2b9;
+          float: left;
+          margin: 9px 20px 0 0;
+        }
+        p {
+          position: relative;
+          padding: 0 10px 0 33px;
+          display: inline-block;
+          margin: 6px 0 0 0;
+          &::before {
+            content: '';
+            width: 25px;
+            height: 22px;
+            position: absolute;
+            top: -4px;
+            left: 0;
+            background: url("../img/map-icon.png") center no-repeat;
+          }
+          a {
+            color: #0098df;
+            @include fs(14px);
+            font-family: $opensansR;
+            border-bottom: 1px dashed #0098df;
+          }
+          a:hover {
+            text-decoration: none;
+          }
+        }
+      }
+      .count-sel-and-map2 {
+        margin: 10px 0 0 217px;
+      }
+      .count-sel-and-map3 {
+        margin: 10px 0 0 400px;
+      }
+      .all-city {
+        width: 215px;
+        background: #f6f6f6;
+        @include br(5px);
+        padding: 10px 25px 20px;
+        box-shadow: 1px 0 20px 0 rgba(50, 50, 50, 0.75);
+        margin: -35px 0 0;
+        z-index: 100;
+        position: absolute;
+        display: none;
+        cursor: default;
+        p {
+          @include fs(14px);
+          color: #25343f;
+          font-family: $opensansSB;
+          margin: 5px 0;
+        }
+        span {
+          display: inline-block;
+          color: #25343f;
+          @include fs(13px);
+          font-family: $opensansR;
+          margin: 0 0 0 20px;
+          cursor: pointer;
+          padding: 0;
+        }
+        a {
+          display: block;
+          border: 2px solid #1ed88f;
+          color: #1ed88f;
+          @include fs(14px);
+          @include br(25px);
+          padding: 7px 0;
+          font-family: $opensansSB;
+          text-align: center;
+          margin: 15px 0 0 0;
+        }
+        a:hover {
+          text-decoration: none;
+          color: #fff;
+          background: #1ed88f;
+        }
+        .checkbox {
+          overflow: hidden;
+          margin: 0 0 0 12px;
+          label {
+            // display: inline-block;
+            // float: left;
+            height: 19px;
+            margin: 0 7px 7px 0;
+            position: relative;
+            width: 19px;
+
+            .checkbox_box {
+              background: transparent url("../img/ch.png") no-repeat scroll 0 0;
+              cursor: pointer;
+              float: none;
+              height: 100%;
+              left: 0;
+              position: absolute;
+              top: 5px;
+              width: 100%;
+              margin: 0;
+            }
+          }
+          .lab {
+            @include fs(13px);
+            color: #25343f;
+            margin: 7px 0 0 26px;
+          }
+          input[type="checkbox"] {
+            //display: none;
+          }
+          input[type="checkbox"]:checked + span {
+            //background: rgba(0, 0, 0, 0) url("../img/ch-active.png") no-repeat scroll 0 0;
+          }
+        }
+      }
+      .add-city {
+        @include fs(16px);
+        color: #0098df;
+        border-bottom: 1px dashed #0098df;
+        cursor: pointer;
+        display: inline-block;
+        margin: 15px 0 0 0;
+      }
+      .remove-city {
+        background: url("../img/remove.png") no-repeat;
+        width: 19px;
+        height: 30px;
+        background-position: center;
+        cursor: pointer;
+        float: left;
+      }
+    }
+  }
+
+  .o-sebe {
+    @include form-block-container;
+
+    .title-border {
+      border-bottom: 1px solid #25343f;
+      color: #25343f;
+      display: inline-block;
+      font-family: OpenSansL;
+      font-size: 30px;
+      margin: 0 0 20px;
+      padding: 0 0 5px;
+    }
+    .textarea {
+      margin: 0 0 20px 0;
+      overflow: hidden;
+      textarea {
+        width: 615px;
+        height: 150px;
+        border: 1px solid #dcdcdc;
+        @include br(5px);
+        background: #fff;
+        @include fs(16px);
+        color: #000;
+        padding: 10px;
+        font-family: $opensansR;
+        float: left;
+        resize: vertical;
+      }
+      .counter-textarea {
+        float: right;
+        width: 204px;
+        p {
+          color: #fff;
+          @include fs(14px);
+        }
+        .nol {
+          background: url("../img/nol.png") no-repeat;
+          width: 39px;
+          padding: 6px 0 11px;
+          text-align: center;
+        }
+        .bolshe {
+          background: url("../img/bolshe.png") no-repeat;
+          width: 39px;
+          padding: 6px 0 11px;
+          text-align: center;
+        }
+        .menshe {
+          background: url("../img/menshe.png") no-repeat;
+          width: 39px;
+          padding: 6px 0 11px;
+          text-align: center;
+        }
+        p {
+          @include lh(16px);
+          span {
+            color: #a9b2b9;
+            @include fs(12px);
+          }
+        }
+      }
+    }
+    .video {
+      .title {
+        @include fs(16px);
+        color: #25343f;
+        font-family: $opensansSB;
+      }
+      span {
+        color: #a9b2b9;
+        @include fs(12px);
+      }
+      .you {
+        overflow: hidden;
+        margin: 10px 0 7px;
+        input {
+          float: left;
+          width: 625px;
+          border: 1px solid #dcdcdc;
+          color: #000;
+          @include fs(16px);
+          padding: 0 10px;
+          margin: 0 20px 0 0;
+          height: 30px;
+          line-height: 30px;
+          @include br(5px);
+        }
+        button {
+          width: 90px;
+          color: #1ed88f;
+          @include fs(14px);
+          font-family: $opensansSB;
+          border: 2px solid #1ed88f;
+          display: block;
+          background: none;
+          @include br(25px);
+          cursor: pointer;
+          padding: 5px 0;
+        }
+      }
+    }
+    .two-block {
+      margin: 0 0 35px 0;
+      width: auto;
+
+      .title {
+        @include fs(16px);
+        color: #25343f;
+        font-family: $opensansSB;
+      }
+      .inp-rad {
+        overflow: hidden;
+        width: 395px;
+        float: left;
+        .radio {
+          float: left;
+          margin: 5px 30px 0 0;
+          label {
+            display: inline-block;
+            float: left;
+            height: 21px;
+            margin: 0;
+            position: relative;
+            width: 21px;
+            span {
+              background: transparent url("../img/radio.png") no-repeat scroll 0 0;
+              cursor: pointer;
+              float: none;
+              height: 100%;
+              left: 0;
+              position: absolute;
+              top: 2px;
+              width: 100%;
+            }
+          }
+          input[type="radio"] {
+            display: none;
+          }
+          input[type="radio"]:checked + span {
+            background: rgba(0, 0, 0, 0) url("../img/radio-active.png") no-repeat scroll 0 0;
+          }
+          .lab {
+            color: #25343f;
+            @include fs(14px);
+            padding-left: 5px;
+          line-height: 24px;
+          }
+        }
+        .w60 {
+          margin-right: 60px;
+        }
+        .w42 {
+          margin-right: 42px;
+        }
+      }
+      .birthday {
+        margin: 0 0 0 395px;
+        position: relative;
+
+        input {
+          background: url("../img/calendar.png") 195px center no-repeat #fff;
+          width: 242px;
+          border: 1px solid #dcdcdc;
+          @include br(5px);
+          @include fs(16px);
+          color: #25343f;
+          padding: 4px 10px;
+          margin: 10px 0 0 0;
+          font-family: $opensansR;
+        }
+
+        .calendar {
+          width: 320px;
+          @include br(10px);
+          box-shadow: 1px 7px 20px 0 rgba(50, 50, 50, 0.5);
+          margin: 10px 0 25px;
+          position: absolute;
+          left: 200px;
+          display: none;
+          .calend-arr {
+            position: absolute;
+            top: -8px;
+            left: 15px;
+          }
+          .top {
+            background: #39db97;
+            @include brAll(10px, 10px, 0, 0);
+            overflow: hidden;
+            padding: 20px 0 12px;
+            .left-arr {
+              float: left;
+              margin: 6px 18px 0 12px;
+            }
+            .right-arr {
+              float: right;
+              margin: 6px 12px 0 18px;
+            }
+            .month {
+              position: relative;
+              background: #fff;
+              float: left;
+              width: 135px;
+              border: 1px solid #dcdcdc;
+              @include br(5px);
+              margin: 0 10px 0 0;
+              p {
+                padding: 5px 0 5px 15px;
+                @include fs(16px);
+                font-family: $opensansR;
+                color: #25343f;
+              }
+            }
+            .year {
+              position: relative;
+              background: #fff;
+              float: left;
+              width: 87px;
+              border: 1px solid #dcdcdc;
+              @include br(5px);
+              p {
+                padding: 5px 0 5px 15px;
+                @include fs(16px);
+                font-family: $opensansR;
+                color: #25343f;
+              }
+            }
+            .top-arr {
+              position: absolute;
+              right: 7px;
+              top: 8px;
+              width: 12px;
+              height: 6px;
+              display: block;
+              cursor: pointer;
+            }
+            .bottom-arr {
+              position: absolute;
+              right: 7px;
+              bottom: 8px;
+              width: 12px;
+              height: 6px;
+              display: block;
+              cursor: pointer;
+            }
+            .ned {
+              color: #fff;
+              @include fs(16px);
+              font-family: $opensansSB;
+              text-align: center;
+              margin: 8px 0 0 0;
+              span {
+                display: inline-block;
+                width: 16px;
+              }
+            }
+          }
+          .dates {
+            background: #fff;
+            @include brAll(0, 0, 10px, 10px);
+            table {
+              width: 253px;
+              margin: 0 auto;
+              padding: 7px 0 10px;
+              text-align: center;
+              td {
+                color: #25343f;
+                @include fs(14px);
+                padding: 6px 0;
+                cursor: pointer;
+              }
+              .last {
+                color: #a9b2b9;
+              }
+              .active {
+                color: #fff;
+                background: #39db97;
+                @include br(15px);
+                background: url("../img/select-day.png") center center no-repeat;
+              }
+            }
+          }
+        }
+        .open {
+          display: block;
+        }
+      }
+      .sel {
+        .styled-select {
+          background: #fff url("../img/arrow-select.png") no-repeat scroll 210px center;
+          border: 1px solid #dcdcdc;
+          margin: 10px 0 0 0;
+          overflow: hidden;
+          width: 235px;
+          height: 30px;
+          line-height: 30px;
+          @include br(5px);
+          select {
+            background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+            border-radius: 5px;
+            clip: rect(0px, 237px, 26px, 210px);
+            color: #000;
+            font-family: $opensansR;
+            @include fs(16px);
+            padding: 5px 0 5px 5px;
+            top: 1px;
+            width: 263px;
+          }
+        }
+      }
+      .child {
+        .styled-select {
+          background: #fff url("../img/arrow-select.png") no-repeat scroll 132px center;
+          width: 157px;
+          select {
+            width: 185px;
+          }
+        }
+      }
+    }
+  }
+
+  .education {
+    @include form-block-container;
+
+    .title-border {
+      border-bottom: 1px solid #25343f;
+      color: #25343f;
+      display: inline-block;
+      font-family: OpenSansL;
+      font-size: 30px;
+      margin: 0 0 20px;
+      padding: 0 0 5px;
+    }
+    .course {
+      .title {
+        color: #25343f;
+        @include fs(16px);
+        font-family: OpenSansSB;
+      }
+      .inputs {
+        overflow: hidden;
+        margin: 10px 0;
+        width: 670px;
+        position: relative;
+        input {
+          width: 430px;
+          border: 1px solid #dcdcdc;
+          @include br(5px);
+          float: left;
+          padding: 0 10px;
+          height: 30px;
+          @include fs(16px);
+          color: #000;
+        }
+        .remove {
+          background: url("../img/remove.png") no-repeat;
+          width: 19px;
+          height: 19px;
+          position: absolute;
+          right: 3px;
+          top: 9px;
+          cursor: pointer;
+        }
+        .remove:hover {
+          background: url("../img/remove-hover.png") no-repeat;
+        }
+        .year {
+          width: 165px;
+          margin: 0 0 0 10px;
+        }
+      }
+      span {
+        @include fs(14px);
+        color: #0098df;
+        border-bottom: 1px dashed #0098df;
+        margin: 0 0 30px 0;
+        display: inline-block;
+        cursor: pointer;
+      }
+      span:hover {
+        text-decoration: none;
+      }
+    }
+    .sel {
+      .styled-select {
+        background: #fff url("../img/arrow-select.png") no-repeat scroll 210px center;
+        border: 1px solid #dcdcdc;
+        margin: 10px 0 0 0;
+        overflow: hidden;
+        width: 235px;
+        height: 30px;
+        line-height: 30px;
+        @include br(5px);
+        select {
+          background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+          border-radius: 5px;
+          clip: rect(0px, 237px, 26px, 210px);
+          color: #000;
+          @include fs(16px);
+          font-family: $opensansR;
+          padding: 5px 0 5px 5px;
+          top: 1px;
+          width: 263px;
+        }
+      }
+    }
+  }
+
+  .work-stage {
+    @include form-block-container;
+
+    .title-border {
+      border-bottom: 1px solid #25343f;
+      color: #25343f;
+      display: inline-block;
+      font-family: OpenSansL;
+      font-size: 30px;
+      margin: 0 0 20px;
+      padding: 0 0 5px;
+    }
+    .title {
+      color: #25343f;
+      @include fs(16px);
+      font-family: OpenSansSB;
+    }
+    .sel {
+      .styled-select {
+        background: #fff url("../img/arrow-select.png") no-repeat scroll 347px center;
+        border: 1px solid #dcdcdc;
+        margin: 10px 0 0 0;
+        overflow: hidden;
+        width: 372px;
+        height: 30px;
+        line-height: 30px;
+        @include br(5px);
+        select {
+          background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+          border-radius: 5px;
+          clip: rect(0px, 237px, 26px, 210px);
+          color: #000;
+          @include fs(16px);
+          font-family: $opensansR;
+          padding: 5px 0 5px 5px;
+          top: 1px;
+          width: 400px;
+        }
+      }
+    }
+    .checking-box {
+      width: 630px;
+      overflow: hidden;
+      margin: 20px 0 0 0;
+      .title {
+        margin: 0 0 20px 0;
+      }
+      .checkbox {
+        float: left;
+        width: 210px;
+        label {
+          display: inline-block;
+          float: left;
+          height: 19px;
+          margin: 0 7px 20px 0;
+          position: relative;
+          width: 19px;
+          span {
+            background: transparent url("../img/ch.png") no-repeat scroll 0 0;
+            cursor: pointer;
+            float: none;
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 5px;
+            width: 100%;
+          }
+        }
+        .lab {
+          @include fs(14px);
+          color: #25343f;
+          display: inline-block;
+          margin-top: 6px;
+        }
+        input[type="checkbox"] {
+          display: none;
+        }
+        input[type="checkbox"]:checked + span {
+          background: rgba(0, 0, 0, 0) url("../img/ch-active.png") no-repeat scroll 0 0;
+        }
+      }
+      .w185 {
+        width: 185px;
+      }
+    }
+  }
+
+  .graph {
+    @include form-block-container;
+
+    .title-border {
+      border-bottom: 1px solid #25343f;
+      color: #25343f;
+      display: inline-block;
+      font-family: OpenSansL;
+      font-size: 30px;
+      margin: 0 0 20px;
+      padding: 0 0 5px;
+    }
+    .title {
+      color: #25343f;
+      @include fs(16px);
+      font-family: OpenSansSB;
+    }
+    .checking-box {
+      width: 630px;
+      overflow: hidden;
+      .title {
+        margin: 0 0 20px 0;
+      }
+      .checkbox {
+        float: left;
+        width: 210px;
+        label {
+          display: inline-block;
+          float: left;
+          height: 19px;
+          margin: 0 7px 25px 0;
+          position: relative;
+          width: 19px;
+          span {
+            background: transparent url("../img/ch.png") no-repeat scroll 0 0;
+            cursor: pointer;
+            float: none;
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 5px;
+            width: 100%;
+          }
+        }
+        .lab {
+          @include fs(14px);
+          @include lh(18px);
+          margin: 5px 0 0 0;
+          color: #25343f;
+          display: inline-block;
+        }
+        input[type="checkbox"] {
+          display: none;
+        }
+        input[type="checkbox"]:checked + span {
+          background: rgba(0, 0, 0, 0) url("../img/ch-active.png") no-repeat scroll 0 0;
+        }
+      }
+      .w185 {
+        width: 185px;
+      }
+    }
+    .inp-rad {
+      overflow: hidden;
+      width: 395px;
+      margin: 30px 0 0 0;
+      .radio {
+        float: left;
+        margin: 5px 30px 0 0;
+        label {
+          display: inline-block;
+          float: left;
+          height: 19px;
+          margin: 0;
+          position: relative;
+          width: 19px;
+          span {
+            background: transparent url("../img/radio.png") no-repeat scroll 0 0;
+            cursor: pointer;
+            float: none;
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 2px;
+            width: 100%;
+          }
+        }
+        input[type="radio"] {
+          display: none;
+        }
+        input[type="radio"]:checked + span {
+          background: rgba(0, 0, 0, 0) url("../img/radio-active.png") no-repeat scroll 0 0;
+        }
+        .lab {
+          color: #25343f;
+          @include fs(14px);
+          padding-left: 5px;
+          line-height: 24px;
+        }
+      }
+      .w60 {
+        margin-right: 60px;
+      }
+      .w42 {
+        margin-right: 42px;
+      }
+    }
+  }
+
+  .photograph {
+    @include form-block-container;
+    overflow: hidden;
+
+    .title-border {
+      border-bottom: 1px solid #25343f;
+      color: #25343f;
+      display: inline-block;
+      font-family: OpenSansL;
+      font-size: 30px;
+      margin: 0 0 20px;
+      padding: 0 0 5px;
+    }
+
+    .icons {
+      float: left;
+      margin: 0 40px 0 0;
+
+      .img {
+        position: relative;
+        float: left;
+
+        .del {
+          position: absolute;
+          top: 0;
+          background: rgba(0, 0, 0, 0.7);
+          width: 121px;
+          height: 121px;
+          @include br(10px);
+          overflow: hidden;
+          display: none;
+
+          a {
+            color: #fff;
+            @include fs(12px);
+            float: right;
+            margin: 5px 10px 0 0;
+          }
+
+          a:hover {
+            text-decoration: none;
+          }
+        }
+        img {
+          margin-right: 15px;
+        }
+      }
+      .img:hover {
+        .del {
+          display: block;
+        }
+      }
+
+      #cropContainerOutput {
+        width: 121px;
+        height: 121px;
+        position: relative;
+        margin-right: 20px;
+        background-color: rgba(0,0,0,0.5);
+        border-radius: 10px;
+      }
+    }
+    .info {
+      p {
+        @include fs(16px);
+        color: #25343f;
+        margin: 0 0 10px 0;
+        span {
+          display: block;
+          @include fs(12px);
+          color: #a9b2b9;
+        }
+      }
+    }
+  }
+
+  .recommend {
+    @include form-block-container;
+
+    .title-border {
+      border-bottom: 1px solid #25343f;
+      color: #25343f;
+      display: inline-block;
+      font-family: OpenSansL;
+      font-size: 30px;
+      margin: 0 0 20px;
+      padding: 0 0 5px;
+    }
+    .inputs {
+      .title {
+        color: #25343f;
+        @include fs(16px);
+        font-family: OpenSansSB;
+        margin: 0 0 10px 0;
+      }
+      .three-inp {
+        margin: 10px 0;
+        position: relative;
+        width: 780px;
+      }
+      input {
+        border: 1px solid #dcdcdc;
+        @include br(5px);
+        @include fs(16px);
+        color: #25343f;
+        padding: 8px 0 8px 10px;
+        margin: 0 8px 0 0;
+        font-family: $opensansR;
+      }
+      .remove {
+        background: url("../img/remove.png") no-repeat;
+        width: 19px;
+        height: 19px;
+        position: absolute;
+        right: 3px;
+        top: 9px;
+        cursor: pointer;
+      }
+      .remove:hover {
+        background: url("../img/remove-hover.png") no-repeat;
+      }
+      .named {
+        width: 379px;
+        float: left;
+      }
+      .phones {
+        width: 155px;
+        float: left;
+      }
+      .mail {
+        width: 165px;
+      }
+      span {
+        color: #0098df;
+        @include fs(14px);
+        border-bottom: 1px dashed #0098df;
+        display: inline-block;
+        margin: 10px 0 5px;
+        cursor: pointer;
+      }
+      span:hover {
+        text-decoration: none;
+      }
+    }
+  }
+
+  .contacts {
+    @include form-block-container;
+
+    .title-border {
+      border-bottom: 1px solid #25343f;
+      color: #25343f;
+      display: inline-block;
+      font-family: OpenSansL;
+      font-size: 30px;
+      margin: 0 0 20px;
+      padding: 0 0 5px;
+    }
+    .title {
+      font-family: $opensansSB;
+      span {
+        color: #c71b11;
+      }
+    }
+    .in {
+      float: left;
+      width: 395px;
+      margin: 0 0 5px 0;
+      input {
+        width: 220px;
+        border: 1px solid #dcdcdc;
+        @include br(5px);
+        @include fs(16px);
+        color: #000;
+        padding: 6px 10px;
+        margin: 10px 0 0 0;
+        font-family: $opensansR;
+      }
+    }
+  }
+
+  .zarplata {
+    @include form-block-container;
+
+    .title-border {
+      border-bottom: 1px solid #25343f;
+      color: #25343f;
+      display: inline-block;
+      font-family: OpenSansL;
+      font-size: 30px;
+      margin: 0 0 20px;
+      padding: 0 0 5px;
+    }
+    .in {
+      float: left;
+      width: 160px;
+      margin: 0 0 5px 0;
+      input {
+        width: 115px;
+        border: 1px solid #dcdcdc;
+        @include br(5px);
+        @include fs(16px);
+        color: #000;
+        padding: 6px 10px;
+        margin: 10px 0 0 0;
+        font-family: $opensansR;
+      }
+    }
+    .inp-rad {
+      overflow: hidden;
+      width: 395px;
+      margin: 30px 0 0 0;
+      .radio {
+        float: left;
+        margin: 2px 25px 0 0;
+        label {
+          display: inline-block;
+          float: left;
+          height: 19px;
+          margin: 0;
+          position: relative;
+          width: 19px;
+          span {
+            background: transparent url("../img/radio.png") no-repeat scroll 0 0;
+            cursor: pointer;
+            float: none;
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 3px;
+            width: 100%;
+          }
+        }
+        input[type="radio"] {
+          display: none;
+        }
+        input[type="radio"]:checked + span {
+          background: rgba(0, 0, 0, 0) url("../img/radio-active.png") no-repeat scroll 0 0;
+        }
+        .lab {
+          color: #25343f;
+          @include fs(14px);
+          padding-left: 5px;
+          line-height: 24px;
+          font-family: $opensansR;
+        }
+      }
+      .w60 {
+        margin-right: 60px;
+      }
+      .w42 {
+        margin-right: 42px;
+      }
+    }
+  }
+
+  .buttons {
+    margin: 20px 0 50px 45px;
+
+    .save {
+      background: #1ed88f;
+      width: 165px;
+      display: inline-block;
+      color: #fff;
+      @include fs(14px);
+      font-family: $opensansSB;
+      text-align: center;
+      @include br(25px);
+      padding: 8px 0;
+      margin: 0 7px 0 0;
+    }
+    .save:hover {
+      background: #31e7a0;
+      text-decoration: none;
+    }
+    .cancel {
+      width: 208px;
+      background: #dcdcdc;
+      color: #fff;
+      @include fs(14px);
+      text-align: center;
+      display: inline-block;
+      @include br(25px);
+      padding: 8px 0;
+    }
+    .cancel:hover {
+      background: #e8e8e8;
+      color: #c3c3c3;
+      text-decoration: none;
+    }
+  }
+}

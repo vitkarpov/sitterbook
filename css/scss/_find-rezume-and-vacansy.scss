@@ -1,0 +1,808 @@
+.find-rezume-and-vacansy {
+  margin: 100px 0 0;
+
+  overflow: hidden;
+  .select-city {
+    p {
+      @include fs(16px);
+      color: #25343f;
+      font-family: OpenSansSB;
+    }
+    .mb {
+      margin-bottom: 7px;
+    }
+    .wrap-sel {
+    }
+    .wrap-sel2 {
+      padding: 0 0 0 30px;
+      position: relative;
+      .remove {
+        background: url("../img/remove.png") no-repeat;
+        width: 19px;
+        height: 19px;
+        position: absolute;
+        left: 3px;
+        top: 9px;
+        cursor: pointer;
+      }
+      .remove:hover {
+        background: url("../img/remove-hover.png") no-repeat;
+        width: 19px;
+        height: 19px;
+        position: absolute;
+        left: 3px;
+        top: 9px;
+        cursor: pointer;
+      }
+    }
+    .sel {
+      background: url("../img/arrow-select.png") 180px center no-repeat #fff;
+      width: 203px;
+      border: 1px solid #dcdcdc;
+      @include br(3px);
+      cursor: pointer;
+      margin: 0 10px 2px 0;
+      position: relative;
+      float: left;
+      span {
+        color: #25343f;
+        @include fs(16px);
+        display: block;
+        padding: 6px 10px;
+      }
+    }
+    .sel2 {
+      background: url("../img/arrow-select.png") 150px center no-repeat #fff;
+      width: 173px;
+    }
+    .count-sel-and-map {
+      margin: 10px 0 0 430px;
+      span {
+        @include fs(12px);
+        color: #a9b2b9;
+        float: left;
+        margin: 9px 20px 0 0;
+      }
+      p {
+        background: url("../img/map-icon.png") left center no-repeat;
+        padding: 0 0 0 33px;
+        display: inline-block;
+        margin: 3px 0 0 0;
+        a {
+          color: #0098df;
+          @include fs(14px);
+          font-family: $opensansR;
+          border-bottom: 1px dashed #0098df;
+        }
+        a:hover {
+          text-decoration: none;
+        }
+      }
+    }
+    .count-sel-and-map2 {
+      margin: 10px 0 0 217px;
+    }
+    .count-sel-and-map3 {
+      margin: 10px 0 0 400px;
+    }
+    .all-city {
+      width: 215px;
+      background: #f6f6f6;
+      @include br(5px);
+      padding: 10px 25px 20px;
+      box-shadow: 1px 0 20px 0 rgba(50, 50, 50, 0.75);
+      margin: -35px 0 0;
+      z-index: 100;
+      position: absolute;
+      display: none;
+      cursor: default;
+      p {
+        @include fs(14px);
+        color: #25343f;
+        font-family: $opensansSB;
+        margin: 5px 0;
+      }
+      span {
+        display: inline-block;
+        color: #25343f;
+        @include fs(13px);
+        font-family: $opensansR;
+        margin: 0 0 0 20px;
+        cursor: pointer;
+        padding: 0;
+      }
+      a {
+        display: block;
+        border: 2px solid #1ed88f;
+        color: #1ed88f;
+        @include fs(14px);
+        @include br(25px);
+        padding: 7px 0;
+        font-family: $opensansSB;
+        text-align: center;
+        margin: 15px 0 0 0;
+      }
+      a:hover {
+        text-decoration: none;
+        color: #fff;
+        background: #1ed88f;
+      }
+      .checkbox {
+        overflow: hidden;
+        margin: 0 0 0 12px;
+        label {
+          display: inline-block;
+          float: left;
+          height: 19px;
+          margin: 0 7px 7px 0;
+          position: relative;
+          width: 19px;
+          span {
+            background: transparent url("../img/ch.png") no-repeat scroll 0 0;
+            cursor: pointer;
+            float: none;
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 5px;
+            width: 100%;
+            margin: 0;
+          }
+        }
+        .lab {
+          @include fs(13px);
+          color: #25343f;
+          margin: 5px 0 0 0;
+        }
+        input[type="checkbox"] {
+          display: none;
+        }
+        input[type="checkbox"]:checked + span {
+          background: rgba(0, 0, 0, 0) url("../img/ch-active.png") no-repeat scroll 0 0;
+        }
+      }
+    }
+    .add-city {
+      @include fs(16px);
+      color: #0098df;
+      border-bottom: 1px dashed #0098df;
+      cursor: pointer;
+      display: inline-block;
+      margin: 15px 0 0 0;
+    }
+  }
+
+  .form-rezume {
+    background: #f6f6f6;
+    float: left;
+    width: 214px;
+    @include br(5px);
+    padding: 0 14px;
+    .work {
+      p {
+        @include fs(14px);
+        font-family: $opensansSB;
+        color: $color_black;
+        text-align: left;
+        padding: 12px 0;
+      }
+      .sel {
+        background: url("../img/arrow-select.png") 190px center no-repeat #fff;
+        width: 212px;
+        border: 1px solid #dcdcdc;
+        @include br(3px);
+        cursor: pointer;
+        margin: 0 10px 2px 0;
+        position: relative;
+        span {
+          color: #707b83;
+          @include fs(16px);
+          display: block;
+          padding: 6px 10px;
+        }
+      }
+      .all-city {
+        width: 212px;
+        background: #f6f6f6;
+        @include br(5px);
+        padding: 10px 25px 20px;
+        box-shadow: 1px 0 20px 0 rgba(50, 50, 50, 0.75);
+        margin: -35px 0 0;
+        z-index: 100;
+        position: absolute;
+        display: none;
+        cursor: default;
+        p {
+          @include fs(14px);
+          color: #25343f;
+          font-family: $opensansSB;
+          margin: 5px 0;
+        }
+        span {
+          display: inline-block;
+          color: #25343f;
+          @include fs(13px);
+          font-family: $opensansR;
+          margin: 0 0 0 20px;
+          cursor: pointer;
+          padding: 0;
+        }
+        a {
+          display: block;
+          border: 2px solid #1ed88f;
+          color: #1ed88f;
+          @include fs(14px);
+          @include br(25px);
+          padding: 7px 0;
+          font-family: $opensansSB;
+          text-align: center;
+          margin: 15px 0 0 0;
+        }
+        a:hover {
+          text-decoration: none;
+          color: #fff;
+          background: #1ed88f;
+        }
+        .checkbox {
+          overflow: hidden;
+          margin: 0 0 0 12px;
+          label {
+            display: inline-block;
+            float: left;
+            height: 19px;
+            margin: 0 7px 7px 0;
+            position: relative;
+            width: 19px;
+            span {
+              background: transparent url("../img/ch.png") no-repeat scroll 0 0;
+              cursor: pointer;
+              float: none;
+              height: 100%;
+              left: 0;
+              position: absolute;
+              top: 5px;
+              width: 100%;
+              margin: 0;
+            }
+          }
+          .lab {
+            @include fs(13px);
+            color: #25343f;
+            margin: 5px 0 0 0;
+          }
+          input[type="checkbox"] {
+            display: none;
+          }
+          input[type="checkbox"]:checked + span {
+            background: rgba(0, 0, 0, 0) url("../img/ch-active.png") no-repeat scroll 0 0;
+          }
+        }
+      }
+    }
+    .workadd {
+      border-bottom: 1px solid #dcdcdc;
+      padding: 0 0 20px 0;
+      .addcity {
+        display: inline-block;
+        @include fs(13px);
+        color: #0098df;
+        border-bottom: 1px dashed #0098df;
+        margin: 10px 0 0 0;
+      }
+      .addcity:hover {
+        text-decoration: none;
+      }
+      .addokrug {
+        @include fs(13px);
+        color: #0098df;
+        border-bottom: 1px dashed #0098df;
+      }
+      .addokrug:hover {
+        text-decoration: none;
+      }
+      .iconmap {
+        background: rgba(0, 0, 0, 0) url("../img/map-icon.png") no-repeat scroll left center;
+        padding: 0 0 0 33px;
+      }
+      .mt {
+        margin-top: 7px;
+      }
+      .clear {
+        display: inline-block;
+        color: #626f78;
+        @include fs(13px);
+        border-bottom: 1px dashed #707b83;
+        display: inline-block;
+        margin: 5px 0 15px;
+      }
+      .cl {
+        .clear {
+          margin-bottom: 0;
+        }
+      }
+      .clear:hover {
+        text-decoration: none;
+      }
+      .gorod {
+        margin: 15px 0 8px;
+        .gorod-city {
+          @include fs(18px);
+          color: #25343f;
+          padding: 0;
+          font-family: $opensansR;
+          border-bottom: 1px dashed #25343f;
+          display: inline-block;
+        }
+        .gorod-okrug {
+          color: #25343f;
+          padding: 8px 0 0 0;
+        }
+        .select {
+          font-family: $opensansR;
+          color: #a9b2b9;
+          @include fs(12px);
+          padding: 0;
+        }
+        .block-goroda {
+          background: $color_white;
+          border: 1px solid #dcdcdc;
+          @include br(5px);
+          padding: 5px 5px 25px 5px;
+          span {
+            background: #f6f6f6;
+            @include br(5px);
+            color: #626f78;
+            @include fs(13px);
+            border-bottom: 1px solid #dbdbdb;
+            padding: 1px 3px;
+            cursor: pointer;
+            margin: 0 0 2px 0;
+            display: inline-block;
+          }
+        }
+      }
+      .first {
+        margin-top: -3px;
+      }
+      .last {
+        margin-bottom: 15px;
+      }
+    }
+    .index {
+      overflow: hidden;
+      p {
+        float: left;
+        color: $color_black;
+        @include fs(14px);
+        font-family: $opensansSB;
+        margin: 5px 0 0 0;
+        padding: 0 !important;
+      }
+      input {
+        float: right;
+        width: 140px;
+        @include br(5px);
+        @include fs(16px);
+        border: 1px solid #dcdcdc;
+        color: #707b83;
+        padding: 5px 0 5px 5px;
+      }
+    }
+    .index2 {
+      margin: 0 0 10px 0;
+    }
+    .styled-select {
+      background: url("../img/arrow-select.png") no-repeat scroll 190px center #fff;
+      border: 1px solid #dcdcdc;
+      margin: 0 0 20px 0;
+      overflow: hidden;
+      width: 212px;
+      select {
+        width: 240px;
+        @include br(5px);
+        @include fs(16px);
+        padding: 5px 0 5px 5px;
+        background: none;
+        clip: rect(0px, 237px, 26px, 210px);
+        color: #707b83;
+        top: 1px;
+      }
+    }
+    .last-styled-select {
+      margin: 0 0 10px 0;
+    }
+    .styled-select2 {
+      background: url("../img/arrow-select.png") no-repeat scroll 190px center #fff;
+      border: 1px solid #dcdcdc;
+      margin: 0 0 0 0;
+      overflow: hidden;
+      width: 212px;
+      select {
+        width: 240px;
+        @include br(5px);
+        @include fs(16px);
+        padding: 5px 0 5px 5px;
+        background: none;
+        clip: rect(0px, 237px, 26px, 210px);
+        color: #707b83;
+        top: 1px;
+      }
+    }
+    #options {
+      margin: 15px 0 0 0;
+      p {
+        @include fs(14px);
+        color: $color_black;
+        font-family: $opensansSB;
+        margin: 0 0 10px 0;
+      }
+      label {
+        @include fs(14px);
+        @include br(5px);
+        background: $color_white;
+        padding: 5px 0 5px 10px;
+        color: $color_black;
+        border: 1px solid #d6d6d6;
+      }
+      .m-l {
+        margin: 0 20px 0 0;
+      }
+      input {
+        width: 58px;
+        color: #707b83;
+        @include fs(16px);
+      }
+    }
+    #options2 {
+      margin: 15px 0 0 0;
+      p {
+        @include fs(14px);
+        color: $color_black;
+        font-family: $opensansSB;
+        margin: 0 0 10px 0;
+      }
+      label {
+        @include fs(14px);
+        @include br(5px);
+        background: $color_white;
+        padding: 5px 0 5px 10px;
+        color: $color_black;
+        border: 1px solid #d6d6d6;
+      }
+      .m-l {
+        margin: 0 20px 0 0;
+      }
+      input {
+        width: 58px;
+        color: #707b83;
+        @include fs(16px);
+      }
+    }
+    .sex {
+      margin: 25px 0;
+      .pol {
+        @include fs(14px);
+        font-family: $opensansSB;
+        color: $color_black;
+        float: none;
+      }
+      .last {
+        margin-right: 0;
+      }
+      p {
+        float: left;
+        @include fs(13px);
+        color: $color_black;
+        margin: 0 23px 0 0;
+        label {
+          display: inline-block;
+          height: 19px;
+          position: relative;
+          width: 19px;
+          input[type="radio"]:checked + span {
+            background: url("../img/slider-button3.png") no-repeat;
+          }
+          span {
+            background: rgba(0, 0, 0, 0) url("../img/radio.png") no-repeat;
+            cursor: pointer;
+            float: none;
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 4px;
+            width: 100%;
+          }
+        }
+        input[type="radio"] {
+          display: none;
+        }
+      }
+    }
+    .check {
+      margin: 20px 0 0 0;
+      .title {
+        @include fs(14px);
+        font-family: $opensansSB;
+        color: $color_black;
+        float: none;
+        margin: 0 0 5px 0;
+      }
+      .last {
+        margin-right: 0;
+      }
+      p {
+        @include fs(13px);
+        color: $color_black;
+        margin: 0 0 2px 0;
+        label {
+          display: inline-block;
+          height: 19px;
+          position: relative;
+          width: 19px;
+          input[type="checkbox"]:checked + span {
+            background: url("../img/ch-active.png") no-repeat;
+          }
+          span {
+            background: rgba(0, 0, 0, 0) url("../img/ch.png") no-repeat;
+            cursor: pointer;
+            float: none;
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 4px;
+            width: 100%;
+          }
+        }
+        input[type="checkbox"] {
+          display: none;
+        }
+      }
+    }
+    .check {
+      margin: 20px 0 0 0;
+      .title {
+        @include fs(14px);
+        font-family: $opensansSB;
+        color: $color_black;
+        float: none;
+        margin: 0 0 5px 0;
+      }
+      .last {
+        margin-right: 0;
+      }
+      p {
+        @include fs(13px);
+        color: $color_black;
+        margin: 0 0 2px 0;
+        label {
+          display: inline-block;
+          height: 19px;
+          position: relative;
+          width: 19px;
+          input[type="checkbox"]:checked + span {
+            background: url("../img/ch-active.png") no-repeat;
+          }
+          span {
+            background: rgba(0, 0, 0, 0) url("../img/ch.png") no-repeat;
+            cursor: pointer;
+            float: none;
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 4px;
+            width: 100%;
+          }
+        }
+        input[type="checkbox"] {
+          display: none;
+        }
+      }
+    }
+    .bb {
+      border-bottom: 1px solid #dcdcdc;
+      padding: 0 0 20px;
+    }
+    .button {
+      padding: 0 0 30px 0;
+      input {
+        background: none;
+        width: 100%;
+        @include br(25px);
+        border: 2px solid $color_green_active;
+        color: $color_green_active;
+        text-align: center;
+        font-family: $opensansSB;
+        cursor: pointer;
+        @include fs(14px);
+        padding: 6px 0 8px;
+        margin: 20px 0 15px 0;
+      }
+      input:hover {
+        background: $color_green_active;
+        color: $color_white;
+      }
+      p {
+        text-align: center;
+        a {
+          @include fs(12px);
+          color: $color_blue;
+          border-bottom: 1px dashed $color_blue;
+        }
+        a:hover {
+          text-decoration: none;
+        }
+      }
+    }
+    .dop {
+      display: none;
+    }
+  }
+
+  .agent-rezume {
+    float: right;
+    margin: 0 0 0 14px;
+    .rezume-block {
+      border: 1px solid #dcdcdc;
+      @include br(10px);
+      width: 650px;
+      margin: 0 0 10px 0;
+      padding: 0 15px 15px 15px;
+    }
+    .block-img-left {
+      float: left;
+      position: relative;
+      margin: 0 19px 0 0;
+      .recomend {
+        margin: 7px 0 0 0;
+        img {
+          margin: 0;
+        }
+        .counts {
+          display: block;
+          @include fs(14px);
+          color: #b4b9be;
+          text-align: center;
+        }
+      }
+      .rec {
+        position: absolute;
+        top: 0;
+        left: 12px;
+        margin: 0;
+      }
+      img {
+        margin: 30px 0 0 0;
+      }
+    }
+    .block-img-right {
+      margin: 0 0 0 136px;
+      .contacts-vacansy {
+        display: inline-block;
+        padding: 0 0 5px 0;
+        border-bottom: 1px solid #dcdcdc;
+        .title {
+          color: $color_gray;
+          @include fs(14px);
+          padding: 7px 0 0 0;
+          a {
+            color: $color_blue;
+            text-decoration: underline;
+            @include fs(14px);
+          }
+        }
+        a {
+          color: $color_blue;
+          @include fs(25px);
+          text-decoration: underline;
+        }
+        .info-contact {
+          margin: 5px 0 0 0;
+          span {
+            margin: 0 30px 0 0;
+            @include fs(14px);
+            font-family: $opensansSB;
+            color: $color_gray;
+          }
+        }
+      }
+      .information {
+        margin: 7px 0 0 0;
+        p {
+          @include fs(14px);
+          color: $color_gray;
+        }
+        .experience {
+          overflow: hidden;
+          margin: 10px 0 0 0;
+          p {
+            @include fs(13px);
+            color: $color_black;
+            margin: 0 0 7px 0;
+            span {
+              color: $color_gray;
+              display: block;
+            }
+          }
+          .left {
+            float: left;
+            width: 205px;
+            margin: 0 50px 0 0;
+          }
+          .right {}
+        }
+      }
+      .works {
+        background: url("../img/map.png") left center no-repeat;
+        @include fs(14px);
+        color: $color_blue;
+        padding: 0 0 0 20px;
+        margin: 5px 0 0 0;
+        display: inline-block;
+        font-family: $opensansSB;
+        span {
+          border-bottom: 1px dashed $color_blue;
+        }
+      }
+      .works:hover {
+        text-decoration: none;
+      }
+      .price-vacansy {
+        @include fs(14px);
+        font-family: $opensansSB;
+        color: $color_gray;
+        margin: 10px 0 0 0;
+      }
+      .price-vacansy span {
+        @include fs(18px);
+        color: $color_green;
+      }
+      .start-vacansy {
+        margin: 5px 0 0 0;
+        background: url("../img/check.png") left center no-repeat;
+        @include fs(14px);
+        font-family: $opensansSB;
+        color: $color_green;
+        padding: 0 0 0 20px;
+      }
+      .buts {
+        overflow: hidden;
+        margin: 15px 0 0 0;
+        .buttons {
+          color: $color_white;
+          @include fs(14px);
+          @include br(25px);
+          text-align: center;
+          padding: 8px 0 10px;
+          width: 225px;
+          float: left;
+          background: $color_green;
+        }
+        .buttons:hover {
+          background: $color_green_active;
+          text-decoration: none;
+        }
+        .favorites {
+          background: rgba(0, 0, 0, 0) url("../img/heart2.png") no-repeat scroll left center;
+          color: #2495dd;
+          display: inline-block;
+          font-size: 14px;
+          margin: 0 0 0 20px;
+          padding: 10px 0 10px 35px;
+          text-decoration: underline;
+        }
+      }
+    }
+    .block-img-last {
+      margin: 0 0 0 10px;
+      .info-contact-bold {
+        font-family: $opensansSB;
+      }
+      .information p {
+        a {
+          @include fs(14px);
+          color: $color_blue;
+        }
+      }
+    }
+  }
+}

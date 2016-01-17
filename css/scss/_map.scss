@@ -1,0 +1,2845 @@
+.dialog {
+  width: 70%;
+  @include br(10px);
+  border: 1px solid #000;
+  background-color: #f6f6f6;
+  overflow-y: scroll !important;
+  z-index: 9999 !important;
+  padding: 25px;
+  box-sizing: border-box;
+  overflow: hidden;
+  position:fixed;
+  left: 15%;
+  top: 5vh!important;
+}
+
+.window {
+  display:none;
+  height: 90vh;
+}
+
+#map {
+  svg {
+    margin: -30px 0 0 -80px;
+  }
+}
+
+#map4 {
+  float: left;
+  width: 630px;
+  svg {
+    margin: -30px 0 0 -80px;
+  }
+}
+
+#svao {
+  float: left;
+  width: 630px;
+  svg {
+    margin: -30px 0 0 -80px;
+  }
+}
+
+#map2 {
+  width: 600px;
+  margin: 20px 0 0 265px;
+  svg {
+    margin: 0 0 0 -40px;
+  }
+}
+
+#map3 {
+  width: 600px;
+  float: right;
+  margin: -120px 125px 0 0;
+  svg {
+    margin: 0;
+  }
+}
+
+.marginMap {
+  svg {
+    margin-top: -50px !important;
+  }
+}
+
+.raion {
+  background: url("../img/raion.png") no-repeat;
+  width: 141px;
+  height: 69px;
+  a {
+    color: #2495dd;
+    @include fs(12px);
+    border-bottom: 1px dashed #2495dd;
+    font-family: $opensansR;
+  }
+
+  .mm {
+    position: relative;
+    top: auto;
+    left: auto;
+    padding: 8px 0 0 15px;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+}
+
+.marginMapPiter {
+  svg {
+    margin-left: 40px !important;
+    margin-top: 70px !important;
+  }
+}
+
+.right-map {
+  overflow: hidden;
+  .yamap {
+    margin: 15px 0 0 0;
+    border: 1px solid #969ea5;
+    width: 615px;
+  }
+
+  .bl {
+    overflow: hidden;
+    margin: 10px 0 0 0;
+    position: relative;
+    z-index: 100;
+    p {
+      float: left;
+      background: url("../img/icon-map.png") left center no-repeat;
+      padding: 0 0 3px 25px;
+      a {
+        @include fs(14px);
+        color: #626f78;
+        font-family: $opensansSB;
+        text-decoration: underline;
+      }
+    }
+    .ya {
+      float: right;
+      background: url("../img/icon-yandex.png") left center no-repeat;
+    }
+  }
+}
+
+.citys {
+  float: right;
+  width: 250px;
+  .city {
+    @include fs(30px);
+    color: $color_black;
+    text-decoration: underline;
+    font-family: $opensansSB;
+    margin: 0 0 25px 0;
+  }
+
+  .area {
+    @include fs(18px);
+    font-family: $opensansSB;
+    color: $color_black;
+  }
+
+  .area a {
+    @include fs(16px);
+    font-family: $opensansR;
+    color: $color_gray;
+    display: inline-block;
+  }
+
+  .area span {
+    display: block;
+    margin: 6px 0;
+  }
+
+  .area a:hover {
+    text-decoration: none;
+  }
+}
+
+.citys2 {
+  float: left;
+  width: 250px;
+  margin: 0 0 0 15px;
+  .city {
+    @include fs(30px);
+    color: $color_black;
+    text-decoration: underline;
+    font-family: $opensansSB;
+    margin: 0 0 25px 0;
+  }
+
+  .area {
+    @include fs(18px);
+    font-family: $opensansSB;
+    color: $color_black;
+  }
+
+  .area a {
+    @include fs(16px);
+    font-family: $opensansR;
+    color: $color_gray;
+    display: inline-block;
+  }
+
+  .area span {
+    display: block;
+    margin: 6px 0;
+  }
+
+  .area a:hover {
+    text-decoration: none;
+  }
+}
+
+.citys3 {
+  float: left;
+  width: 180px;
+  margin: 0;
+}
+
+.right-map2 {
+
+}
+
+#mask {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 9000;
+  background-color: #000;
+  display: none;
+  min-width: 1150px;
+  width: 100%;
+}
+
+.close {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  color: $color_gray;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+#boxes1 #dialog1 {
+  width: 70vw;
+  height: 90vh;
+  @include br(10px);
+  border: 1px solid #000;
+  background-color: #f6f6f6;
+  overflow-y: scroll;
+  top: 5vh!important;
+  left: 15vw!important;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+#boxes1 .window {
+    position: fixed;
+    left: 0;
+    top: 0px;
+    -top: 40px;
+    width: 910px;
+    height: 600px;
+    display: none;
+    z-index: 9999;
+    padding: 25px;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+
+#boxes3 .close, #boxes4 .close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: $color_gray;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+.close:hover {
+  text-decoration: none;
+}
+
+#boxes .window {
+  position: fixed;
+  left: 0;
+  top: 0px;
+  -top: 40px;
+  width: 585px;
+  height: 355px;
+  display: none;
+  z-index: 9999;
+  padding: 15px 30px 15px 30px;
+  overflow: hidden;
+}
+
+#boxes-reg .window {
+  position: fixed;
+  left: 0;
+  top: 0px;
+  width: 585px;
+  height: 355px;
+  display: none;
+  z-index: 9999;
+  padding: 48px 0 40px 0;
+  overflow: hidden;
+}
+
+#boxes-profile .window {
+  position: fixed;
+  left: 0;
+  top: 0px;
+  width: 585px;
+  height: 355px;
+  display: none;
+  z-index: 9999;
+  padding: 48px 0 40px 0;
+  overflow: hidden;
+}
+
+#boxes-del .window {
+  position: fixed;
+  left: 0;
+  top: 0px;
+  width: 585px;
+  height: 355px;
+  display: none;
+  z-index: 9999;
+  padding: 48px 0 40px 0;
+  overflow: hidden;
+}
+
+#boxes-profile2 .window {
+  position: fixed;
+  left: 0;
+  top: 0px;
+  width: 585px;
+  height: 355px;
+  display: none;
+  z-index: 9999;
+  padding: 48px 0 40px 0;
+  overflow: hidden;
+}
+
+#boxes-delmessag .window {
+  position: fixed;
+  left: 0;
+  top: 0px;
+  width: 585px;
+  height: 355px;
+  display: none;
+  z-index: 9999;
+  padding: 48px 0 40px 0;
+  overflow: hidden;
+}
+
+#boxes-delrezum .window {
+  position: fixed;
+  left: 0;
+  top: 0px;
+  width: 585px;
+  height: 355px;
+  display: none;
+  z-index: 9999;
+  padding: 48px 0 40px 0;
+  overflow: hidden;
+}
+
+#boxes-delvac .window {
+  position: fixed;
+  left: 0;
+  top: 0px;
+  width: 585px;
+  height: 355px;
+  display: none;
+  z-index: 9999;
+  padding: 48px 0 40px 0;
+  overflow: hidden;
+}
+
+#boxes2 .window, #boxes3 .window, #boxes4 .window {
+  position: fixed;
+  left: 0;
+  top: 0px;
+  -top: 40px;
+  width: 585px;
+  height: 355px;
+  display: none;
+  z-index: 9999;
+  padding: 25px;
+  overflow: hidden;
+}
+
+#boxes5 .window {
+  position: fixed;
+  left: 0;
+  top: 0px;
+  -top: 40px;
+  width: 910px;
+  height: 600px;
+  display: none;
+  z-index: 9999;
+  padding: 25px;
+  overflow: hidden;
+}
+
+#boxes9 .window {
+  position: fixed;
+  left: 0;
+  top: 0px;
+  -top: 40px;
+  width: 910px;
+  height: 600px;
+  display: none;
+  z-index: 9999;
+  padding: 25px;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+#boxes10 .window {
+  position: fixed;
+  left: 0;
+  top: 0px;
+  -top: 40px;
+  width: 910px;
+  height: 600px;
+  display: none;
+  z-index: 9999;
+  padding: 25px;
+  overflow: hidden;
+}
+
+#boxes11 .window {
+  position: fixed;
+  left: 0;
+  top: 0px;
+  -top: 40px;
+  width: 910px;
+  display: none;
+  z-index: 9999;
+  padding: 25px;
+  overflow: hidden;
+}
+
+#boxes12 .window {
+  position: fixed;
+  left: 0;
+  top: 0px;
+  -top: 40px;
+  width: 910px;
+  height: 600px;
+  display: none;
+  z-index: 9999;
+  padding: 25px;
+  overflow: hidden;
+}
+
+.yamapp {
+  border: 1px solid #969ea5;
+}
+
+#boxes6 .window {
+  position: fixed;
+  left: 0;
+  top: 0px;
+  -top: 40px;
+  width: 910px;
+  height: 600px;
+  display: none;
+  z-index: 9999;
+  padding: 25px;
+  overflow: hidden;
+}
+
+#boxes7 .window {
+  position: fixed;
+  left: 0;
+  top: 0px;
+  -top: 40px;
+  width: 910px;
+  height: 600px;
+  display: none;
+  z-index: 9999;
+  padding: 25px;
+  overflow: hidden;
+}
+
+#boxes8 .window {
+  position: fixed;
+  left: 0;
+  top: 0px;
+  -top: 40px;
+  width: 910px;
+  height: 600px;
+  display: none;
+  z-index: 9999;
+  padding: 25px;
+  overflow: hidden;
+}
+
+#boxes2 #dialog2, #boxes3 #dialog3, #boxes4 #dialog4 {
+  width: 600px;
+  height: 510px;
+  border-radius: 10px;
+  border: 1px solid #000;
+  background-color: #f6f6f6;
+}
+
+#boxes-profile #dialog-profile {
+  width: 575px;
+  height: auto;
+  border-radius: 10px;
+  border: 1px solid #000;
+  background-color: #f6f6f6;
+  .block {
+    p {
+      text-align: center;
+      @include fs(18px);
+      color: #626f78;
+      margin: 10px 0;
+    }
+    .butt {
+      margin: 28px 0 0 0;
+      overflow: hidden;
+      a {
+        width: 145px;
+        padding: 8px 0;
+        text-align: center;
+        color: #fff;
+        @include br(20px);
+      }
+      a:hover {
+        text-decoration: none;
+      }
+      .no {
+        float: left;
+        background: #1ed88f;
+        margin: 0 0 0 130px;
+      }
+      .yes {
+        float: right;
+        background: #dcdcdc;
+        margin: 0 130px 0 0;
+      }
+    }
+  }
+}
+
+#boxes-del #dialog-del {
+  width: 575px;
+  height: auto;
+  border-radius: 10px;
+  border: 1px solid #000;
+  background-color: #f6f6f6;
+  .block {
+    p {
+      text-align: center;
+      @include fs(18px);
+      color: #626f78;
+      margin: 10px 0;
+    }
+    .butt {
+      margin: 28px 0 0 0;
+      overflow: hidden;
+      a {
+        width: 145px;
+        padding: 8px 0;
+        text-align: center;
+        color: #fff;
+        @include br(20px);
+      }
+      a:hover {
+        text-decoration: none;
+      }
+      .no {
+        float: left;
+        background: #1ed88f;
+        margin: 0 0 0 130px;
+      }
+      .yes {
+        float: right;
+        background: #dcdcdc;
+        margin: 0 130px 0 0;
+      }
+    }
+  }
+}
+
+#boxes-profile2 #dialog-profile2 {
+  width: 575px;
+  height: auto;
+  border-radius: 10px;
+  border: 1px solid #000;
+  background-color: #f6f6f6;
+  .block {
+    p {
+      text-align: center;
+      @include fs(18px);
+      color: #626f78;
+      margin: 10px 0;
+    }
+    .butt {
+      margin: 28px 0 0 0;
+      overflow: hidden;
+      a {
+        width: 145px;
+        padding: 8px 0;
+        text-align: center;
+        color: #fff;
+        @include br(20px);
+      }
+      a:hover {
+        text-decoration: none;
+      }
+      .no {
+        float: left;
+        background: #1ed88f;
+        margin: 0 0 0 130px;
+      }
+      .yes {
+        float: right;
+        background: #dcdcdc;
+        margin: 0 130px 0 0;
+      }
+    }
+  }
+}
+
+#boxes-delvac #dialog-delvac {
+  width: 575px;
+  height: auto;
+  border-radius: 10px;
+  border: 1px solid #000;
+  background-color: #f6f6f6;
+  .block {
+    p {
+      text-align: center;
+      @include fs(18px);
+      color: #626f78;
+      margin: 10px 0;
+    }
+    .butt {
+      margin: 28px 0 0 0;
+      overflow: hidden;
+      a {
+        width: 145px;
+        padding: 8px 0;
+        text-align: center;
+        color: #fff;
+        @include br(20px);
+      }
+      a:hover {
+        text-decoration: none;
+      }
+      .no {
+        float: left;
+        background: #1ed88f;
+        margin: 0 0 0 130px;
+      }
+      .yes {
+        float: right;
+        background: #dcdcdc;
+        margin: 0 130px 0 0;
+      }
+    }
+  }
+}
+
+#boxes-delrezum #dialog-delrezum {
+  width: 575px;
+  height: auto;
+  border-radius: 10px;
+  border: 1px solid #000;
+  background-color: #f6f6f6;
+  .block {
+    p {
+      text-align: center;
+      @include fs(18px);
+      color: #626f78;
+      margin: 10px 0;
+    }
+    .butt {
+      margin: 28px 0 0 0;
+      overflow: hidden;
+      a {
+        width: 145px;
+        padding: 8px 0;
+        text-align: center;
+        color: #fff;
+        @include br(20px);
+      }
+      a:hover {
+        text-decoration: none;
+      }
+      .no {
+        float: left;
+        background: #1ed88f;
+        margin: 0 0 0 130px;
+      }
+      .yes {
+        float: right;
+        background: #dcdcdc;
+        margin: 0 130px 0 0;
+      }
+    }
+  }
+}
+
+#boxes-delmessag #dialog-delmessag {
+  width: 575px;
+  height: auto;
+  border-radius: 10px;
+  border: 1px solid #000;
+  background-color: #f6f6f6;
+  .block {
+    p {
+      text-align: center;
+      @include fs(18px);
+      color: #626f78;
+      margin: 10px 0;
+    }
+    .butt {
+      margin: 28px 0 0 0;
+      overflow: hidden;
+      a {
+        width: 145px;
+        padding: 8px 0;
+        text-align: center;
+        color: #fff;
+        @include br(20px);
+      }
+      a:hover {
+        text-decoration: none;
+      }
+      .no {
+        float: left;
+        background: #1ed88f;
+        margin: 0 0 0 130px;
+      }
+      .yes {
+        float: right;
+        background: #dcdcdc;
+        margin: 0 130px 0 0;
+      }
+    }
+  }
+}
+
+#boxes-reg #dialog-reg {
+  width: 915px;
+  height: auto;
+  border-radius: 10px;
+  border: 1px solid #000;
+  background-color: #f6f6f6;
+  .block {
+    width: 210px;
+    float: left;
+    background: url("../img/bg-right.png") right center no-repeat;
+    padding: 0 45px;
+    img {
+      display: block;
+      margin: 0 auto;
+    }
+    .title {
+      text-align: center;
+      color: #1ed88f;
+      @include fs(20px);
+      font-family: $opensansR;
+      margin: 15px 0 0 0;
+    }
+    p {
+      @include fs(14px);
+      color: #626f78;
+      text-align: center;
+    }
+    a {
+      width: 210px;
+      display: inline-block;
+      text-align: center;
+      @include fs(14px);
+      color: #fff;
+      background: #1ed88f;
+      @include br(25px);
+      padding: 17px 0;
+      margin: 30px 0 0 0;
+    }
+    a:hover {
+      text-decoration: none;
+      background: #31e7a0;
+    }
+    div {
+      height: 1px;
+      width: 180px;
+      background: #1ed88f;
+      margin: 20px auto;
+    }
+  }
+
+  .block:last-child {
+    background: none;
+  }
+}
+
+#boxes5 #dialog5 {
+  width: 910px;
+  height: 600px;
+  border-radius: 10px;
+  border: 1px solid #000;
+  background-color: #f6f6f6;
+  overflow-y: scroll;
+  top: 0 !important;
+}
+
+#boxes9 #dialog9 {
+  width: 910px;
+  height: 600px;
+  border-radius: 10px;
+  border: 1px solid #000;
+  background-color: #f6f6f6;
+  overflow-y: scroll;
+  top: 0 !important;
+}
+
+#boxes10 #dialog10 {
+  width: 910px;
+  height: 600px;
+  border-radius: 10px;
+  border: 1px solid #000;
+  background-color: #f6f6f6;
+  overflow-y: scroll;
+  top: 0 !important;
+}
+
+#boxes11 #dialog11 {
+  width: 910px;
+  height: 600px;
+  border-radius: 10px;
+  border: 1px solid #000;
+  background-color: #f6f6f6;
+  overflow-y: scroll;
+  top: 0 !important;
+}
+
+#boxes12 #dialog12 {
+  width: 910px;
+  height: 570px;
+  border-radius: 10px;
+  border: 1px solid #000;
+  background-color: #f6f6f6;
+  overflow-y: scroll;
+  top: 0 !important;
+}
+
+#boxes6 #dialog6 {
+  width: 960px;
+  height: 600px;
+  border-radius: 10px;
+  border: 1px solid #000;
+  background-color: #f6f6f6;
+  overflow-y: scroll;
+  top: 0 !important;
+}
+
+#boxes7 #dialog7 {
+  width: 910px;
+  height: 600px;
+  border-radius: 10px;
+  border: 1px solid #000;
+  background-color: #f6f6f6;
+  overflow-y: scroll;
+  top: 0 !important;
+}
+
+#boxes8 #dialog8 {
+  width: 910px;
+  height: 600px;
+  top: 0 !important;
+}
+
+#boxes8 #dialog8 {
+  .prompt {
+    .title-border {
+      text-align: center;
+      @include fs(36px);
+      color: #fff;
+      font-family: $opensansL;
+      span {
+        display: inline-block;
+        border-bottom: 1px solid #fff;
+        padding: 0 0 6px 0;
+      }
+    }
+    .block {
+      width: 33.333%;
+      float: left;
+      margin: 30px 0 50px;
+      p {
+        text-align: center;
+        color: #fff;
+        @include fs(16px);
+        font-family: $opensansL;
+      }
+      img {
+        display: block;
+        margin: 20px auto;
+      }
+    }
+    .but {
+      width: 240px;
+      margin: 0 auto;
+      a {
+        background: #1ed88f;
+        color: #fff;
+        @include fs(14px);
+        @include br(25px);
+        font-family: $opensansSB;
+        text-align: center;
+        padding: 7px 0;
+        display: block;
+        margin: 0 0 10px 0;
+      }
+      a:hover {
+        text-decoration: none;
+        background: #31e7a0;
+      }
+      .checkbox {
+        overflow: hidden;
+        margin: 0 0 0 12px;
+        label {
+          display: inline-block;
+          float: left;
+          height: 19px;
+          margin: 0 7px 7px 0;
+          position: relative;
+          width: 19px;
+          span {
+            background: transparent url("../img/ch.png") no-repeat scroll 0 0;
+            cursor: pointer;
+            float: none;
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 5px;
+            width: 100%;
+            margin: 0;
+          }
+        }
+        .lab {
+          @include fs(12px);
+          color: #f6f6f6;
+          margin: 5px 0 0 0;
+          font-family: $opensansL;
+        }
+        input[type="checkbox"] {
+          display: none;
+        }
+        input[type="checkbox"]:checked + span {
+          background: rgba(0, 0, 0, 0) url("../img/ch-active.png") no-repeat scroll 0 0;
+        }
+      }
+    }
+  }
+}
+
+#boxes3 #dialog3, #boxes4 #dialog4 {
+  background: none;
+  border: none;
+  width: 560px;
+  height: 315px;
+}
+
+#boxes #dialog {
+  width: 585px;
+  height: 355px;
+  border-radius: 10px;
+  border: 1px solid #000;
+  background-color: #f6f6f6;
+}
+
+.title-info-vacansy {
+  color: $color_black;
+  @include fs(30px);
+  font-family: $opensansL;
+  padding: 0 0 5px 0;
+  display: inline-block;
+  border-bottom: 1px solid $color_black;
+  margin: 0 0 15px 0;
+}
+
+.title-info-vacansy2 {
+  margin: 0 0 25px 0;
+}
+
+#boxes #dialog textarea {
+  width: 97%;
+  height: 200px;
+  border: 1px solid #dcdcdc;
+  @include br(5px);
+  @include fs(14px);
+  color: #dcdcdc;
+  background: $color_white;
+  padding: 15px 0 0 3%;
+  margin: 10px 0 0 0;
+}
+
+#boxes #dialog button {
+  width: 145px;
+  text-align: center;
+  color: $color_white;
+  display: block;
+  padding: 8px 0;
+  background: $color_green;
+  font-family: $opensansSB;
+  @include fs(14px);
+  @include br(20px);
+  cursor: pointer;
+  margin: 15px 0 0 0;
+}
+
+#boxes7 #dialog2 label, #boxes6 #dialog2 label, #boxes5 #dialog2 label, #boxes4 #dialog2 label, #boxes3 #dialog2 label, #boxes2 #dialog2 label, #boxes #dialog label {
+  display: block;
+  font-size: 16px;
+  margin: 15px 0 5px 62px;
+}
+
+.profile {
+  margin: 200px 0 20px;
+  overflow: hidden;
+  .profile-left {
+    width: 265px;
+    float: left;
+    background: #f6f6f6;
+    @include br(10px);
+    .ava {
+      position: relative;
+      margin: 0 32.5px;
+      img {
+        display: block;
+        margin: 30px auto 20px;
+      }
+      .add {
+        position: absolute;
+        top: 0;
+        left: 52.5px;
+        margin: 0 0 0 -52px;
+        width: 200px;
+        height: 200px;
+        display: none;
+        p {
+          @include fs(17px);
+          color: #ffffff;
+          text-align: center;
+        }
+        img {
+          margin: 5px auto;
+        }
+        a {
+          @include fs(17px);
+          color: #ffffff;
+          text-align: center;
+          display: block;
+          text-decoration: none;
+          padding: 80px 0 30px 0;
+        }
+      }
+    }
+    .ava:hover {
+      .add {
+        display: block;
+        background: url("../img/naloj.png") no-repeat;
+      }
+    }
+    .menu-profile {
+      padding: 0 0 10px 0;
+      ul {
+        margin: 0 0 0 15px;
+        li {
+          background: url("../img/border.png") left bottom no-repeat;
+          a {
+            color: #25343f;
+            @include fs(16px);
+            font-family: $opensansSB;
+            padding: 15px 0 16px 45px;
+            display: block;
+          }
+          a:hover {
+            text-decoration: none;
+          }
+          .prof {
+            background: url("../img/profile.png") 17px center no-repeat;
+          }
+          .mess {
+            background: url("../img/message.png") 17px center no-repeat;
+          }
+          .rez {
+            background: url("../img/rezume.png") 17px center no-repeat;
+          }
+          .wor {
+            background: url("../img/work.png") 17px center no-repeat;
+          }
+          .star {
+            background: url("../img/star.png") 17px center no-repeat;
+          }
+          .sett {
+            background: url("../img/setting.png") 17px center no-repeat;
+          }
+          .exit {
+            background: url("../img/exit.png") 17px center no-repeat;
+          }
+          .hearts {
+            background: rgba(0, 0, 0, 0) url("../img/hearts.png") no-repeat scroll 17px center;
+          }
+        }
+        li:first-child {
+          border-top: none;
+        }
+        li:last-child {
+          background: none;
+        }
+        .active {
+          .prof {
+            background: url("../img/profile.png") 17px center no-repeat, url("../img/select.png") no-repeat;
+          }
+          .mess {
+            background: url("../img/message.png") 17px center no-repeat, url("../img/select.png") no-repeat;
+          }
+          .rez {
+            background: url("../img/rezume.png") 17px center no-repeat, url("../img/select.png") no-repeat;
+          }
+          .wor {
+            background: url("../img/work.png") 17px center no-repeat, url("../img/select.png") no-repeat;
+          }
+          .star {
+            background: url("../img/star.png") 17px center no-repeat, url("../img/select.png") no-repeat;
+          }
+          .hearts {
+            background: url("../img/hearts.png") no-repeat scroll 17px center, url("../img/select.png") no-repeat;
+          }
+          .sett {
+            background: url("../img/setting.png") 17px center no-repeat, url("../img/select.png") no-repeat;
+          }
+          .exit {
+            background: url("../img/exit.png") 17px center no-repeat, url("../img/select.png") no-repeat;
+          }
+        }
+      }
+    }
+  }
+
+  .profile-right {
+    width: 649px;
+    float: right;
+    h1 {
+      @include fs(30px);
+      color: #25343f;
+      font-family: $opensansL;
+      font-weight: normal;
+    }
+    .profile-setting {
+      .field {
+        @include fs(16px);
+        margin: 27px 0;
+        .w105 {
+          width: 105px;
+          font-family: $opensansSB;
+          float: left;
+          @include fs(16px);
+        }
+        .info-field {
+          input {
+            width: 235px;
+            border: 1px solid #dcdcdc;
+            @include br(5px);
+            padding: 7px 0 7px 10px;
+            @include fs(16px);
+            color: #969ea5;
+            display: block;
+            margin: 0 0 10px 105px;
+          }
+          input:last-child {
+            margin-bottom: 0;
+          }
+          .inp {
+            display: none;
+          }
+          a {
+            color: #2495dd;
+            @include fs(14px);
+            border-bottom: 1px dashed #2495dd;
+          }
+          a:hover {
+            text-decoration: none;
+          }
+          p {
+            @include fs(16px);
+            color: #25343f;
+            font-family: $opensansSB;
+            a {
+              margin: 0 0 0 15px;
+            }
+          }
+        }
+      }
+      input[type="submit"] {
+        cursor: pointer;
+        background: #1ed88f;
+        display: block;
+        color: #fff;
+        text-align: center;
+        width: 145px;
+        padding: 8px 0;
+        @include br(20px);
+        @include fs(14px);
+        font-family: $opensansSB;
+        margin: 30px 0 0 105px;
+        -webkit-appearance: none;
+      }
+      input[type="submit"]:hover {
+        background: #31e7a0;
+      }
+      .email {
+        margin: 30px 0;
+      }
+      .in {
+        .w105 {
+          width: 105px;
+          font-family: $opensansSB;
+          float: left;
+          @include fs(16px);
+          p {
+            margin: 5px 0 0 0;
+          }
+        }
+      }
+    }
+    .profile-message {
+      .top-block-message {
+        a {
+          @include fs(14px);
+          color: #25343f;
+          display: inline-block;
+          padding: 5px 20px;
+        }
+        a:hover {
+          text-decoration: none;
+        }
+        .vhod {
+          float: left;
+        }
+        .active {
+          a {
+            background: #fff;
+            border-top: 1px solid #dcdcdc;
+            border-left: 1px solid #dcdcdc;
+            border-right: 1px solid #dcdcdc;
+            @include brAll(10px, 10px, 0, 0);
+            font-family: $opensansSB;
+          }
+        }
+      }
+      .block-message {
+        border: 1px solid #dcdcdc;
+        @include br(10px);
+        padding: 20px;
+        .top {
+          overflow: hidden;
+          padding: 0 0 15px 0;
+          border-bottom: 1px solid #dcdcdc;
+          .checkbox {
+            @include checkbox;
+            float: left;
+            margin: 0 0 0 10px;
+            label {
+              width: 19px;
+              height: 19px;
+              input[type="checkbox"]:checked + span {
+                background: url("../img/ch-active.png") no-repeat;
+              }
+              span {
+                background: rgba(0, 0, 0, 0) url("../img/ch.png") no-repeat;
+                top: 4px;
+              }
+            }
+            .lab {
+              @include fs(14px);
+              color: #626f78;
+            }
+          }
+          .delete {
+            float: right;
+            .deactivate {
+              color: #dcdcdc;
+              background: url("../img/not-delete.png") left 1px no-repeat;
+              padding: 0 0 0 20px;
+              @include fs(14px);
+            }
+          }
+        }
+        .mess {
+          padding: 10px 0 8px;
+          border-bottom: 1px solid #dcdcdc;
+          overflow: hidden;
+          .mini {
+            margin: 0 0 0 10px;
+          }
+          .checkbox {
+            @include checkbox;
+            float: left;
+            margin: 30px 5px 0 10px;
+            label {
+              width: 19px;
+              height: 19px;
+              input[type="checkbox"]:checked + span {
+                background: url("../img/ch-active.png") no-repeat;
+              }
+              span {
+                background: rgba(0, 0, 0, 0) url("../img/ch.png") no-repeat;
+                top: 4px;
+              }
+            }
+          }
+          .txt {
+            float: right;
+            width: 470px;
+            .title {
+              @include fs(16px);
+              color: #25343f;
+              font-family: $opensansSB;
+              margin: 0 0 8px 0;
+              display: inline-block;
+              padding: 0 10px 0 0;
+              float: left;
+            }
+            .date {
+              float: right;
+              @include fs(12px);
+              color: #969ea5;
+              font-family: $opensansR;
+              margin: 5px 5px 0 0;
+            }
+            p {
+              @include fs(14px);
+              color: #626f78;
+            }
+            .text_block-overlay {
+              background: rgba(0, 0, 0, 0) linear-gradient(rgba(255, 255, 255, 0), #fff) repeat scroll 0 0;
+              height: 55px;
+              margin: -55px 9px 5px 0;
+              position: relative;
+              z-index: 10;
+            }
+          }
+          .txt-dialog {
+            float: right;
+            width: 530px;
+            .title {
+              @include fs(16px);
+              color: #25343f;
+              font-family: $opensansSB;
+              margin: 0 0 8px 0;
+              display: inline-block;
+              padding: 0 10px 0 0;
+              float: left;
+              span {
+                @include fs(14px);
+                color: #a9b2b9;
+              }
+            }
+            .date {
+              float: right;
+              @include fs(12px);
+              color: #969ea5;
+              font-family: $opensansR;
+              margin: 5px 5px 0 0;
+            }
+            p {
+              @include fs(14px);
+              color: #626f78;
+            }
+            .text_block-overlay {
+              background: rgba(0, 0, 0, 0) linear-gradient(rgba(255, 255, 255, 0), #fff) repeat scroll 0 0;
+              height: 55px;
+              margin: -55px 9px 5px 0;
+              position: relative;
+              z-index: 10;
+            }
+          }
+        }
+        .bg {
+          background: #f6f6f6;
+          .txt {
+            .text_block-overlay {
+              background: rgba(0, 0, 0, 0) linear-gradient(rgba(246, 246, 246, 0), #f6f6f6) repeat scroll 0 0;
+            }
+          }
+        }
+        .click-active {
+          background: #f2fbff;
+          .txt {
+            .text_block-overlay {
+              background: rgba(0, 0, 0, 0) linear-gradient(rgba(242, 241, 255, 0), #f2fbff) repeat scroll 0 0;
+            }
+            .title {
+              background: url("../img/tochka.png") right 10px no-repeat;
+            }
+          }
+        }
+        .answer {
+          .txt {
+            .title {
+              background: url("../img/answer.png") right 5px no-repeat;
+              padding: 0 20px 0 0;
+            }
+          }
+        }
+        .last {
+          border-bottom: none;
+        }
+        .textarea {
+          margin: 35px 0 0 0;
+          textarea {
+            color: #969ea5;
+            @include fs(14px);
+            width: 96%;
+            border: 1px solid #dcdcdc;
+            @include br(5px);
+            font-family: $opensansL;
+            padding: 10px 2% 15px;
+          }
+          input[type="submit"] {
+            width: 203px;
+            background: #1ed88f;
+            color: #fff;
+            text-align: center;
+            @include fs(14px);
+            font-family: $opensansSB;
+            padding: 10px 0;
+            cursor: pointer;
+            @include br(20px);
+            margin: 10px 0 0 0;
+          }
+          input[type="submit"]:hover {
+            background: #31e7a0;
+          }
+        }
+      }
+    }
+    .non-rezume {
+      @include fs(16px);
+      color: #25343f;
+      font-family: $opensansB;
+      margin: 17px 0 26px;
+    }
+    .pay-pro {
+      @include fs(16px);
+      color: #606b74;
+      margin: 0 0 20px 0;
+      span {
+        font-family: $opensansSB;
+      }
+      a {
+        color: #2495dd;
+        font-family: $opensansSB;
+        text-decoration: underline;
+      }
+    }
+    .create-rezume {
+      width: 185px;
+      display: block;
+      background: #1ed88f;
+      color: #fff;
+      text-align: center;
+      @include fs(14px);
+      @include br(20px);
+      font-family: $opensansSB;
+      padding: 10px 0;
+    }
+    .create-rezume:hover {
+      background: #31e7a0;
+      text-decoration: none;
+    }
+    .rezume-block {
+      border: 1px solid #dcdcdc;
+      @include br(10px);
+      width: 617px;
+      margin: 0 0 10px 0;
+      padding: 0 15px 15px 15px;
+      .block-img-left {
+        float: left;
+        position: relative;
+        margin: 0 19px 0 0;
+        .recomend {
+          margin: 7px 0 0 0;
+          img {
+            margin: 0;
+          }
+          .counts {
+            display: block;
+            @include fs(14px);
+            color: #b4b9be;
+            text-align: center;
+          }
+        }
+        .rec {
+          position: absolute;
+          top: 0;
+          left: 12px;
+          margin: 0;
+        }
+        img {
+          margin: 30px 0 0 0;
+        }
+      }
+      .block-img-right {
+        margin: 0 0 0 136px;
+        position: relative;
+        .contacts-vacansy {
+          display: inline-block;
+          padding: 0 0 5px 0;
+          border-bottom: 1px solid #dcdcdc;
+          .action {
+            float: right;
+            margin: 9px 0 0 0;
+            .no-publication {
+              color: #f76161;
+              @include fs(14px);
+              font-family: $opensansSB;
+              float: left;
+              margin: 1px 5px 0 30px;
+            }
+            .publication {
+              color: #35bd4d;
+              @include fs(14px);
+              font-family: $opensansSB;
+              float: left;
+              margin: 1px 5px 0 30px;
+            }
+            .action-block {
+              float: right;
+              postion: relative;
+              .block {
+                position: absolute;
+                top: 10px;
+                right: -105px;
+                padding: 3px 15px 15px 15px;
+                width: 165px;
+                background: none;
+                margin: 0 10px 0 0;
+                z-index: 999;
+                .hide {
+                  display: none;
+                }
+                .hide3 {
+                  display: none;
+                }
+                .deistv {
+                  background: url("../img/action.png") right 12px no-repeat;
+                  display: inline-block;
+                  padding: 0 13px 0 0;
+                  margin: 0 0 5px 0;
+                  a {
+                    border-bottom: 1px dashed #25343f;
+                    color: #25343f;
+                    font-family: $opensansSB;
+                    display: inline-block;
+                    @include fs(14px);
+                    text-decoration: none;
+                  }
+                  a:hover {
+                    text-decoration: none;
+                  }
+                }
+                .deistv2 {
+                  background: url("../img/action.png") right 12px no-repeat;
+                  display: inline-block;
+                  padding: 0 13px 0 0;
+                  margin: 0 0 5px 0;
+                  a {
+                    border-bottom: 1px dashed #25343f;
+                    color: #25343f;
+                    font-family: $opensansSB;
+                    display: inline-block;
+                    @include fs(14px);
+                    text-decoration: none;
+                  }
+                  a:hover {
+                    text-decoration: none;
+                  }
+                }
+                .deistv3 {
+                  background: url("../img/action.png") right 12px no-repeat;
+                  display: inline-block;
+                  padding: 0 13px 0 0;
+                  margin: 0 0 5px 0;
+                  a {
+                    border-bottom: 1px dashed #25343f;
+                    color: #25343f;
+                    font-family: $opensansSB;
+                    display: inline-block;
+                    @include fs(14px);
+                    text-decoration: none;
+                  }
+                  a:hover {
+                    text-decoration: none;
+                  }
+                }
+                .publish {
+                  text-align: left;
+                  padding: 0;
+                  a {
+                    background: url("../img/publish.png") left center no-repeat;
+                    padding: 0 0 0 20px;
+                    display: inline-block;
+                    color: #25343f;
+                    @include fs(13px);
+                    text-align: left;
+                  }
+                }
+                .unpublish {
+                  text-align: left;
+                  padding: 0;
+                  a {
+                    background: url("../img/unpublish.png") left center no-repeat;
+                    padding: 0 0 0 20px;
+                    display: inline-block;
+                    color: #25343f;
+                    @include fs(13px);
+                    text-align: left;
+                  }
+                }
+                .new-date {
+                  text-align: left;
+                  padding: 0;
+                  a {
+                    background: url("../img/date.png") left center no-repeat;
+                    padding: 0 0 0 20px;
+                    display: inline-block;
+                    color: #25343f;
+                    @include fs(13px);
+                    text-align: left;
+                  }
+                }
+                .edit {
+                  text-align: left;
+                  padding: 0;
+                  a {
+                    background: url("../img/edit.png") left center no-repeat;
+                    padding: 0 0 0 20px;
+                    display: inline-block;
+                    color: #25343f;
+                    @include fs(13px);
+                    text-align: left;
+                  }
+                }
+                .print {
+                  text-align: left;
+                  padding: 0;
+                  a {
+                    background: url("../img/print.png") left center no-repeat;
+                    padding: 0 0 0 20px;
+                    display: inline-block;
+                    color: #25343f;
+                    @include fs(13px);
+                    text-align: left;
+                  }
+                }
+                .del {
+                  text-align: left;
+                  padding: 0;
+                  a {
+                    background: url("../img/delete.png") left center no-repeat;
+                    padding: 0 0 0 20px;
+                    display: inline-block;
+                    color: #25343f;
+                    @include fs(13px);
+                    text-align: left;
+                    color: #f76161;
+                  }
+                }
+              }
+            }
+          }
+          .title {
+            color: $color_gray;
+            @include fs(14px);
+            padding: 7px 0 0 0;
+            a {
+              color: $color_blue;
+              text-decoration: underline;
+              @include fs(14px);
+            }
+          }
+          a {
+            color: $color_blue;
+            @include fs(25px);
+            text-decoration: underline;
+          }
+          .info-contact {
+            margin: 5px 0 0 0;
+            span {
+              margin: 0 30px 0 0;
+              @include fs(14px);
+              font-family: $opensansSB;
+              color: $color_gray;
+            }
+          }
+          .w340 {
+            width: 340px;
+            display: inline-block;
+          }
+        }
+        .information {
+          margin: 7px 0 0 0;
+          p {
+            @include fs(14px);
+            color: $color_gray;
+            a {
+              @include fs(14px);
+              color: $color_blue;
+              text-decoration: underline;
+            }
+            a:hover {
+              text-decoration: none;
+            }
+          }
+          .experience {
+            overflow: hidden;
+            margin: 10px 0 0 0;
+            p {
+              @include fs(13px);
+              color: $color_black;
+              margin: 0 0 7px 0;
+              span {
+                color: $color_gray;
+                display: block;
+              }
+            }
+            .left {
+              float: left;
+              width: 205px;
+              margin: 0 50px 0 0;
+            }
+            .right {}
+          }
+        }
+        .works {
+          background: url("../img/map.png") left center no-repeat;
+          @include fs(14px);
+          color: $color_blue;
+          padding: 0 0 0 20px;
+          margin: 5px 0 0 0;
+          display: inline-block;
+          font-family: $opensansSB;
+          span {
+            border-bottom: 1px dashed $color_blue;
+          }
+        }
+        .works:hover {
+          text-decoration: none;
+        }
+        .price-vacansy {
+          @include fs(14px);
+          font-family: $opensansSB;
+          color: $color_gray;
+          margin: 10px 0 0 0;
+        }
+        .price-vacansy span {
+          @include fs(18px);
+          color: $color_green;
+        }
+        .start-vacansy {
+          margin: 5px 0 0 0;
+          background: url("../img/check.png") left center no-repeat;
+          @include fs(14px);
+          font-family: $opensansSB;
+          color: $color_green;
+          padding: 0 0 0 20px;
+        }
+        .buts {
+          overflow: hidden;
+          margin: 15px 0 0 0;
+          .buttons {
+            color: $color_white;
+            @include fs(14px);
+            @include br(25px);
+            text-align: center;
+            padding: 8px 0 10px;
+            width: 225px;
+            float: left;
+            background: $color_green;
+          }
+          .buttons:hover {
+            background: $color_green_active;
+            text-decoration: none;
+          }
+          .favorites {
+            background: rgba(0, 0, 0, 0) url("../img/heart2.png") no-repeat scroll left center;
+            color: #2495dd;
+            display: inline-block;
+            font-size: 14px;
+            margin: 0 0 0 20px;
+            padding: 10px 0 10px 35px;
+            text-decoration: underline;
+          }
+          .izbr {
+            background: rgba(0, 0, 0, 0) url("../img/heart.png") no-repeat scroll left center;
+            color: #2495dd;
+            display: inline-block;
+            font-size: 14px;
+            margin: 0 0 0 20px;
+            padding: 10px 0 10px 35px;
+            text-decoration: underline;
+          }
+        }
+      }
+      .block-img-right2 {
+        margin: 0 0 0 12px;
+      }
+    }
+    .allrezume {
+      width: 227px;
+      margin: 0 auto;
+      a {
+        color: #969ea5;
+        border: 1px solid #969ea5;
+        display: block;
+        @include fs(14px);
+        @include br(25px);
+        text-align: center;
+        font-family: $opensansSB;
+        padding: 7px 0;
+        margin: 20px 0 50px 0;
+      }
+      a:hover {
+        text-decoration: none;
+        background: #2495dd;
+        color: #fff;
+        border: 1px solid #2495dd;
+      }
+    }
+    .allrezume2 {
+      width: 347px;
+      margin: 0 auto;
+      a {
+        color: #969ea5;
+        border: 1px solid #969ea5;
+        display: block;
+        @include fs(14px);
+        @include br(25px);
+        text-align: center;
+        font-family: $opensansSB;
+        padding: 7px 0;
+        margin: 20px 0 50px 0;
+      }
+      a:hover {
+        text-decoration: none;
+        background: #2495dd;
+        color: #fff;
+        border: 1px solid #2495dd;
+      }
+    }
+    .allrezume3 {
+      width: 370px;
+      margin: 0 auto;
+      a {
+        color: #969ea5;
+        border: 1px solid #969ea5;
+        display: block;
+        @include fs(14px);
+        @include br(25px);
+        text-align: center;
+        font-family: $opensansSB;
+        padding: 7px 0;
+        margin: 20px 0 50px 0;
+      }
+      a:hover {
+        text-decoration: none;
+        background: #2495dd;
+        color: #fff;
+        border: 1px solid #2495dd;
+      }
+    }
+    .wr {
+      overflow: hidden;
+      margin: 0 0 0 25px;
+      h1 {
+        margin: 0 0 12px 0;
+        float: left;
+        a {
+          background: #1ed88f;
+          display: inline-block;
+          width: 165px;
+          color: #fff;
+          text-align: center;
+          @include br(25px);
+          @include fs(12px);
+          padding: 10px 0;
+          float: right;
+          margin: 5px 0 7px 10px;
+        }
+        a:hover {
+          background: #31e7a0;
+          text-decoration: none;
+        }
+      }
+      .action {
+        float: right;
+        margin: 9px 0 0 0;
+        .no-publication {
+          color: #f76161;
+          @include fs(14px);
+          font-family: $opensansSB;
+          float: left;
+          margin: 3px 125px 0 0;
+        }
+        .publication {
+          color: #35bd4d;
+          @include fs(14px);
+          font-family: $opensansSB;
+          float: left;
+          margin: 3px 125px 0 0;
+        }
+        .action-block {
+          float: right;
+          postion: relative;
+          .block {
+            position: absolute;
+            top: 5px;
+            right: -110px;
+            padding: 3px 15px 15px 15px;
+            width: 165px;
+            background: none;
+            margin: 0 10px 0 0;
+            z-index: 999;
+            .hide {
+              display: none;
+            }
+            .hide3 {
+              display: none;
+            }
+            .deistv {
+              background: url("../img/action.png") right 12px no-repeat;
+              display: inline-block;
+              padding: 0 13px 0 0;
+              margin: 0 0 5px 0;
+              a {
+                border-bottom: 1px dashed #25343f;
+                color: #25343f;
+                font-family: $opensansSB;
+                display: inline-block;
+                @include fs(14px);
+              }
+              a:hover {
+                text-decoration: none;
+              }
+            }
+            .deistv2 {
+              background: url("../img/action.png") right 12px no-repeat;
+              display: inline-block;
+              padding: 0 13px 0 0;
+              margin: 0 0 5px 0;
+              a {
+                border-bottom: 1px dashed #25343f;
+                color: #25343f;
+                font-family: $opensansSB;
+                display: inline-block;
+                @include fs(14px);
+              }
+              a:hover {
+                text-decoration: none;
+              }
+            }
+            .deistv3 {
+              background: url("../img/action.png") right 12px no-repeat;
+              display: inline-block;
+              padding: 0 13px 0 0;
+              margin: 0 0 5px 0;
+              a {
+                border-bottom: 1px dashed #25343f;
+                color: #25343f;
+                font-family: $opensansSB;
+                display: inline-block;
+                @include fs(14px);
+              }
+              a:hover {
+                text-decoration: none;
+              }
+            }
+            .publish {
+              text-align: left;
+              padding: 0;
+              a {
+                background: url("../img/publish.png") left center no-repeat;
+                padding: 0 0 0 20px;
+                display: inline-block;
+                color: #25343f;
+                @include fs(13px);
+                text-align: left;
+              }
+            }
+            .unpublish {
+              text-align: left;
+              padding: 0;
+              a {
+                background: url("../img/unpublish.png") left center no-repeat;
+                padding: 0 0 0 20px;
+                display: inline-block;
+                color: #25343f;
+                @include fs(13px);
+                text-align: left;
+              }
+            }
+            .new-date {
+              text-align: left;
+              padding: 0;
+              a {
+                background: url("../img/date.png") left center no-repeat;
+                padding: 0 0 0 20px;
+                display: inline-block;
+                color: #25343f;
+                @include fs(13px);
+                text-align: left;
+              }
+            }
+            .edit {
+              text-align: left;
+              padding: 0;
+              a {
+                background: url("../img/edit.png") left center no-repeat;
+                padding: 0 0 0 20px;
+                display: inline-block;
+                color: #25343f;
+                @include fs(13px);
+                text-align: left;
+              }
+            }
+            .print {
+              text-align: left;
+              padding: 0;
+              a {
+                background: url("../img/print.png") left center no-repeat;
+                padding: 0 0 0 20px;
+                display: inline-block;
+                color: #25343f;
+                @include fs(13px);
+                text-align: left;
+              }
+            }
+            .del {
+              text-align: left;
+              padding: 0;
+              a {
+                background: url("../img/delete.png") left center no-repeat;
+                padding: 0 0 0 20px;
+                display: inline-block;
+                color: #25343f;
+                @include fs(13px);
+                text-align: left;
+                color: #f76161;
+              }
+            }
+          }
+        }
+      }
+      .socc {
+        float: right;
+        margin: 13px 0 0 0;
+        p {
+          color: #969ea5;
+          @include fs(14px);
+          float: left;
+          margin: 0 10px 0 0;
+        }
+        .s {
+          float: right;
+          a {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+          }
+          .odnn {
+            background: url("../img/soc-odn.png") no-repeat;
+            float: left;
+            margin: 0 10px 0 0;
+          }
+          .odnn:hover {
+            background: url("../img/soc-odn-active.png") no-repeat;
+          }
+          .vkk {
+            background: url("../img/vk-soc.png") no-repeat;
+            float: left;
+            margin: 0 10px 0 0;
+          }
+          .vkk:hover {
+            background: url("../img/vk-soc-active.png") no-repeat;
+          }
+          .fbb {
+            background: url("../img/fb-soc.png") no-repeat;
+          }
+          .fbb:hover {
+            background: url("../img/fb-soc-active.png") no-repeat;
+          }
+        }
+      }
+      .payblock {
+        float: right;
+        margin: 15px 0 0 0;
+        .nol {
+          @include fs(12px);
+          color: #ff5e5e;
+          font-family: $opensansSB;
+          a {
+            display: inline;
+            color: #2495dd;
+            text-decoration: underline;
+            font-family: $opensansSB;
+          }
+        }
+        p {
+          color: #606b74;
+          @include fs(12px);
+          font-family: $opensansSB;
+          span {
+            font-family: $opensansB;
+          }
+        }
+      }
+    }
+    .wr3 {
+      overflow: hidden;
+      h1 {
+        float: left;
+      }
+      .drop {
+        float: right;
+        margin: 8px 0 5px 0;
+        .styled-select2 {
+          background: #fff url("../img/arrow-select.png") no-repeat scroll 135px center;
+          width: 157px;
+          select {
+            width: 185px;
+          }
+        }
+      }
+    }
+    .last-view-vacansy {
+      p {
+        color: #25343f;
+        @include fs(18px);
+        font-family: $opensansSB;
+        border-top: 1px solid #000;
+        padding: 10px 0 15px;
+        margin: 30px 0 0 0;
+      }
+    }
+    .memo {
+      margin: 15px 0 30px 0;
+      .title {
+        color: #25343f;
+        @include fs(16px);
+        font-family: $opensansSB;
+        margin: 0;
+      }
+      p {
+        color: #25343f;
+        @include fs(14px);
+        margin: 5px 0;
+      }
+      .down {
+        background: url("../img/download.png") left 5px no-repeat;
+        padding: 0 0 0 20px;
+        margin: 10px 0 0 0;
+        a {
+          color: #2495dd;
+          border-bottom: 1px dashed #2495dd;
+          @include fs(14px);
+          font-family: $opensansSB;
+          span {
+            font-family: $opensansR;
+          }
+        }
+        a:hover {
+          text-decoration: none;
+        }
+      }
+    }
+    .agreement {
+      margin: 15px 0 30px 0;
+      .title {
+        color: #25343f;
+        @include fs(16px);
+        font-family: $opensansSB;
+        margin: 0;
+      }
+      p {
+        color: #25343f;
+        @include fs(14px);
+        margin: 5px 0;
+      }
+      .read {
+        background: url("../img/read.png") right 9px no-repeat;
+        padding: 0 20px 0 0;
+        margin: 10px 0 0 0;
+        display: inline-block;
+        a {
+          color: #2495dd;
+          border-bottom: 1px dashed #2495dd;
+          @include fs(14px);
+          font-family: $opensansSB;
+        }
+        a:hover {
+          text-decoration: none;
+        }
+      }
+    }
+    .non-izbran {
+      color: #25343f;
+      font-family: $opensansB;
+      @include fs(16px);
+      margin: 17px 0 12px;
+    }
+    .view-vac {
+      color: #969ea5;
+      font-family: $opensansSB;
+      @include fs(14px);
+      a {
+        color: #2495dd;
+        font-family: $opensansB;
+        @include fs(14px);
+      }
+    }
+    .view-vacansy {
+      color: #2495dd;
+      @include fs(14px);
+      text-decoration: underline;
+      font-family: $opensansB;
+    }
+    .view-vacansy:hover {
+      text-decoration: none;
+    }
+    .wrr {
+      margin: 0 0 12px 25px;
+    }
+    .type {
+      overflow: hidden;
+      margin: 15px 0 25px 0;
+      .title {
+        color: #25343f;
+        @include fs(16px);
+        font-family: $opensansB;
+      }
+      .radio {
+        margin: 10px 20px 0 0;
+        float: left;
+        label {
+          display: inline-block;
+          height: 19px;
+          position: relative;
+          width: 19px;
+          float: left;
+          margin: 0;
+          input[type="radio"]:checked + span {
+            background: url("../img/radio-active.png") no-repeat;
+          }
+          span {
+            background: rgba(0, 0, 0, 0) url("../img/radio.png") no-repeat;
+            cursor: pointer;
+            float: none;
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 2px;
+            width: 100%;
+          }
+        }
+        .lab {
+          @include fs(14px);
+          color: #25343f;
+          padding-left: 5px;
+          line-height: 24px;
+        }
+        input[type="radio"] {
+          display: none;
+        }
+      }
+    }
+    .upravlenie {
+      .title {
+        color: #25343f;
+        @include fs(16px);
+        font-family: $opensansB;
+      }
+      .checkbox {
+        margin: 5px 20px 20px 0;
+        label {
+          display: inline-block;
+          height: 19px;
+          position: relative;
+          width: 19px;
+          float: left;
+          margin: 0 7px 25px 0;
+          input[type="checkbox"]:checked + span {
+            background: url("../img/ch-active.png") no-repeat;
+          }
+          span {
+            background: rgba(0, 0, 0, 0) url("../img/ch.png") no-repeat;
+            cursor: pointer;
+            float: none;
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 5px;
+            width: 100%;
+          }
+        }
+        .lab {
+          @include fs(14px);
+          color: #25343f;
+          padding: 10px 0 0 0;
+        }
+        input[type="checkbox"] {
+          display: none;
+        }
+      }
+      .saves {
+        width: 145px;
+        display: block;
+        background: #1ed88f;
+        color: $color_white;
+        @include fs(14px);
+        @include br(20px);
+        text-align: center;
+        font-family: $opensansSB;
+        padding: 10px 0;
+        margin: 27px 0 0 0;
+      }
+      .saves:hover {
+        text-decoration: none;
+        background: #31e7a0;
+      }
+    }
+  }
+}
+
+.parent-profile {
+  .profile-left {
+    .menu-profile {
+      padding: 10px 0;
+      ul {
+        li {
+          .hearts {
+            background: rgba(0, 0, 0, 0) url("../img/hearts.png") no-repeat scroll 17px center;
+          }
+        }
+      }
+    }
+  }
+
+  .profile-right {
+    .profile-setting {
+      .field {
+        .info-field {
+          input {
+            margin: 0 0 10px 0;
+            width: 275px;
+          }
+          .inp {
+            input {
+              width: 238px;
+              color: #25343f;
+            }
+            .good {
+              background: #b9ffe4;
+              border: 1px solid #69e1b2;
+            }
+            .bad {
+              background: #ffdedc;
+              border: 1px solid #f87f78;
+            }
+            p {
+              color: #c71b11;
+              @include fs(14px);
+              font-family: OpenSansR;
+              margin: 20px 0 40px 0;
+            }
+          }
+          .error {
+            border: 1px solid #f87f78;
+            background: #ffdedc;
+            color: #c71b11;
+          }
+        }
+      }
+      .in {
+        margin: 17px 0;
+        .full {
+          font-family: OpenSansSB;
+          font-size: 16px;
+          margin: 0 0 10px 0;
+          span {
+            color: #cf4c47;
+          }
+          .color {
+            color: #606b74;
+          }
+        }
+        .full2 {
+          margin: 0 0 5px 0;
+        }
+      }
+      .field-red {
+        p {
+          color: #c71b11;
+          @include fs(14px);
+        }
+      }
+      .two-blocking {
+        .ava {
+          float: left;
+        }
+        .loading {
+          margin: 0 0 0 125px;
+          overflow: hidden;
+          p {
+            color: #a9b2b9;
+            @include fs(12px);
+            margin: 12px 0 13px 0;
+          }
+          .but-load {
+            float: left;
+            a {
+              width: 215px;
+              border: 2px solid #1ed88f;
+              @include br(25px);
+              text-align: center;
+              @include fs(14px);
+              color: #1ed88f;
+              display: block;
+              padding: 7px 0;
+            }
+            a:hover {
+              background: #1ed88f;
+              color: #fff;
+              text-decoration: none;
+            }
+          }
+          .but-del {
+            width: 129px;
+            float: right;
+            margin: 0 165px 0 0;
+            a {
+              width: 82px;
+              border: 2px solid #a9b2b9;
+              @include br(25px);
+              @include fs(14px);
+              color: #a9b2b9;
+              display: block;
+              padding: 7px 0 7px 43px;
+              background: url("../img/but-del.png") 23px 7px no-repeat;
+            }
+            a:hover {
+              background: url("../img/but-del-hover.png") #a9b2b9 23px 7px no-repeat;
+              color: #fff;
+              text-decoration: none;
+            }
+          }
+        }
+      }
+      input[type="submit"] {
+        margin: 30px 0 0 0;
+      }
+    }
+    .profile-message2 {
+      margin: 20px 0 0 0;
+      .block-message {
+        .mess {
+          .txt-dialog {
+            width: 530px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.profile-no-overflow {
+  margin: 200px 0 20px;
+  overflow: inherit;
+}
+
+.work {
+  position: relative;
+}
+
+.marg {
+  margin: 15px 0 0;
+}
+
+.work p {
+  color: #25343f;
+  font-family: OpenSansSB;
+  font-size: 14px;
+  padding: 12px 0 0 0;
+  text-align: left;
+}
+
+.styled-select2 {
+  background: url("../img/arrow-select.png") no-repeat scroll 190px center #fff;
+  border: 1px solid #dcdcdc;
+  margin: 0 0 0 0;
+  overflow: hidden;
+  width: 212px;
+  select {
+    width: 240px;
+    @include br(5px);
+    @include fs(16px);
+    padding: 5px 0 5px 5px;
+    background: none;
+    clip: rect(0px, 237px, 26px, 210px);
+    color: #707b83;
+    top: 1px;
+  }
+}
+
+.block-sel {
+  width: 245px;
+  float: left;
+  p {
+    margin: 0 0 5px 15px;
+  }
+}
+
+.block-sel2 {
+  p {
+    margin: 0 0 5px 0;
+  }
+}
+
+.wrap-check {
+  .okey {
+    background: #1ed88f;
+    color: #fff;
+    text-align: center;
+    @include fs(14px);
+    @include br(25px);
+    font-family: $opensansSB;
+    width: 235px;
+    display: block;
+    padding: 8px 0;
+    margin: 25px 0 0 0;
+  }
+
+  .okey:hover {
+    background: #31e7a0;
+    text-decoration: none;
+  }
+
+  .check {
+    margin: 0 0 0 35px;
+    a {
+      background: #31e7a0;
+      @include br(50px);
+      @include fs(14px);
+      color: #fff;
+      font-family: $opensansSB;
+      width: 215px;
+      margin: 15px 0 15px -10px;
+      display: block;
+      padding: 10px 0;
+      text-align: center;
+    }
+    a:hover {
+      text-decoration: none;
+    }
+    .title {
+      @include fs(14px);
+      font-family: $opensansSB;
+      color: $color_black;
+      float: none;
+      margin: 0 0 5px 0;
+    }
+    .last {
+      margin-right: 0;
+    }
+    p {
+      @include fs(13px);
+      color: #25343f;
+      font-family: $opensansR;
+      margin: 0 0 2px 0;
+      padding: 0;
+      label {
+        display: inline-block;
+        height: 19px;
+        position: relative;
+        width: 19px;
+        input[type="checkbox"]:checked + span {
+          background: url("../img/ch-active.png") no-repeat;
+        }
+        span {
+          background: rgba(0, 0, 0, 0) url("../img/ch.png") no-repeat;
+          cursor: pointer;
+          float: none;
+          height: 100%;
+          left: 0;
+          position: absolute;
+          top: 4px;
+          width: 100%;
+        }
+      }
+      .lab {
+        margin: 0 0 0 5px;
+      }
+      input[type="checkbox"] {
+        display: none;
+      }
+    }
+  }
+
+  .check2 {
+    margin: 0 0 0 28px;
+  }
+
+  .parent-check {
+    margin: 0;
+    .children-check {
+      display: none;
+    }
+    .label-wraper {
+      width: 100%;
+    }
+    a {
+      background: #31e7a0;
+      @include br(50px);
+      @include fs(14px);
+      color: #fff;
+      font-family: $opensansSB;
+      width: 215px;
+      margin: 15px 0 15px -10px;
+      display: block;
+      padding: 10px 0;
+      text-align: center;
+    }
+    a:hover {
+      text-decoration: none;
+    }
+    .title {
+      @include fs(14px);
+      font-family: $opensansSB;
+      color: $color_black;
+      float: none;
+      margin: 0 0 5px 0;
+    }
+    .last {
+      margin-right: 0;
+    }
+    p {
+      @include fs(13px);
+      color: #25343f;
+      font-family: $opensansR;
+      margin: 0 0 2px 0;
+      padding: 0;
+      label {
+        display: inline-block;
+        height: 19px;
+        position: relative;
+        width: 19px;
+        input[type="checkbox"]:checked + span {
+          background: url("../img/ch-active.png") no-repeat;
+        }
+        input[type="radio"]:checked + span {
+          background: url("../img/radio-active.png") no-repeat;
+        }
+        .checkbox_box {
+          background: rgba(0, 0, 0, 0) url("../img/ch.png") no-repeat;
+          cursor: pointer;
+          float: none;
+          height: 100%;
+          left: 0;
+          position: absolute;
+          top: 4px;
+          width: 100%;
+        }
+      }
+      .lab {
+        margin: 7px 0 0 28px;
+        display: inline-block;
+        .plus {
+          cursor: pointer;
+        }
+      }
+      input[type="checkbox"] {
+        display: none;
+      }
+    }
+  }
+
+  .parent-check2 {
+    margin: 0;
+    .children-check {
+      display: none;
+    }
+    a {
+      background: #31e7a0;
+      @include br(50px);
+      @include fs(14px);
+      color: #fff;
+      font-family: $opensansSB;
+      width: 215px;
+      margin: 15px 0 15px -10px;
+      display: block;
+      padding: 10px 0;
+      text-align: center;
+    }
+    a:hover {
+      text-decoration: none;
+    }
+    .title {
+      @include fs(14px);
+      font-family: $opensansSB;
+      color: $color_black;
+      float: none;
+      margin: 0 0 5px 0;
+    }
+    .last {
+      margin-right: 0;
+    }
+    p {
+      @include fs(13px);
+      color: #25343f;
+      font-family: $opensansR;
+      margin: 4px 0;
+      padding: 0;
+      label {
+        display: inline-block;
+        height: 19px;
+        position: relative;
+        width: 19px;
+        input[type="checkbox"]:checked + span {
+          background: url("../img/ch-active.png") no-repeat;
+        }
+        input[type="radio"]:checked + span {
+          background: url("../img/radio-active.png") no-repeat;
+        }
+        span {
+          background: rgba(0, 0, 0, 0) url("../img/radio.png") no-repeat;
+          cursor: pointer;
+          float: none;
+          height: 100%;
+          left: 0;
+          position: absolute;
+          top: 4px;
+          width: 100%;
+        }
+      }
+      .lab {
+        margin: 0 0 0 5px;
+        .plus {
+          cursor: pointer;
+        }
+      }
+      input[type="checkbox"] {
+        display: none;
+      }
+      input[type="radio"] {
+        display: none;
+      }
+    }
+  }
+
+  .minus {
+    .children-check {
+      display: block;
+    }
+  }
+}
+
+.smolensk {
+  float: right;
+}
+
+.pagination {
+  overflow: hidden;
+  width: 220px;
+  margin: 20px auto 50px;
+  ul {
+    overflow: hidden;
+    li {
+      float: left;
+      a {
+        @include fs(14px);
+        color: #969ea5;
+        font-family: $opensansSB;
+        padding: 7px 15px;
+        display: block;
+        border-top: 1px solid #dcdcdc;
+        border-bottom: 1px solid #dcdcdc;
+        border-right: 1px solid #dcdcdc;
+      }
+      a:hover {
+        background: #2495dd;
+        color: #fff;
+        text-decoration: none;
+      }
+    }
+    li:first-child {
+      a {
+        @include brAll(25px, 0, 0, 25px);
+        border-left: 1px solid #dcdcdc;
+        background: url("../img/left-pag.png") center center no-repeat;
+        height: 19px;
+        width: 10px;
+      }
+    }
+    li:first-child:hover {
+      a {
+        @include brAll(25px, 0, 0, 25px);
+        border-left: 1px solid #dcdcdc;
+        background: url("../img/left-pag-act.png") center center no-repeat #2495dd;
+        height: 19px;
+        width: 10px;
+      }
+    }
+    li:last-child {
+      a {
+        @include brAll(0, 25px, 25px, 0);
+        background: url("../img/right-pag.png") center center no-repeat;
+        height: 19px;
+        width: 10px;
+      }
+    }
+    li:last-child:hover {
+      a {
+        background: url("../img/right-pag-act.png") center center no-repeat #2495dd;
+      }
+    }
+  }
+}
+
+.point {
+  position: absolute;
+  display: none;
+  font-size: 14px;
+  font-weight: bold;
+  pointer-events: none;
+  div {
+    background: url("../img/raion.png") no-repeat;
+    width: 141px;
+    height: 69px;
+  }
+  p {
+    position: absolute;
+    top: 10px;
+    left: 16px;
+  }
+  a {
+    color: #2495dd;
+    font-size: 14px;
+    font-weight: 400;
+    border-bottom: 1px dashed #2495dd;
+    font-family: OpenSansR;
+    pointer-events: all;
+  }
+}

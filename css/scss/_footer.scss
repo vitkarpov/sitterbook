@@ -1,0 +1,88 @@
+.footer {
+  overflow: hidden;
+  margin-bottom: 10px;
+
+  .footer-menu {
+    overflow: hidden;
+    @include fs(14px);
+    width: 700px;
+    float: left;
+  }
+
+  .footer-menu ul {
+    overflow: hidden;
+  }
+
+  .footer-menu ul li {
+    float: left;
+    padding-right: 10px;
+    padding-left: 10px;
+    border-right: 1px solid #c9c9c9;
+    margin: 0 0 5px 0;
+  }
+
+  .footer-menu ul li:first-child {
+    padding-left: 0;
+  }
+
+  .footer-menu ul li:nth-child(3) {
+    border: none;
+  }
+
+  .footer-menu ul li:nth-child(4) {
+    padding-left: 0;
+  }
+
+  .footer-menu ul li:last-child {
+    border: none;
+  }
+
+  .footer-menu ul li a {
+    color: #454545;
+  }
+
+  .footer-menu .copyright {
+    margin: 10px 0 0 0;
+    color: #969ea5;
+  }
+
+  .social {
+    float: right;
+  }
+
+  .social ul li {
+    float: left;
+  }
+
+  .social ul li a {
+    width: 26px;
+    height: 26px;
+    display: block;
+    margin: 0 10px 0 0;
+  }
+
+  .social ul li .od {
+    background: url("../img/odnoklassniki.png") no-repeat;
+  }
+
+  .social ul li .od:hover {
+    background: url("../img/odnoklassniki-active.png") no-repeat;
+  }
+
+  .social ul li .vk {
+    background: url("../img/vk.png") no-repeat;
+  }
+
+  .social ul li .vk:hover {
+    background: url("../img/vk-active.png") no-repeat;
+  }
+
+  .social ul li .fb {
+    background: url("../img/facebook.png") no-repeat;
+    margin: 0;
+  }
+
+  .social ul li .fb:hover {
+    background: url("../img/facebook-active.png") no-repeat;
+  }
+}
