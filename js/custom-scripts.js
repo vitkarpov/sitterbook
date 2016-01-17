@@ -143,11 +143,11 @@ $(document).on("click", ".select-city .add-city", function() {
   $(this)
     .prev()
     .prev()
-    .after("<div class='wrap-sel'>" +
+    .after("<div class='wrap-sel' data-b='select-city'>" +
               "<div class='sel seld-title'>" +
-                "<select name='city' class='city'></select>" +
+                "<select name='city' class='city js-city-select'></select>" +
               "</div>" +
-              "<div class='ajax-form'></div>" +
+              "<div class='ajax-form js-ajax-form'></div>" +
               "<div class='remove-city'></div>" +
               "<div class='clear'></div>" +
             "</div>");
@@ -175,7 +175,6 @@ $(document).on("click", ".select-city .remove-city", function() {
 
 // Работа кнопки "Все" для выбора/снятия всех округов
 // разом на основной странице
-
 function snapEventCheckboxesCountiesOnMain() {
   var // Чекбокс "Все"
       allToggle = $('.all-city .checkbox.all'),
