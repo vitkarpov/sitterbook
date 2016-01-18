@@ -59,7 +59,9 @@ $.jblocks({
   events: {
     'b-inited': 'oninit',
     'change .js-city-select': 'onChangeSelect',
-    'click .remove-city': 'remove'
+    'click .remove-city': 'remove',
+    'click .sel.seld-old': 'showCitiesDropdown',
+    'click .btn-rounded': 'hideCitiesDropdown'
   },
 
   methods: {
@@ -108,16 +110,40 @@ $.jblocks({
 
       // Привязываем обработчики для чекбоксов округов
       snapEventCheckboxesCountiesOnMain();
-      snapEventCloseForCountiesOnMain();
+      // snapEventCloseForCountiesOnMain();
+    },
+
+    showCitiesDropdown: function() {
+      this.$node.find('.all-city').show();
+    },
+
+    hideCitiesDropdown: function() {
+      // непонятно почему контейнер не скрывается на .hide()
+      // и на .css({display: "none"}), хотя 
+      // .show() в функции выше прокатывает
+
+      this.$node.find('.all-city').fadeOut(10);
+      // $('.all-city').hide();
+      //console.log(this.$node.find('.all-city'));
+
+      // И КАК РЕАЛИЗОВАТЬ СКРЫТИЕ ВЫПАДАШКИ НА ПОТЕРЮ ФОКУСА???
+      // НИЖЕ СТАРЫЙ ПРИМЕР КОДА
+
+      //   // Закрываем выпадашку при клике вне её
+      //   $('body').on('click', function(e) {
+      //     if ( ($(e.target).hasClass('all-city') === true) ||
+      //           $(e.target).closest('.all-city').length > 0) {
+      //       // 
+      //     } else {
+      //       $('.all-city').fadeOut(10);
+      //     }
+      //   });
+      // };
     },
 
     remove: function() {
       this.$node.remove();
       this.destroy();
-
-      // Хочу писать так:
-      // this.$node.jblocks('destroy');
-      // А сейчас не работает
     }
   }
 });
@@ -164,24 +190,9 @@ $.jblocks({
 
 
 
-
-
-
-
-
-
-
-// Показать поле городов на странице "Создание резюме"
-$(document).on("click", ".select-city .sel", function() {
-  $(".all-city", this).css({
-    display: "block"
-  });
-});
-
-// Удалить поле выбора города на главной
-$(document).on("click", ".select-city .remove-city", function() {
-  $(this).parent().remove();
-});
+//==============================//
+//== СКРИПТЫ ПОКА ВНЕ JBLOCKS ==//
+//==============================//
 
 // Окно выбора округа на основной странице "Создания резюме",
 // вне модального окна
@@ -213,24 +224,7 @@ function snapEventCheckboxesCountiesOnMain() {
   });
 };
 
-// Закрытие окна с выбором округов на главной
-// по клику на OK и при потере фокуса
-function snapEventCloseForCountiesOnMain() {
-  // Закрываем при нажатии на ОК
-  $('.all-city .btn-rounded').on('click', function() {
-    $(this).parent().fadeOut(10);
-  });
 
-  // Закрываем выпадашку при клике вне её
-  $('body').on('click', function(e) {
-    if ( ($(e.target).hasClass('all-city') === true) ||
-          $(e.target).closest('.all-city').length > 0) {
-      // 
-    } else {
-      $('.all-city').fadeOut(10);
-    }
-  });
-};
 
 // Проверка кол-ва символов, введенных в поле "О себе"
 var taCont = $('.textarea'),
@@ -256,6 +250,8 @@ taField.on('keyup', function() {
   }
 });
 
+
+
 // Добавить/удалить рекомендации
 $(document).on("click", ".add-recommend", function() {
   $(".recommend .add-recommend")
@@ -270,6 +266,8 @@ $(document).on("click", ".add-recommend", function() {
 $(document).on("click", ".recommend .three-inp .remove", function() {
   $(this).parent().remove();
 });
+
+
 
 // Авторизация
 var i = 2;
@@ -298,9 +296,9 @@ $(document).on("click", ".auth a", function() {
 
 
 
-//================================================//
-//== Скрипты для страниц поиска резюме/вакансий ==//
-//================================================//
+
+//== Скрипты для страниц поиска резюме/вакансий
+
 
 // Показать/скрыть фильтры
 $(document).on("click", ".button p a", function() {
