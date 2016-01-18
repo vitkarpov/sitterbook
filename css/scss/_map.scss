@@ -42,7 +42,8 @@
 
 #map2 {
   width: 600px;
-  margin: 20px 0 0 265px;
+  margin: 20px 0 0 85px;
+
   svg {
     margin: 0 0 0 -40px;
   }
@@ -223,14 +224,14 @@
 }
 
 #boxes1 #dialog1 {
-  width: 70vw;
+  width: 70%;
   height: 90vh;
   @include br(10px);
   border: 1px solid #000;
   background-color: #f6f6f6;
   overflow-y: scroll;
   top: 5vh!important;
-  left: 15vw!important;
+  left: 15%!important;
   box-sizing: border-box;
   margin: 0;
 }
@@ -481,11 +482,15 @@
 }
 
 #boxes2 #dialog2, #boxes3 #dialog3, #boxes4 #dialog4 {
-  width: 600px;
-  height: 510px;
+  width: 70%;
+  height: 90vh;
   border-radius: 10px;
   border: 1px solid #000;
   background-color: #f6f6f6;
+  top: 5vh !important;
+  left: 15% !important;
+  box-sizing: border-box;
+  margin: 0;
 }
 
 #boxes-profile #dialog-profile {
@@ -1000,9 +1005,9 @@
 }
 
 #boxes7 #dialog2 label, #boxes6 #dialog2 label, #boxes5 #dialog2 label, #boxes4 #dialog2 label, #boxes3 #dialog2 label, #boxes2 #dialog2 label, #boxes #dialog label {
-  display: block;
-  font-size: 16px;
-  margin: 15px 0 5px 62px;
+  // display: block;
+  // font-size: 16px;
+  // margin: 15px 0 5px 62px;
 }
 
 .profile {
@@ -2519,6 +2524,10 @@
 }
 
 .wrap-check {
+  &.map1 {
+    margin-bottom: 15px; 
+  }
+
   .okey {
     background: #1ed88f;
     color: #fff;
@@ -2753,6 +2762,10 @@
     .children-check {
       display: block;
     }
+  }
+
+  .btn-rounded {
+    margin-top: 15px;
   }
 }
 

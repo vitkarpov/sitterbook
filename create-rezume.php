@@ -88,7 +88,7 @@ include_once "libs/start.php";
 							<p class="title-border">Возможное место работы</p>
 
 							<div class="select-city">
-								<p class="mb">Выберите город\а, где вы готовы работать:</p>
+								<p class="mb">Выберите город(а), где вы готовы работать:</p>
 
 								<select class="fetched-cities-invisible"></select>
 
@@ -108,10 +108,12 @@ include_once "libs/start.php";
 									<div class="clear"></div>
 								</div>
 
+								<div class="js-container-wrap-sel"></div>
+
 								<div class="clear"></div>
 
 								<!--Добавить город-->
-								<span class="add-city">+ Добавить город</span>
+								<span class="add-city" data-b="add-city">+ Добавить город</span>
 							</div>
 						</div>
 
@@ -131,7 +133,7 @@ include_once "libs/start.php";
 
 							<div class="two-block two-block2">
 								<div class="inp-rad">
-									<p class="title">Пол</p>
+									<p class="title">Пол:</p>
 
 									<div class="radio">
 										<label>
@@ -159,7 +161,7 @@ include_once "libs/start.php";
 
 							<div class="two-block">
 								<div class="sel">
-									<p class="title">Гражданство</p>
+									<p class="title">Гражданство:</p>
 									<div class="styled-select">
 										<select name="grajd">
 											<option>Любое</option>
@@ -173,7 +175,7 @@ include_once "libs/start.php";
 
 							<div class="two-block">
 								<div class="inp-rad">
-									<p class="title">Наличие водительских прав</p>
+									<p class="title">Наличие водительских прав:</p>
 
 									<div class="radio w60">
 										<label>
@@ -193,7 +195,7 @@ include_once "libs/start.php";
 								</div>
 
 								<div class="inp-rad">
-									<p class="title">Наличие своего автотранспорта</p>
+									<p class="title">Наличие своего автотранспорта:</p>
 
 									<div class="radio w60">
 										<label>
@@ -236,7 +238,7 @@ include_once "libs/start.php";
 
 							<div class="two-block">
 								<div class="inp-rad">
-									<p class="title">Аллергия и стресс к домашним животным</p>
+									<p class="title">Аллергия и стресс к домашним животным:</p>
 
 									<div class="radio w60">
 										<label>
@@ -256,7 +258,7 @@ include_once "libs/start.php";
 								</div>
 
 								<div class="inp-rad">
-									<p class="title">Отношение к курению</p>
+									<p class="title">Отношение к курению:</p>
 
 									<div class="radio w42">
 										<label>
@@ -278,7 +280,7 @@ include_once "libs/start.php";
 
 							<div class="two-block">
 								<div class="inp-rad">
-									<p class="title">Возможен переезд</p>
+									<p class="title">Возможен переезд:</p>
 
 									<div class="radio w60">
 										<label>
@@ -343,14 +345,14 @@ include_once "libs/start.php";
 							</div>
 
 							<div class="video">
-								<p class="title">Видеорезюме</p>
+								<p class="title">Видеорезюме:</p>
 
 								<div class="you">
-									<input type="text" name="video" placeholder="http://youtube.com/watch?v=">
+									<input type="text" name="video" placeholder="Например: 'http://youtube.com/watch?v=JFf3uazyXco'">
 									<button>ОК</button>
 								</div>
 
-								<span>Добавьте ссылкку на ваше видеорезюме размещенное на сайте YouTube или RuTube</span>
+								<span>Добавьте ссылку на ваше видеорезюме, размещенное на сайте YouTube или RuTube</span>
 							</div>
 						</div>
 
@@ -359,7 +361,7 @@ include_once "libs/start.php";
 							<p class="title-border">Образование</p>
 
 							<div class="course">
-								<p class="title">Курсы, повышение квалификации</p>
+								<p class="title">Курсы, повышение квалификации:</p>
 
 								<div class="inputs">
 									<input class="blured" type="text" name="cur" placeholder="Название"> 
@@ -371,7 +373,7 @@ include_once "libs/start.php";
 
 							<div class="two-block">
 								<div class="sel">
-									<p class="title">Знание языков</p>
+									<p class="title">Знание языков:</p>
 
 									<div class="styled-select">
 										<select name="grajd">
@@ -390,7 +392,7 @@ include_once "libs/start.php";
 
 							<div class="two-block">
 								<div class="sel">
-									<p class="title">Опыт работы</p>
+									<p class="title">Опыт работы:</p>
 
 									<div class="styled-select">
 										<select name="grajd">
@@ -562,7 +564,7 @@ include_once "libs/start.php";
 							</div>
 
 							<div class="info" id="nota">
-								<p>Добавление фото увеличивает ваши шансы,<br>что родитель выберет вас</p>
+								<p>Добавление фото увеличивает ваши шансы,<br>что родитель выберет вас.</p>
 								<p>
 									<span>Формат: jpg, gif, png.</span>
 									<span>Максимальный размер файла 2Mb.</span>
@@ -594,12 +596,12 @@ include_once "libs/start.php";
 							<div class="two-block">
 								<div class="in">
 									<p class="title">Телефон:</p>
-									<input class="blured" type="text" name="phone" placeholder="+7 (495) 123 45 67">
+									<input class="blured" type="text" name="phone" placeholder="+7 (495) 123-45-67">
 								</div>
 
 								<div class="in">
 									<p class="title">Дополнительный email:</p>
-									<input class="blured" type="text" name="mail" placeholder="Email">
+									<input class="blured" type="text" name="mail" placeholder="super.nyanya@ya.ru">
 								</div>
 							</div>
 						</div>
@@ -610,7 +612,7 @@ include_once "libs/start.php";
 
 							<div class="two-block">
 								<div class="in">
-									<p class="title">Зарплата, руб.:</p>
+									<p class="title">Зарплата, руб:</p>
 									<input class="blured" type="text" name="pay" placeholder="от 200">
 								</div>
 
@@ -694,6 +696,8 @@ include_once "libs/start.php";
 				</div>
 			</div>
 		</div> <!-- end .footer -->
+
+		<div id="get-cities" data-b="get-cities"></div>
 
 		<!-- Невидимо вставляем на страницу все карты городов -->
 		<?php include_once 'act/load_all_maps_for_cities_on_main.php'; ?>

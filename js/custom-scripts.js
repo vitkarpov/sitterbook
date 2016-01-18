@@ -3,132 +3,173 @@
 //======================================//
 
 $(document).ready(function() {
-  fetch_select_cities();
-  // Инициализируем все блоки в документе для jBlocks
+  // Инициализируем jblocks
   $(document).jblocks('init');
 });
 
 
 
-//=================================//
-//== Подгрузка городов и округов ==//
-//=================================//
+//==================================================//
+//== Блок get-сities для получения списка городов ==//
+//==================================================//
 
-// AJAX-подгрузка городов на основную страницу в невидимое поле
-function fetch_select_cities() {
-  $.ajax({
-    type: 'post',
-    url: 'act/fetch_select_cities.php',
-    success: function (response) {
-      $('.fetched-cities-invisible').append(response);
+$.jblocks({
+  name: 'get-cities',
 
-      $('.select-city select.city').append(
-        $('.fetched-cities-invisible').html()
-      );
+  events: {
+    'b-inited': 'oninit'
+  },
+
+  methods: {
+    oninit: function() {
+      this.fetchCities();
+    },
+
+    fetchCities: function() {
+      var dfd = jQuery.Deferred();
+      var promise = dfd.promise();
+
+      if(this.promise) {
+        return this.promise;
+      };
+
+      this.promise = promise;
+
+      $.ajax({
+        type: 'post',
+        url: 'act/fetch_select_cities.php',
+        success: function(response) {
+          dfd.resolve(response);
+        }
+      });
+
+      return promise;
     }
-  });
-}
-
-// Получение списка городов из промежуточного невидимого поля
-function get_cities_from_invisible_field() {
-  return $(".fetched-cities-invisible").html();
-}
-
-// При изменении select'а передаем выбранное значение
-// вместе со ссылкой на этот select в функцию подгрузки округов
-$(document).on('change', 'select.city', function() {
-  changedThis = $(this);
-  fetch_select_counties(this.value, changedThis);
+  }
 });
 
-// AJAX-подгрузка округов на основную страницу
 
-// Блок селекта для выбора города
+//==================================================//
+//== Блок select-city для выбора города в селекте ==//
+//==================================================//
+
 $.jblocks({
   name: 'select-city',
+
   events: {
     'b-inited': 'oninit',
-    'change .js-city-select': 'onChangeSelect'
+    'change .js-city-select': 'onChangeSelect',
+    'click .remove-city': 'remove'
   },
+
   methods: {
-    // блок проинциализировался
     oninit: function() {
-      // заранее найден элементы, с которыми будем работать
-      // в рамках данного блока
       this.select = this.$node.find('.js-city-select');
       this.ajaxForm = this.$node.find('.js-ajax-form');
+
+      this.fillSelect();
     },
 
-    // Вызывается при измении селекта
+    // Заполнение select'а
+    fillSelect: function() {
+      var block = this;
+
+      $('#get-cities').jblocks('get').each(function() {
+        this.fetchCities().then(function(cities) {
+          block.select.append(cities);
+        })
+      })
+    },
+
+    // Вызывается при изменении селекта
     onChangeSelect: function(e) {
-      // e — объект jquery-события, может пригодится
-      this.fetchCities()
+      this.fetchCounties();
     },
 
-    // запросим города
-    fetchCities: function() {
+    // Запросим округа
+    fetchCounties: function() {
       $.ajax({
         type: 'post',
         url: 'act/fetch_select_counties.php',
         data: {
           get_option: this.select.val()
         },
-        success: this.onSuccessCitiesRequest.bind(this)
+        success: this.onSuccessCountiesRequest.bind(this)
       });
     },
 
-    // вызывается, когда приехали города
-    onSuccessCitiesRequest: function(response) {
+    // Вызывается, когда приехали города
+    onSuccessCountiesRequest: function(response) {
       // Сначала удаляем содержимое .ajax-form для данного города
       this.ajaxForm.html(response);
 
-      // TODO: может эти методы можно по аналогии можно занести
-      // в декларацию этого блока?
-      //
-      // Таким образом хорошо структурируется код:
-      // - ты понимаешь, с каким компонентом идет работа
-      // - все методы по смыслу сгруппированы в одном объекте (декларации)
-      // - поток выполнения программы более предсказуемый — меньше вероятность запутаться
-      // - подобные описания компонентов можно разнести по разным файликам
-      //   и такое разбиение на файлы получается очень логичное
-
+      // Инициализируем модальные окна
       openModal();
+
+      // Привязываем обработчики для чекбоксов округов
       snapEventCheckboxesCountiesOnMain();
       snapEventCloseForCountiesOnMain();
+    },
+
+    remove: function() {
+      this.$node.remove();
+      this.destroy();
+
+      // Хочу писать так:
+      // this.$node.jblocks('destroy');
+      // А сейчас не работает
     }
   }
 });
 
-// function fetch_select_counties(val, changedThis) {
-//   $.ajax({
-//     type: 'post',
-//     url: 'act/fetch_select_counties.php',
-//     data: {
-//       get_option: val
-//     },
-//     success: function (response) {
-//       // Сначала удаляем содержимое .ajax-form для данного города
-//       changedThis
-//         .parent()
-//         .siblings('.ajax-form')
-//         .children()
-//         .remove();
-//       // и затем вставляем список округов и ссылки вновь
-//       changedThis
-//         .parent()
-//         .next()
-//         .append(response);
 
-//       // Выполняем подгрузку содержимого модальных окон
-//       openModal();
+//====================================================//
+//== Блок add-city для добавления очередного города ==//
+//====================================================//
 
-//       // Привязываем обработчики чекбоксов и кнопок
-//       // выпадающего списка округов на основной странице
-//       snapEventCheckboxesCountiesOnMain();
-//       snapEventCloseForCountiesOnMain();
-//     }
-//   });
-// }
+$.jblocks({
+  name: 'add-city',
+
+  events: {
+    'b-inited': 'oninit'
+  },
+
+  methods: {
+    oninit: function() {
+      // Разметка для очередного города
+      this.HTML = "<div class='wrap-sel' data-b='select-city'>" +
+                    "<div class='sel seld-title'>" +
+                      "<select name='city' class='city js-city-select'>" +
+                        "<option disabled='disabled' selected='selected'>-- Выберите город --</option>" +
+                      "</select>" +
+                    "</div>" +
+                    "<div class='ajax-form js-ajax-form'></div>" +
+                    "<div class='remove-city'></div>" +
+                    "<div class='clear'></div>" +
+                  "</div>";
+
+      this.container = $('.js-container-wrap-sel');
+      this.$node.on('click', this.onClickAddCity.bind(this));
+    },
+
+    onClickAddCity: function() {
+      this.container.append(this.HTML);
+      this.container.jblocks('init');
+    }
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Показать поле городов на странице "Создание резюме"
 $(document).on("click", ".select-city .sel", function() {
@@ -137,38 +178,10 @@ $(document).on("click", ".select-city .sel", function() {
   });
 });
 
-// Добавить/удалить поле выбора города на главной
-$(document).on("click", ".select-city .add-city", function() {
-  // Вставляем очередную строку с выбором города
-  $(this)
-    .prev()
-    .prev()
-    .after("<div class='wrap-sel' data-b='select-city'>" +
-              "<div class='sel seld-title'>" +
-                "<select name='city' class='city js-city-select'></select>" +
-              "</div>" +
-              "<div class='ajax-form js-ajax-form'></div>" +
-              "<div class='remove-city'></div>" +
-              "<div class='clear'></div>" +
-            "</div>");
-
-  // Вставляем очередную строку с выбором города
-  $(this)
-    .prev()
-    .prev()
-    .find('select.city')
-    .append(
-      "<option disabled='disabled' selected='selected'>-- Выберите город --</option>" +
-      get_cities_from_invisible_field()
-    );
-
-});
-
+// Удалить поле выбора города на главной
 $(document).on("click", ".select-city .remove-city", function() {
   $(this).parent().remove();
 });
-
-
 
 // Окно выбора округа на основной странице "Создания резюме",
 // вне модального окна
@@ -230,17 +243,14 @@ var taCont = $('.textarea'),
 taField.on('keyup', function() {
   if ( taField.val().length < 100 ) {
     // Мало символов
-    console.log('мало');
     taCounter.html(taField.val().length);
     taCounter.removeClass('menshe').addClass('bolshe');
   } else if ( taField.val().length > 950 ) {
     // Много символов
-    console.log('много');
     taCounter.html(taField.val().length);
     taCounter.removeClass('menshe').addClass('bolshe');
   } else {
     // То что нужно символов
-    console.log('то что нужно');
     taCounter.html(taField.val().length);
     taCounter.removeClass('bolshe').addClass('menshe');
   }
