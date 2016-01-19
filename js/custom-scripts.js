@@ -48,6 +48,17 @@ $.jblocks({
   }
 });
 
+$.jblocks({
+  name: 'space'
+});
+
+// 1. на инит каждого селекта нужно посмотреть в хранилище,
+//    если есть уже выбранный, то скрыть сразу Москву
+// 2. на change каждого селекта нужно положить в хранилище флаг
+//    и обновить все селекты, кроме текущего
+// 3. на удаление нужно проверить: если была выбрана Москва в текущем селекте,
+//    то нужно назад обновить сторе (удалить moscowChecked)
+
 
 //==================================================//
 //== Блок select-city для выбора города в селекте ==//
@@ -63,9 +74,7 @@ $.jblocks({
     'change .js-city-select': 'onChangeSelect',
     'click .remove-city': 'remove',
     'click .sel.seld-old': 'showCitiesDropdown',
-    'click .btn-rounded': 'hideCitiesDropdownOnOk',
-    // 'click body': 'hideCitiesDropdownOnFocusout',
-    'click .create-rezume': 'hideCitiesDropdownOnFocusout'
+    'click .btn-rounded': 'hideCitiesDropdownOnOk'
   },
 
   methods: {
@@ -74,10 +83,24 @@ $.jblocks({
       this.ajaxForm = this.$node.find('.js-ajax-form');
 
       this.fillSelect();
+
+      this.hideCitiesDropdownOnFocusout = this.hideCitiesDropdownOnFocusout.bind(this);
+      $('body').on('click', this.hideCitiesDropdownOnFocusout);
+
+      this.onMoscowChecked = this.onMoscowChecked.bind(this);
+
+      $(document).on('select-city-moscow-checked', this.onMoscowChecked);
+
+      var space = $('body').jblocks('get')[0];
+
+      if (space.moscowChecked) {
+        this.hideMoscow();
+      }
     },
 
     ondestroy: function() {
-
+      $('body').off('click', this.hideCitiesDropdownOnFocusout);
+      $(document).off('select-city-moscow-checked', this.onMoscowChecked);
     },
 
     // Заполнение select'а
@@ -94,6 +117,12 @@ $.jblocks({
     // Вызывается при изменении селекта
     onChangeSelect: function(e) {
       this.fetchCounties();
+
+      var isMoscow = this.select.val() === '1';
+
+      if (isMoscow) {
+        $(document).trigger('select-city-moscow-checked', this);
+      }
     },
 
     // Запросим округа
@@ -112,60 +141,114 @@ $.jblocks({
     onSuccessCountiesRequest: function(response) {
       // Сначала удаляем содержимое .ajax-form для данного города
       this.ajaxForm.html(response);
+      this.$node.jblocks('init');
+
+      // запомним ссылку на вложенный компонент
+      this.dropdown = this.$node.find('.all-city').jblocks('get')[0];
 
       // Инициализируем модальные окна
       openModal();
-
-      // Привязываем обработчики для чекбоксов округов
-      snapEventCheckboxesCountiesOnMain();
-      // snapEventCloseForCountiesOnMain();
     },
 
-    showCitiesDropdown: function() {
-      this.$node.find('.all-city').show();
+    onMoscowChecked: function(e, initiator) {
+      var space = $('body').jblocks('get')[0];
+      space.moscowChecked = true;
+
+      if (initiator === this) {
+        return;
+      }
+      this.hideMoscow();
+    },
+
+    hideMoscow: function() {
+      var itemMoscow = this.select.find('option[value="1"]');
+      itemMoscow.hide();
+      this.isMoscowHidden = true;
+    },
+
+    showCitiesDropdown: function(e) {
+      this.dropdown.open();
+      e.stopPropagation();
     },
 
     hideCitiesDropdownOnOk: function() {
-      // непонятно почему контейнер не скрывается на .hide()
-      // и на .css({display: "none"}), хотя 
-      // .show() в функции выше прокатывает
-
-      this.$node.find('.all-city').fadeOut(10);
-      // $('.all-city').hide();
-      //console.log(this.$node.find('.all-city'));
-
-      // И КАК РЕАЛИЗОВАТЬ СКРЫТИЕ ВЫПАДАШКИ НА ПОТЕРЮ ФОКУСА???
-      // НИЖЕ СТАРЫЙ ПРИМЕР КОДА
-
-      //   // Закрываем выпадашку при клике вне её
-      //   $('body').on('click', function(e) {
-      //     if ( ($(e.target).hasClass('all-city') === true) ||
-      //           $(e.target).closest('.all-city').length > 0) {
-      //       // 
-      //     } else {
-      //       $('.all-city').fadeOut(10);
-      //     }
-      //   });
-      // };
+      this.closeDropdown();
     },
 
     hideCitiesDropdownOnFocusout: function(e) {
-      console.log('focused out');
-      // if ( ($(e.target).hasClass('all-city') === true) ||
-      //       $(e.target).closest('.all-city').length > 0) {
-      //   // 
-      // } else {
-      //   $('.all-city').fadeOut(10);
-      // }
+      var hasClickedOut = !$(e.target).closest(this.dropdown).length;
+
+      if (hasClickedOut) {
+        this.closeDropdown();
+      }
+    },
+
+    closeDropdown: function() {
+      if (!this.dropdown) {
+        return;
+      }
+      this.dropdown.close();
     },
 
     remove: function() {
+      var space = $('body').jblocks('get')[0];
+
+      if (this.isMoscowHidden) {
+        space.moscowChecked = false;
+
+        // TODO: найти остальные блоки (которые select-city) и дернуть у них метод «покажи москву»
+        // @see https://github.com/vitkarpov/jblocks/issues/5
+        $('.select-city .city option[value="1"]').show();
+      }
+
       this.$node.remove();
+      this.destroy();
     }
   }
 });
 
+$.jblocks({
+  name: 'all-city-dropdown',
 
+  events: {
+    'b-inited': 'oninit',
+    'click .all': 'toggleAll'
+  },
+
+  methods: {
+    oninit: function() {
+        var allToggle = this.$node.find('.checkbox.all');
+        var allCheckboxes = allToggle.nextAll('.checkbox');
+
+        this.allToggleInput = allToggle.children().children('input');
+        this.allToggleClick = allToggle.children().children('.lab');
+
+        this.allCheckboxesInput = allCheckboxes.children().children('input');
+    },
+
+    toggleAll: function(e) {
+      e.preventDefault();
+
+      if ( this.allToggleInput.is(':checked') ) {
+        // Если "Все" отмечено
+        this.allToggleInput.prop('checked', false);
+        this.allCheckboxesInput.prop('checked', false);
+      } else {
+        // Если "Все" НЕ отмечено
+        this.allToggleInput.prop('checked', true);
+        this.allCheckboxesInput.prop('checked', true);
+      }
+    },
+
+    open: function() {
+      this.$node.show();
+    },
+
+    close: function() {
+      this.$node.hide();
+    }
+  }
+});
 
 //====================================================//
 //== Блок select-county для выбора округов в городе ==//
@@ -180,7 +263,7 @@ $.jblocks({
 
   methods: {
     oninit: function() {
-      
+
     },
   }
 });
@@ -237,30 +320,30 @@ $.jblocks({
 
 // Работа кнопки "Все" для выбора/снятия всех округов
 // разом на основной странице
-function snapEventCheckboxesCountiesOnMain() {
-  var // Чекбокс "Все"
-      allToggle = $('.all-city .checkbox.all'),
-      allToggleInput = allToggle.children().children('input'),
-      allToggleClick = allToggle.children().children('.lab'),
-      // Остальные чекбоксы
-      allCheckboxes = allToggle.nextAll('.checkbox'),
-      allCheckboxesInput = allCheckboxes.children().children('input');
+// function snapEventCheckboxesCountiesOnMain() {
+//   var // Чекбокс "Все"
+//       allToggle = $('.all-city .checkbox.all'),
+//       allToggleInput = allToggle.children().children('input'),
+//       allToggleClick = allToggle.children().children('.lab'),
+//       // Остальные чекбоксы
+//       allCheckboxes = allToggle.nextAll('.checkbox'),
+//       allCheckboxesInput = allCheckboxes.children().children('input');
 
-  // При нажатии на "Все", чекаем/анчекаем все остальные элементы
-  allToggleClick.on('click', function(e) {
-    e.preventDefault();
+//   // При нажатии на "Все", чекаем/анчекаем все остальные элементы
+//   allToggleClick.on('click', function(e) {
+//     e.preventDefault();
 
-    if ( allToggleInput.is(':checked') ) {
-      // Если "Все" отмечено
-      allToggleInput.prop('checked', false);
-      allCheckboxesInput.prop('checked', false);
-    } else {
-      // Если "Все" НЕ отмечено
-      allToggleInput.prop('checked', true);
-      allCheckboxesInput.prop('checked', true);
-    }
-  });
-};
+//     if ( allToggleInput.is(':checked') ) {
+//       // Если "Все" отмечено
+//       allToggleInput.prop('checked', false);
+//       allCheckboxesInput.prop('checked', false);
+//     } else {
+//       // Если "Все" НЕ отмечено
+//       allToggleInput.prop('checked', true);
+//       allCheckboxesInput.prop('checked', true);
+//     }
+//   });
+// };
 
 
 
@@ -410,8 +493,8 @@ $(function() {
 
 // Открыть календарь
 
-$(document).on("click", ".cal", function() { 
-  $(".calendar").toggleClass("open"); 
+$(document).on("click", ".cal", function() {
+  $(".calendar").toggleClass("open");
 });
 
 
