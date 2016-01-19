@@ -36,7 +36,7 @@ include_once "libs/start.php";
 
 
 
-<body>
+<body class='js-body-rezume'>
 
 	<div id="container">
 		<!-- Header -->
@@ -79,6 +79,7 @@ include_once "libs/start.php";
 		<div class="content">
 			<div class="create-rezume">
 				<div class="wrap">
+					<p>Поля отмеченные * обязательны для заполнения</p>
 					<h1>Создание резюме</h1>
 
 					<!-- Начало формы -->
@@ -88,22 +89,18 @@ include_once "libs/start.php";
 							<p class="title-border">Возможное место работы</p>
 
 							<div class="select-city">
-								<p class="mb">Выберите город(а), где вы готовы работать:</p>
-
-								<select class="fetched-cities-invisible"></select>
+								<p class="mb req">Выберите город(а), где вы готовы работать:<span> *</span></p>
 
 								<div class="wrap-sel" data-b="select-city">
 									<div class="sel seld-title">
-										<select name="city" class="city js-city-select">
+										<select class="city js-city-select" name="city">
 											<option disabled="disabled" selected="selected">-- Выберите город --</option>
 											<!-- Вывод списка городов -->
 										</select>
 									</div>
 
 									<!--Подгружаем сюда карты/округа/районы города-->
-									<div class="ajax-form js-ajax-form">
-										
-									</div>
+									<div class="ajax-form js-ajax-form"></div>
 
 									<div class="clear"></div>
 								</div>
@@ -133,28 +130,28 @@ include_once "libs/start.php";
 
 							<div class="two-block two-block2">
 								<div class="inp-rad">
-									<p class="title">Пол:</p>
+									<p class="title req">Пол:<span> *</span></p>
 
 									<div class="radio">
 										<label>
 											<input class="ch" type="radio" name="test" value="female">
 											<span></span>
+											Жен
 										</label>
-										<span class="lab">Жен</span>
 									</div>
 
 									<div class="radio">
 										<label>
 											<input class="ch" type="radio" name="test" value="male">
 											<span></span>
+											Муж
 										</label>
-										<span class="lab">Муж</span>
 									</div>
 								</div>
 
 								<!-- Календарь -->
 								<div class="birthday">
-									<p class="title">Дата рождения:</p>
+									<p class="title req">Дата рождения:<span> *</span></p>
 									<input type="text" name="birthday" id="datepicker" class="blured cal" placeholder="-- Выберите дату --" value=""/>
 								</div>
 							</div>
@@ -162,6 +159,7 @@ include_once "libs/start.php";
 							<div class="two-block">
 								<div class="sel">
 									<p class="title">Гражданство:</p>
+
 									<div class="styled-select">
 										<select name="grajd">
 											<option>Любое</option>
@@ -175,49 +173,49 @@ include_once "libs/start.php";
 
 							<div class="two-block">
 								<div class="inp-rad">
-									<p class="title">Наличие водительских прав:</p>
+									<p class="title req">Наличие водительских прав:<span> *</span></p>
 
 									<div class="radio w60">
 										<label>
 											<input class="ch" type="radio" name="prava" value="yes">
 											<span></span>
+											Да
 										</label>
-										<span class="lab">Да</span>
 									</div>
 
 									<div class="radio">
 										<label>
 											<input class="ch" type="radio" name="prava" value="no">
 											<span></span>
+											Нет
 										</label>
-										<span class="lab">Нет</span>
 									</div>
 								</div>
 
 								<div class="inp-rad">
-									<p class="title">Наличие своего автотранспорта:</p>
+									<p class="title req">Наличие своего автотранспорта:<span> *</span></p>
 
 									<div class="radio w60">
 										<label>
 											<input class="ch" type="radio" name="auto" value="yes">
 											<span></span>
+											Да
 										</label>
-										<span class="lab">Да</span>
 									</div>
 
 									<div class="radio">
 										<label>
 											<input class="ch" type="radio" name="auto" value="no">
 											<span></span>
+											Нет
 										</label>
-										<span class="lab">Нет</span>
 									</div>
 								</div>
 							</div>
 
 							<div class="two-block">
 								<div class="sel child">
-									<p class="title">Комфортное кол-во детей для ухода:</p>
+									<p class="title req">Комфортное кол-во детей для ухода:<span> *</span></p>
 
 									<div class="styled-select">
 										<select name="child">
@@ -238,108 +236,108 @@ include_once "libs/start.php";
 
 							<div class="two-block">
 								<div class="inp-rad">
-									<p class="title">Аллергия и стресс к домашним животным:</p>
+									<p class="title req">Аллергия и стресс к домашним животным:<span> *</span></p>
 
 									<div class="radio w60">
 										<label>
 											<input class="ch" type="radio" name="animal" value="yes">
 											<span></span>
+											Да
 										</label>
-										<span class="lab">Да</span>
 									</div>
 
 									<div class="radio">
 										<label>
 											<input class="ch" type="radio" name="animal" value="no">
 											<span></span>
+											Нет
 										</label>
-										<span class="lab">Нет</span>
 									</div>
 								</div>
 
 								<div class="inp-rad">
-									<p class="title">Отношение к курению:</p>
+									<p class="title req">Отношение к курению:<span> *</span></p>
 
 									<div class="radio w42">
 										<label>
 											<input class="ch" type="radio" name="smoking" value="yes">
 											<span></span>
+											Курю
 										</label>
-										<span class="lab">Курю</span>
 									</div>
 
 									<div class="radio">
 										<label>
 											<input class="ch" type="radio" name="smoking" value="no">
 											<span></span>
+											Не курю
 										</label>
-										<span class="lab">Не курю</span>
 									</div>
 								</div>
 							</div>
 
 							<div class="two-block">
 								<div class="inp-rad">
-									<p class="title">Возможен переезд:</p>
+									<p class="title req">Возможен переезд:<span> *</span></p>
 
 									<div class="radio w60">
 										<label>
 											<input class="ch" type="radio" name="pereezd" value="yes">
 											<span></span>
+											Да
 										</label>
-										<span class="lab">Да</span>
 									</div>
 
 									<div class="radio">
 										<label>
 											<input class="ch" type="radio" name="pereezd" value="no">
 											<span></span>
+											Нет
 										</label>
-										<span class="lab">Нет</span>
 									</div>
 								</div>
 							</div>
 
 							<div class="two-block">
 								<div class="inp-rad">
-									<p class="title">Готовность помогать родителю<br>в выполнении отдельно и дополнительно<br>
-									оговариваемых домашних делах:</p>
+									<p class="title req">Готовность помогать родителю<br>в выполнении отдельно и дополнительно<br>
+									оговариваемых домашних делах:<span> *</span></p>
 
 									<div class="radio w60">
 										<label>
 											<input class="ch" type="radio" name="homework" value="yes">
 											<span></span>
+											Да
 										</label>
-										<span class="lab">Да</span>
 									</div>
 
 									<div class="radio">
 										<label>
 											<input class="ch" type="radio" name="homework" value="no">
 											<span></span>
+											Нет
 										</label>
-										<span class="lab">Нет</span>
 									</div>
 								</div>
 
 								<div class="inp-rad">
-									<p class="title">Готовность ухаживать за детьми,<br>которым требуется особый уход<br>
-									по медицинским и/или иным показаниям:</p>
+									<p class="title req">Готовность ухаживать за детьми,<br>которым требуется особый уход<br>
+									по медицинским и/или иным показаниям:<span> *</span></p>
 
 									<div class="radio w42">
 										<label>
 											<input class="ch" type="radio" name="childs" value="yes">
 											<span></span>
+											Да
 										</label>
-										<span class="lab">Да</span>
 									</div>
 
 									<div class="radio">
 										<label>
 											<input class="ch" type="radio" name="childs" value="no">
 											<span></span>
+											Нет
 										</label>
-										<span class="lab">Нет</span>
 									</div>
 								</div>
 							</div>
@@ -373,11 +371,11 @@ include_once "libs/start.php";
 
 							<div class="two-block">
 								<div class="sel">
-									<p class="title">Знание языков:</p>
+									<p class="title req">Знание языков:<span> *</span></p>
 
 									<div class="styled-select">
 										<select name="grajd">
-											<option>-- Выбрите язык --</option>
+											<option disabled="disabled" selected="selected">-- Выбрите язык --</option>
 											<option>Русский</option>
 											<option>Английский</option>
 										</select>
@@ -392,11 +390,11 @@ include_once "libs/start.php";
 
 							<div class="two-block">
 								<div class="sel">
-									<p class="title">Опыт работы:</p>
+									<p class="title req">Опыт работы:<span> *</span></p>
 
 									<div class="styled-select">
 										<select name="grajd">
-											<option>-- Выберите ваш опыт работы --</option>
+											<option disabled="disabled" selected="selected">-- Выберите ваш опыт работы --</option>
 											<option>1 год</option>
 											<option>2 года</option>
 										</select>
@@ -405,56 +403,46 @@ include_once "libs/start.php";
 							</div>
 
 							<div class="checking-box">
-								<p class="title">Опыт ухода за детьми возрастных групп:</p>
+								<p class="title req">Опыт ухода за детьми возрастных групп:<span> *</span></p>
 
 								<div class="checkbox">
 									<label>
 										<input class="ch" type="checkbox" name="test" value="yes">
 										<span></span>
-									</label>
-									<span class="lab">
 										до 1 года
-									</span>
+									</label>
 								</div>
 
 								<div class="checkbox w185">
 									<label>
 										<input class="ch" type="checkbox" name="test" value="yes">
 										<span></span>
-									</label>
-									<span class="lab">
 										от 4 до 6 лет
-									</span>
+									</label>
 								</div>
 
 								<div class="checkbox">
 									<label>
 										<input class="ch" type="checkbox" name="test" value="yes">
 										<span></span>
-									</label>
-									<span class="lab">
 										от 10 лет и старше
-									</span>
+									</label>
 								</div>
 
 								<div class="checkbox">
 									<label>
 										<input class="ch" type="checkbox" name="test" value="yes">
 										<span></span>
-									</label>
-									<span class="lab">
 										от 1 года до 3 лет
-									</span>
+									</label>
 								</div>
 
 								<div class="checkbox w185">
 									<label>
 										<input class="ch" type="checkbox" name="test" value="yes">
 										<span></span>
-									</label>
-									<span class="lab">
 										от 7 до 10 лет
-									</span>
+									</label>
 								</div>
 							</div>
 						</div>
@@ -464,78 +452,68 @@ include_once "libs/start.php";
 							<p class="title-border">График работы</p>
 
 							<div class="checking-box">
-								<p class="title">Предпочитаемый режим работы:</p>
+								<p class="title req">Предпочитаемый режим работы:<span> *</span></p>
 
 								<div class="checkbox">
 									<label>
 										<input class="ch" type="checkbox" name="test" value="yes">
 										<span></span>
-									</label>
-									<span class="lab">
 										постоянный<br>
 										(от 2 до 6 часов в день)
-									</span>
+									</label>
 								</div>
 
 								<div class="checkbox w185">
 									<label>
 										<input class="ch" type="checkbox" name="test" value="yes">
 										<span></span>
-									</label>
-									<span class="lab">
 										разовый выход
-									</span>
+									</label>
 								</div>
 
 								<div class="checkbox">
 									<label>
 										<input class="ch" type="checkbox" name="test" value="yes">
 										<span></span>
-									</label>
-									<span class="lab">
 										без проживания
-									</span>
+									</label>
 								</div>
 
 								<div class="checkbox">
 									<label>
 										<input class="ch" type="checkbox" name="test" value="yes">
 										<span></span>
-									</label>
-									<span class="lab">
 										постоянный<br>
 										(от 6 часов в день)
-									</span>
+									</label>
 								</div>
 
 								<div class="checkbox w185">
 									<label>
 										<input class="ch" type="checkbox" name="test" value="yes">
 										<span></span>
-									</label>
-									<span class="lab">
 										с проживанием
-									</span>
+									</label>
 								</div>
 							</div>
 
 							<div class="inp-rad">
-								<p class="title">Готовность приступить в кратчайшие сроки:</p>
+								<p class="title req">Готовность приступить в кратчайшие сроки:<span> *</span></p>
 
 								<div class="radio w42">
 									<label>
 										<input class="ch" type="radio" name="childs" value="yes">
 										<span></span>
+										Да
 									</label>
-									<span class="lab">Да</span>
 								</div>
 
 								<div class="radio">
 									<label>
 										<input class="ch" type="radio" name="childs" value="no">
 										<span></span>
+										Нет
 									</label>
-									<span class="lab">Нет</span>
 								</div>
 							</div>
 						</div>
@@ -595,7 +573,7 @@ include_once "libs/start.php";
 
 							<div class="two-block">
 								<div class="in">
-									<p class="title">Телефон:</p>
+									<p class="title req">Телефон:<span> *</span></p>
 									<input class="blured" type="text" name="phone" placeholder="+7 (495) 123-45-67">
 								</div>
 
@@ -612,7 +590,7 @@ include_once "libs/start.php";
 
 							<div class="two-block">
 								<div class="in">
-									<p class="title">Зарплата, руб:</p>
+									<p class="title req">Зарплата, руб:<span> *</span></p>
 									<input class="blured" type="text" name="pay" placeholder="от 200">
 								</div>
 
@@ -621,24 +599,24 @@ include_once "libs/start.php";
 										<label>
 											<input class="ch" type="radio" name="pay" value="chas">
 											<span></span>
+											в час
 										</label>
-										<span class="lab">в час</span>
 									</div>
 
 									<div class="radio">
 										<label>
 											<input class="ch" type="radio" name="pay" value="month">
 											<span></span>
+											в месяц
 										</label>
-										<span class="lab">в месяц</span>
 									</div>
 
 									<div class="radio">
 										<label>
 											<input class="ch" type="radio" name="pay" value="dogovor">
 											<span></span>
+											по договоренности
 										</label>
-										<span class="lab">по договоренности</span>
 									</div>
 								</div>
 							</div>

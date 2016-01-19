@@ -89,33 +89,22 @@ include_once "libs/start.php";
 							<div class="work-map">
 								<p class="title-border">Место работы</p>
 
-								<div class="wrap-sel">
-									<div class="select-city">
-										<p class="mb">Город: <span>*</span></p>
+								<div class="select-city">
+									<p class="mb req">Город: <span>*</span></p>
 
-										<div class="create-mb">
-											<!-- <p class="mb">Город: <span>*</span></p> -->
-
-											<div class="sel seld-title">
-												<select name="city" class="city" id="parent-city" onchange="fetch_select_counties(this.value)">
-													<option disabled="disabled" selected="selected">-- Выберите город --</option>
-													<!-- Вывод списка городов -->
-													<div class="all-city">
-														<?php include_once "act/fetch_select_cities.php"; ?>
-													</div>
-												</select>
-
-												<div class="clear"></div>
-											</div>
-
-											<div class="clear"></div>
+									<div class="wrap-sel" data-b="select-city">
+										<div class="sel seld-title">
+											<select class="city" name="city">
+												<option disabled="disabled" selected="selected">-- Выберите город --</option>
+												<!-- Вывод списка городов -->
+											</select>
 										</div>
+
+										<!--Подгружаем сюда карты/округа/районы города-->
+										<div id="ajax-form"></div>
+
+										<div class="clear"></div>
 									</div>
-
-									<!--Подгружаем сюда карты/округа/районы города-->
-									<div id="ajax-form"></div>
-
-									<div class="clear"></div>
 								</div>
 
 								<div class="clear"></div>
@@ -127,7 +116,7 @@ include_once "libs/start.php";
 
 								<div class="main-face">
 									<p class="title">Контактное лицо: <span>*</span></p>
-									<input class="blured" type="text" value="Виктория Сикрет" name="face">
+									<input class="blured" type="text" placeholder="Виктория Сикрет" name="face">
 								</div>
 
 								<div class="textarea">
@@ -169,40 +158,40 @@ include_once "libs/start.php";
 										<label>
 											<input class="ch" type="checkbox" name="test" value="yes">
 											<span></span>
+											до 1 года
 										</label>
-										<span class="lab">до 1 года</span>
 									</div>
 
 									<div class="checkbox w185">
 										<label>
 											<input class="ch" type="checkbox" name="test" value="yes">
 											<span></span>
+											от 4 до 6 лет
 										</label>
-										<span class="lab">от 4 до 6 лет</span>
 									</div>
 
 									<div class="checkbox">
 										<label>
 											<input class="ch" type="checkbox" name="test" value="yes">
 											<span></span>
+											от 10 лет и старше
 										</label>
-										<span class="lab">от 10 лет и старше</span>
 									</div>
 
 									<div class="checkbox">
 										<label>
 											<input class="ch" type="checkbox" name="test" value="yes">
 											<span></span>
+											от 1 года до 3 лет
 										</label>
-										<span class="lab">от 1 года до 3 лет</span>
 									</div>
 
 									<div class="checkbox w185">
 										<label>
 											<input class="ch" type="checkbox" name="test" value="yes">
 											<span></span>
+											от 7 до 10 лет
 										</label>
-										<span class="lab">от 7 до 10 лет</span>
 									</div>
 								</div>
 
@@ -214,40 +203,40 @@ include_once "libs/start.php";
 											<label>
 												<input class="ch" type="checkbox" name="test" value="yes">
 												<span></span>
+												постоянный<br>(от 2 до 6 часов в день)
 											</label>
-											<span class="lab">постоянный<br>(от 2 до 6 часов в день)</span>
 										</div>
 
 										<div class="checkbox w185">
 											<label>
 												<input class="ch" type="checkbox" name="test" value="yes">
 												<span></span>
+												разовый выход
 											</label>
-											<span class="lab">разовый выход</span>
 										</div>
 
 										<div class="checkbox">
 											<label>
 												<input class="ch" type="checkbox" name="test" value="yes">
 												<span></span>
+												без проживания
 											</label>
-											<span class="lab">без проживания</span>
 										</div>
 
 										<div class="checkbox">
 											<label>
 												<input class="ch" type="checkbox" name="test" value="yes">
 												<span></span>
+												постоянный<br>(от 6 часов в день)
 											</label>
-											<span class="lab">постоянный<br>(от 6 часов в день)</span>
 										</div>
 
 										<div class="checkbox w185">
 											<label>
 												<input class="ch" type="checkbox" name="test" value="yes">
 												<span></span>
+												с проживанием
 											</label>
-											<span class="lab">с проживанием</span>
 										</div>
 									</div>
 								</div>
@@ -257,7 +246,7 @@ include_once "libs/start.php";
 										<p class="title">Стоимость оказания услуги, руб.: <span>*</span></p>
 
 										<div class="in">
-											<input class="blured" type="text" name="pay" value="200">
+											<input class="blured" type="text" name="pay" placeholder="200">
 										</div>
 
 										<div class="inp-rad">
@@ -265,24 +254,24 @@ include_once "libs/start.php";
 												<label>
 													<input class="ch" type="radio" name="pay" value="chas">
 													<span></span>
+													в час
 												</label>
-												<span class="lab">в час</span>
 											</div>
 
 											<div class="radio">
 												<label>
 													<input class="ch" type="radio" name="pay" value="month">
 													<span></span>
+													в месяц
 												</label>
-												<span class="lab">в месяц</span>
 											</div>
 
 											<div class="radio">
 												<label>
 													<input class="ch" type="radio" name="pay" value="dogovor">
 													<span></span>
+													по договоренности
 												</label>
-												<span class="lab">по договоренности</span>
 											</div>
 										</div>
 									</div>
@@ -295,30 +284,30 @@ include_once "libs/start.php";
 
 								<div class="two-block two-block2">
 									<div class="inp-rad">
-										<p class="title">Пол</p>
+										<p class="title req">Пол<span> *</span></p>
 
 										<div class="radio">
 											<label>
 												<input class="ch" type="radio" name="test" value="all">
 												<span></span>
+												Любой
 											</label>
-											<span class="lab">Любой</span>
 										</div>
 
 										<div class="radio">
 											<label>
 												<input class="ch" type="radio" name="test" value="female">
 												<span></span>
+												Жен
 											</label>
-											<span class="lab">Жен</span>
 										</div>
 
 										<div class="radio">
 											<label>
 												<input class="ch" type="radio" name="test" value="male">
 												<span></span>
+												Муж
 											</label>
-											<span class="lab">Муж</span>
 										</div>
 									</div>
 
@@ -329,10 +318,8 @@ include_once "libs/start.php";
 											<label>
 												<input class="ch" type="checkbox" name="test" value="yes">
 												<span></span>
+												Не курящий(-ая)
 											</label>
-											<span class="lab">
-												Не курящая/-ий
-											</span>
 										</div>
 									</div>
 								</div>
@@ -341,11 +328,11 @@ include_once "libs/start.php";
 									<div id="options">
 										<p>Возраст</p>
 
-										<label class="m-l" for="year">от:
+										<label class="m-l" for="year">
 											<input type="text" name="price" id="year3">
 										</label>
 
-										<label for="price2">до:
+										<label class="m-r" for="price2">
 											<input type="text" name="year2" id="year4">
 										</label>
 
@@ -358,9 +345,16 @@ include_once "libs/start.php";
 										<div class="styled-select">
 											<select name="grajd">
 												<option>Любой</option>
-												<option>1</option>
-												<option>2</option>
-												<option>3</option>
+												<option>1 год</option>
+												<option>2 года</option>
+												<option>3 года</option>
+												<option>4 года</option>
+												<option>5 лет</option>
+												<option>6 лет</option>
+												<option>7 лет</option>
+												<option>8 лет</option>
+												<option>9 лет</option>
+												<option>10 лет</option>
 											</select>
 										</div>
 									</div>
@@ -373,61 +367,54 @@ include_once "libs/start.php";
 										<div class="styled-select">
 											<select name="grajd">
 												<option>Любое</option>
+												<option>Белоруссия</option>
+												<option>Украина</option>
+												<option>Россия</option>
 											</select>
 										</div>
 									</div>
 
-									<div class="checking-box">
+									<div class="checking-box child">
 										<p class="title">Опыт работы с детьми возраста:</p>
 
 										<div class="checkbox">
 											<label>
 												<input class="ch" type="checkbox" name="test" value="yes">
 												<span></span>
-											</label>
-											<span class="lab">
 												до 1 года
-											</span>
+											</label>
 										</div>
 
 										<div class="checkbox w185">
 											<label>
 												<input class="ch" type="checkbox" name="test" value="yes">
 												<span></span>
-											</label>
-											<span class="lab">
 												от 7 до 10 лет
-											</span>
+											</label>
 										</div>
 
 										<div class="checkbox">
 											<label>
 												<input class="ch" type="checkbox" name="test" value="yes">
 												<span></span>
-											</label>
-											<span class="lab">
 												от 1 года до 3 лет
-											</span>
+											</label>
 										</div>
 
 										<div class="checkbox w185">
 											<label>
 												<input class="ch" type="checkbox" name="test" value="yes">
 												<span></span>
-											</label>
-											<span class="lab">
 												от 10 лет и старше
-											</span>
+											</label>
 										</div>
 
 										<div class="checkbox">
 											<label>
 												<input class="ch" type="checkbox" name="test" value="yes">
 												<span></span>
-											</label>
-											<span class="lab">
 												от 4 до 6 лет
-											</span>
+											</label>
 										</div>
 									</div>
 								</div>
@@ -439,6 +426,8 @@ include_once "libs/start.php";
 										<div class="styled-select">
 											<select name="grajd">
 												<option>Любых</option>
+												<option>Русский</option>
+												<option>Английский</option>
 											</select>
 										</div>
 									</div>
@@ -448,7 +437,7 @@ include_once "libs/start.php";
 							<!-- Дополнительные требования -->
 							<div class="dop-treb">
 								<p class="title-border">Дополнительные требования</p>
-								<p class="chh">Отметьте если данные критерии являются принципиальными для вас</p>
+								<p class="chh">Отметьте если данные критерии являются принципиальными для вас:</p>
 
 								<div class="two-block">
 									<div class="checking-box">
@@ -458,8 +447,8 @@ include_once "libs/start.php";
 											<label>
 												<input class="ch" type="checkbox" value="yes" name="test">
 												<span></span>
+												Да
 											</label>
-											<span class="lab">Да</span>
 										</div>
 									</div>
 
@@ -470,8 +459,8 @@ include_once "libs/start.php";
 											<label>
 												<input class="ch" type="checkbox" value="yes" name="test">
 												<span></span>
+												Да
 											</label>
-											<span class="lab">Да</span>
 										</div>
 									</div>
 								</div>
@@ -484,8 +473,8 @@ include_once "libs/start.php";
 											<label>
 												<input class="ch" type="checkbox" value="yes" name="test">
 												<span></span>
+												Да
 											</label>
-											<span class="lab">Да</span>
 										</div>
 									</div>
 
@@ -496,8 +485,8 @@ include_once "libs/start.php";
 											<label>
 												<input class="ch" type="checkbox" value="yes" name="test">
 												<span></span>
+												Да
 											</label>
-											<span class="lab">Да</span>
 										</div>
 									</div>
 								</div>
@@ -510,8 +499,8 @@ include_once "libs/start.php";
 											<label>
 												<input class="ch" type="checkbox" value="yes" name="test">
 												<span></span>
+												Да
 											</label>
-											<span class="lab">Да</span>
 										</div>
 									</div>
 
@@ -522,8 +511,8 @@ include_once "libs/start.php";
 											<label>
 												<input class="ch" type="checkbox" value="yes" name="test">
 												<span></span>
+												Да
 											</label>
-											<span class="lab">Да</span>
 										</div>
 									</div>
 								</div>
@@ -536,8 +525,8 @@ include_once "libs/start.php";
 											<label>
 												<input class="ch" type="checkbox" value="yes" name="test">
 												<span></span>
+												Да
 											</label>
-											<span class="lab">Да</span>
 										</div>
 									</div>
 								</div>
@@ -584,7 +573,7 @@ include_once "libs/start.php";
 								<div class="two-block">
 									<div class="in">
 										<p class="title">Телефон: <span>*</span></p>
-										<input class="blured" type="text" name="phone" value="+7 (495) 123 45 67">
+										<input class="blured" type="text" name="phone" placeholder="+7 (495) 123-45-67">
 									</div>
 								</div>
 							</div>
@@ -643,6 +632,8 @@ include_once "libs/start.php";
 			</div>
 		</div> <!-- end .footer -->
 
+		<div id="get-cities" data-b="get-cities"></div>
+
 		<!-- Невидимо вставляем на страницу все карты городов -->
 		<?php include_once 'act/load_all_maps_for_cities_on_main.php'; ?>
 
@@ -655,6 +646,7 @@ include_once "libs/start.php";
 	<!-- JS -->
 
 	<script src="js/vendor/jquery.min.js"></script>
+	<script src="https://cdn.rawgit.com/vitkarpov/jblocks/master/dist/jblocks.js"></script>
 	<script src="js/vendor/jquery-ui.min.js"></script>
 	<script src="js/datepicker-ru-init.js"></script>
 	<script src="js/vendor/croppic.js"></script>
@@ -663,22 +655,25 @@ include_once "libs/start.php";
 	<script src="js/path.js"></script>
 	<script src="js/modal.js"></script>
 	<script src="js/polz.js"></script>
+	<script src="js/custom-scripts.js"></script>
 
 	<!-- Подгрузка городов/округов/районов -->
+
+	<!--
 	<script>
-		function fetch_select(val) {
-			$.ajax({
-				type: 'post',
-				url: 'act/vacansy-ajax2.php',
-				data: {
-					get_option: val
-				},
-				success: function (response) {
-					document.getElementById("ajax-form").innerHTML = response;
-					openModal();
-				}
-			});
-		}
+	// 	function fetch_select(val) {
+	// 		$.ajax({
+	// 			type: 'post',
+	// 			url: 'act/vacansy-ajax2.php',
+	// 			data: {
+	// 				get_option: val
+	// 			},
+	// 			success: function (response) {
+	// 				document.getElementById("ajax-form").innerHTML = response;
+	// 				openModal();
+	// 			}
+	// 		});
+	// 	}
 	</script>
 
 	<script>
@@ -786,6 +781,8 @@ include_once "libs/start.php";
 			$(".calendar").toggleClass("open");
 		});
 	</script>
+
+	 -->
 
 </body>
 </html>

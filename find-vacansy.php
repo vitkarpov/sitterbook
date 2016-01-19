@@ -492,6 +492,7 @@ include_once "libs/start.php";
   <!-- JS -->
 
   <script src="js/vendor/jquery.min.js"></script>
+  <script src="https://cdn.rawgit.com/vitkarpov/jblocks/master/dist/jblocks.js"></script>
   <script src="js/vendor/jquery-ui.min.js"></script>
   <script src="js/datepicker-ru-init.js"></script>
   <script src="js/polz.js"></script>

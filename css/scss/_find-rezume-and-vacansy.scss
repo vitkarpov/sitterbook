@@ -1,7 +1,7 @@
 .find-rezume-and-vacansy {
   margin: 100px 0 0;
-
   overflow: hidden;
+
   .select-city {
     p {
       @include fs(16px);
@@ -178,9 +178,10 @@
     width: 214px;
     @include br(5px);
     padding: 0 14px;
+
     .work {
       p {
-        @include fs(14px);
+        @include fs(16px);
         font-family: $opensansSB;
         color: $color_black;
         text-align: left;
@@ -456,7 +457,7 @@
     #options2 {
       margin: 15px 0 0 0;
       p {
-        @include fs(14px);
+        @include fs(16px);
         color: $color_black;
         font-family: $opensansSB;
         margin: 0 0 10px 0;
@@ -481,7 +482,7 @@
     .sex {
       margin: 25px 0;
       .pol {
-        @include fs(14px);
+        @include fs(16px);
         font-family: $opensansSB;
         color: $color_black;
         float: none;
@@ -521,7 +522,7 @@
     .check {
       margin: 20px 0 0 0;
       .title {
-        @include fs(14px);
+        @include fs(16px);
         font-family: $opensansSB;
         color: $color_black;
         float: none;

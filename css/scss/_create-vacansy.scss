@@ -19,6 +19,35 @@
     padding: 0 0 5px;
   }
 
+  .dva {
+    overflow: hidden;
+
+    & > p {
+      float: right;
+      @include fs(14px);
+      color: #c71b11;
+      margin: 15px 30px 0 0;
+    }
+  }
+
+  .req span {
+    color: #c71b11;
+  }
+
+  p.title {
+    color: #25343f;
+    font-size: 16px;
+    font-family: OpenSansSB;
+  }
+
+  .mb {
+    span {
+      color: #c71b11;
+    }
+  }
+
+
+
   .work-map {
     @include form-block-container;
 
@@ -36,7 +65,7 @@
 
     .wrap-sel {
       .sel {
-        @include br(3px);
+        @include br(5px);
         cursor: pointer;
         margin: 0 10px 0 0;
         position: relative;
@@ -81,50 +110,7 @@
     }
   }
 
-  .mbb {
-    margin: 0 0 10px 0;
-    float: left;
-  }
 
-  .all-city2 {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    padding-bottom: 0 !important;
-    p {
-      margin: 0 !important;
-      span {
-        display: block !important;
-        padding: 5px 25px 5px 45px !important;
-        margin: 0 !important;
-      }
-    }
-    p:hover {
-      span {
-        background: #2495dd;
-        color: #fff !important;
-      }
-    }
-    p:first-child {
-      padding: 0 25px;
-    }
-  }
-
-  .dva {
-    overflow: hidden;
-
-    & > p {
-      float: right;
-      @include fs(14px);
-      color: #c71b11;
-      margin: 15px 30px 0 0;
-    }
-  }
-
-  .mb {
-    span {
-      color: #c71b11;
-    }
-  }
 
   .o-sebe {
     @include form-block-container;
@@ -144,12 +130,13 @@
         border: 1px solid #dcdcdc;
         color: #25343f;
         @include fs(16px);
-        @include br(3px);
+        @include br(5px);
         font-family: $opensansR;
         padding: 4px 0 4px 10px;
         width: 390px;
       }
     }
+
     .textarea {
       margin: 0 0 20px 0;
       overflow: hidden;
@@ -208,124 +195,76 @@
         }
       }
     }
-  }
 
-  .two-block {
-    margin: 0 0 35px 0;
-    width: auto;
+    .two-block {
+      margin: 0 0 35px 0;
+      width: auto;
 
-    .title {
-      @include fs(16px);
-      color: #25343f;
-      font-family: $opensansSB;
-    }
-
-    .sel {
-      .styled-select {
-        background: #fff url("../img/arrow-select.png") no-repeat scroll 210px center;
-        border: 1px solid #dcdcdc;
-        margin: 10px 0 0 0;
-        overflow: hidden;
-        width: 235px;
-        height: 30px;
-        line-height: 30px;
-        @include br(5px);
-
-        select {
-          background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
-          border-radius: 5px;
-          clip: rect(0px, 237px, 26px, 210px);
-          color: #000;
-          font-family: $opensansR;
-          @include fs(16px);
-          padding: 5px 0 5px 5px;
-          top: 1px;
-          width: 263px;
-        }
-      }
-    }
-    .sel2 {
-      .styled-select {
-        width: 155px !important;
-        background: #fff url("../img/arrow-select.png") no-repeat scroll 135px center !important;
-        select {
-          width: 185px !important;
-        }
-      }
-    }
-  }
-
-  .checking-box {
-    width: 630px;
-    overflow: hidden;
-    .title {
-      margin: 0 0 20px 0;
-      font-family: $opensansSB;
-      span {
-        color: #c71b11;
-      }
-    }
-    .checkbox {
-      float: left;
-      width: 210px;
-      label {
-        display: inline-block;
-        float: left;
-        height: 19px;
-        margin: 0 7px 25px 0;
-        position: relative;
-        width: 19px;
-        span {
-          background: transparent url("../img/ch.png") no-repeat scroll 0 0;
-          cursor: pointer;
-          float: none;
-          height: 100%;
-          left: 0;
-          position: absolute;
-          top: 5px;
-          width: 100%;
-        }
-      }
-      .lab {
-        @include fs(14px);
-        @include lh(18px);
-        margin: 5px 0 0 0;
+      .title {
+        @include fs(16px);
         color: #25343f;
-        display: inline-block;
+        font-family: $opensansSB;
       }
-      input[type="checkbox"] {
-        display: none;
+
+      .sel {
+        .styled-select {
+          background: #fff url("../img/arrow-select.png") no-repeat scroll 210px center;
+          border: 1px solid #dcdcdc;
+          margin: 10px 0 0 0;
+          overflow: hidden;
+          width: 235px;
+          height: 30px;
+          line-height: 30px;
+          @include br(5px);
+
+          select {
+            background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+            border-radius: 5px;
+            clip: rect(0px, 237px, 26px, 210px);
+            color: #000;
+            font-family: $opensansR;
+            @include fs(16px);
+            padding: 5px 0 5px 5px;
+            top: 1px;
+            width: 263px;
+          }
+        }
       }
-      input[type="checkbox"]:checked + span {
-        background: rgba(0, 0, 0, 0) url("../img/ch-active.png") no-repeat scroll 0 0;
+      .sel2 {
+        .styled-select {
+          width: 155px !important;
+          background: #fff url("../img/arrow-select.png") no-repeat scroll 135px center !important;
+          select {
+            width: 185px !important;
+          }
+        }
       }
     }
-    .w185 {
-      width: 185px;
-    }
-  }
 
-  .graph {
-    @include form-block-container;
-
-    padding: 0;
-    margin: 10px 0;
     .checking-box {
-      width: 630px;
+      width: 680px;
       overflow: hidden;
+
       .title {
         margin: 0 0 20px 0;
+        font-family: $opensansSB;
+        span {
+          color: #c71b11;
+        }
       }
       .checkbox {
         float: left;
-        width: 210px;
+        width: 234px;
+
         label {
           display: inline-block;
           float: left;
           height: 19px;
           margin: 0 7px 25px 0;
           position: relative;
-          width: 19px;
+          padding-top: 3px;
+          padding-left: 27px;
+
           span {
             background: transparent url("../img/ch.png") no-repeat scroll 0 0;
             cursor: pointer;
@@ -355,133 +294,194 @@
         width: 185px;
       }
     }
-    .inp-rad {
-      overflow: hidden;
-      width: 395px;
-      margin: 30px 0 0 0;
-      .radio {
-        float: left;
-        margin: 5px 30px 0 0;
-        label {
-          display: inline-block;
+
+    .graph {
+      @include form-block-container;
+
+      padding: 0;
+      margin: 10px 0;
+      .checking-box {
+        width: 780px;
+        overflow: hidden;
+
+        .title {
+          margin: 0 0 20px 0;
+        }
+
+        .checkbox {
           float: left;
-          height: 19px;
-          margin: 0;
-          position: relative;
-          width: 19px;
-          span {
-            background: transparent url("../img/radio.png") no-repeat scroll 0 0;
-            cursor: pointer;
-            float: none;
-            height: 100%;
-            left: 0;
-            position: absolute;
-            top: 2px;
-            width: 100%;
+          width: 30%;
+
+          label {
+            display: inline-block;
+            float: left;
+            height: 46px;
+            margin: 0 7px 12px 0;
+            position: relative;
+            padding-left: 27px;
+            padding-top: 3px;
+
+            span {
+              background: transparent url("../img/ch.png") no-repeat scroll 0 0;
+              cursor: pointer;
+              float: none;
+              height: 100%;
+              left: 0;
+              position: absolute;
+              top: 5px;
+              width: 100%;
+            }
+          }
+          .lab {
+            @include fs(14px);
+            @include lh(18px);
+            margin: 5px 0 0 0;
+            color: #25343f;
+            display: inline-block;
+          }
+          input[type="checkbox"] {
+            display: none;
+          }
+          input[type="checkbox"]:checked + span {
+            background: rgba(0, 0, 0, 0) url("../img/ch-active.png") no-repeat scroll 0 0;
           }
         }
-        input[type="radio"] {
-          display: none;
-        }
-        input[type="radio"]:checked + span {
-          background: rgba(0, 0, 0, 0) url("../img/radio-active.png") no-repeat scroll 0 0;
-        }
-        .lab {
-          color: #25343f;
-          @include fs(14px);
-          padding-left: 5px;
-          line-height: 24px;
+        .w185 {
+          width: 185px;
         }
       }
-      .w60 {
-        margin-right: 60px;
-      }
-      .w42 {
-        margin-right: 42px;
-      }
-    }
-  }
-
-  .zarplata {
-    @include form-block-container;
-
-    padding: 0;
-    margin: 25px 0 0 0;
-
-    .title {
-      span {
-        color: #c71b11;
-      }
-    }
-
-    .in {
-      float: left;
-      width: 160px;
-      margin: 0 0 5px 0;
-
-      input {
-        width: 115px;
-        border: 1px solid #dcdcdc;
-        @include br(5px);
-        @include fs(16px);
-        color: #969ea5;
-        padding: 4px 10px;
-        margin: 10px 0 0 0;
-        font-family: $opensansR;
-      }
-    }
-    .inp-rad {
-      overflow: hidden;
-      width: 395px;
-      margin: 10px 0 0 0;
-
-      .radio {
-        float: left;
-        margin: 4px 25px 0 0;
-
-        label {
-          display: inline-block;
+      .inp-rad {
+        overflow: hidden;
+        width: 395px;
+        margin: 30px 0 0 0;
+        .radio {
           float: left;
-          height: 19px;
-          margin: 0;
-          position: relative;
-          width: 19px;
-          span {
-            background: transparent url("../img/radio.png") no-repeat scroll 0 0;
-            cursor: pointer;
-            float: none;
-            height: 100%;
-            left: 0;
-            position: absolute;
-            top: 3px;
-            width: 100%;
+          margin: 5px 30px 0 0;
+          label {
+            display: inline-block;
+            float: left;
+            height: 19px;
+            margin: 0;
+            position: relative;
+            width: 19px;
+            span {
+              background: transparent url("../img/radio.png") no-repeat scroll 0 0;
+              cursor: pointer;
+              float: none;
+              height: 100%;
+              left: 0;
+              position: absolute;
+              top: 2px;
+              width: 100%;
+            }
+          }
+          input[type="radio"] {
+            display: none;
+          }
+          input[type="radio"]:checked + span {
+            background: rgba(0, 0, 0, 0) url("../img/radio-active.png") no-repeat scroll 0 0;
+          }
+          .lab {
+            color: #25343f;
+            @include fs(14px);
+            padding-left: 5px;
+            line-height: 24px;
           }
         }
-        input[type="radio"] {
-          display: none;
+        .w60 {
+          margin-right: 60px;
         }
-        input[type="radio"]:checked + span {
-          background: rgba(0, 0, 0, 0) url("../img/radio-active.png") no-repeat scroll 0 0;
+        .w42 {
+          margin-right: 42px;
         }
-        .lab {
-          color: #25343f;
-          @include fs(14px);
-          padding-left: 5px;
-          line-height: 24px;
+      }
+    }
+
+    .zarplata {
+      @include form-block-container;
+
+      padding: 0;
+      margin: 25px 0 0 0;
+
+      .title {
+        span {
+          color: #c71b11;
+        }
+      }
+
+      .in {
+        float: left;
+        width: 160px;
+        margin: 0 0 5px 0;
+
+        input {
+          width: 115px;
+          border: 1px solid #dcdcdc;
+          @include br(5px);
+          @include fs(16px);
+          color: #000;
+          padding: 4px 10px;
+          margin: 10px 0 0 0;
           font-family: $opensansR;
         }
       }
-      .w60 {
-        margin-right: 60px;
+      .inp-rad {
+        overflow: hidden;
+        width: 460px;
+        margin: 10px 0 0 0;
+
+        .radio {
+          float: left;
+          margin: 4px 25px 0 0;
+
+          label {
+            display: inline-block;
+            float: left;
+            height: 22px;
+            margin: 0;
+            position: relative;
+            padding-left: 27px;
+            padding-top: 1px;
+
+            span {
+              background: transparent url("../img/radio.png") no-repeat scroll 0 0;
+              cursor: pointer;
+              float: none;
+              height: 100%;
+              left: 0;
+              position: absolute;
+              top: 3px;
+              width: 100%;
+            }
+          }
+          input[type="radio"] {
+            display: none;
+          }
+          input[type="radio"]:checked + span {
+            background: rgba(0, 0, 0, 0) url("../img/radio-active.png") no-repeat scroll 0 0;
+          }
+          .lab {
+            color: #25343f;
+            @include fs(14px);
+            padding-left: 5px;
+            line-height: 24px;
+            font-family: $opensansR;
+          }
+        }
+        .w60 {
+          margin-right: 60px;
+        }
+        .w42 {
+          margin-right: 42px;
+        }
       }
-      .w42 {
-        margin-right: 42px;
+      .two-block {
+        margin-bottom: 0;
       }
-    }
-    .two-block {
-      margin-bottom: 0;
     }
   }
+
+
 
   .trebovania {
     @include form-block-container;
@@ -495,6 +495,7 @@
         margin: 0 0 5px 0;
       }
     }
+
     .two-block {
       width: auto;
       overflow: hidden;
@@ -511,13 +512,16 @@
           margin: 10px 0 0 0;
           overflow: hidden;
           width: 235px !important;
+          @include br(5px);
+
           select {
             background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
             border-radius: 5px;
             clip: rect(0px, 237px, 26px, 210px);
-            color: #707b83;
+            color: #000;
             font-family: $opensansR;
             @include fs(16px);
+            height: 30px;
             padding: 5px 0 5px 5px;
             top: 1px;
             width: 263px !important;
@@ -532,14 +536,45 @@
       .sel3 {
         margin: 0 0 10px 0;
       }
+
       .checking-box {
         width: 400px;
+        float: left;
+
+        &.child {
+          label {
+            width: 150px;
+          }
+        }
+
         .title {
           margin: 0 0 12px 0;
         }
-        .checkbox {
-          label {
-            margin: 0 7px 17px 0;
+
+        label {
+          display: inline-block;
+          float: left;
+          height: 19px;
+          margin: 0 7px 25px 0;
+          position: relative;
+          padding-top: 3px;
+          padding-left: 27px;
+
+          span {
+            background: transparent url("../img/ch.png") no-repeat scroll 0 0;
+            cursor: pointer;
+            float: none;
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 5px;
+            width: 100%;
+          }
+          input[type="checkbox"] {
+            display: none;
+          }
+          input[type="checkbox"]:checked + span {
+            background: rgba(0, 0, 0, 0) url("../img/ch-active.png") no-repeat scroll 0 0;
           }
         }
       }
@@ -562,10 +597,11 @@
         label {
           display: inline-block;
           float: left;
-          height: 19px;
+          height: 22px;
           margin: 0;
           position: relative;
-          width: 19px;
+          padding-left: 27px;
+          padding-top: 2px;
           span {
             background: transparent url("../img/radio.png") no-repeat scroll 0 0;
             cursor: pointer;
@@ -607,7 +643,7 @@
 
     #options {
       margin: 27px 0 10px 0;
-      width: 230px;
+      width: 240px;
       float: left;
 
       #slider_price {
@@ -616,6 +652,7 @@
 
       #slider_price3 {
         margin-left: 10px;
+        width: 214px;
       }
       p {
         @include fs(16px);
@@ -624,24 +661,34 @@
         margin: 0 0 13px 0;
       }
       label {
-        @include fs(14px);
+        @include fs(16px);
         @include br(5px);
         background: $color_white;
-        padding: 4px 0 4px 10px;
-        color: $color_black;
+        padding: 6px 0 6px 10px;
+        color: #000;
         border: 1px solid #d6d6d6;
         height: 30px;
+
+        &.m-l:before {
+          content: "от:";
+        }
+
+        &.m-r:before {
+          content: "до:";
+        }
       }
       .m-l {
         margin: 0 20px 0 0;
       }
       input {
         width: 66px;
-        color: #707b83;
+        color: #000;
         @include fs(16px);
       }
     }
   }
+
+
 
   .dop-treb {
     @include form-block-container;
@@ -654,74 +701,51 @@
     }
     .two-block {
       width: auto;
-      margin: 10px 0;
+      margin: 10px 0 20px;
     }
+
     .checking-box {
       width: 395px;
       float: left;
+
       .title {
         margin: 0 0 5px 0;
       }
-      .checkbox {}
+
+      .checkbox {
+        label {
+          display: inline-block;
+          float: left;
+          height: 19px;
+          margin: 0 7px 25px 0;
+          position: relative;
+          padding-top: 3px;
+          padding-left: 27px;
+
+          span {
+            background: transparent url("../img/ch.png") no-repeat scroll 0 0;
+            cursor: pointer;
+            float: none;
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 5px;
+            width: 100%;
+          }
+
+          input[type="checkbox"] {
+            display: none;
+          }
+
+          input[type="checkbox"]:checked + span {
+            background: rgba(0, 0, 0, 0) url("../img/ch-active.png") no-repeat scroll 0 0;
+          }
+        }
+      }
     }
   }
 
-  .count-sel-and-map {
-    margin: 0 0 0 600px;
-    span {
-      @include fs(12px);
-      color: #a9b2b9;
-      float: left;
-      margin: 9px 20px 0 0;
-    }
-    p {
-      background: url("../img/map-icon.png") left center no-repeat;
-      padding: 0 0 0 33px;
-      display: inline-block;
-      margin: 32px 0 0 0;
-      a {
-        color: #0098df;
-        @include fs(14px);
-        font-family: $opensansR;
-        border-bottom: 1px dashed #0098df;
-      }
-      a:hover {
-        text-decoration: none;
-      }
-    }
-  }
 
-  .count-sel-and-map2 {
-    margin: 0 0 0 440px;
-  }
-
-  .dop-input {
-    margin: 10px 0;
-    .inp {
-      float: left;
-      margin: 0 10px 0 0;
-      .title {
-        @include fs(16px);
-        color: #25343f;
-        font-family: $opensansSB;
-        margin: 0 0 7px 0;
-      }
-      input {
-        width: 123px;
-        padding: 4px 0 4px 10px;
-        border: 1px solid #dcdcdc;
-        @include br(3px);
-        @include fs(16px);
-        color: #969ea5;
-      }
-    }
-    .inp2 {
-      float: none;
-      input {
-        width: 430px;
-      }
-    }
-  }
 
   .photograph {
     @include form-block-container;
@@ -783,6 +807,8 @@
     }
   }
 
+
+
   .contacts {
     @include form-block-container;
 
@@ -800,13 +826,15 @@
         border: 1px solid #dcdcdc;
         @include br(5px);
         @include fs(16px);
-        color: #969ea5;
+        color: #000;
         padding: 4px 10px;
         margin: 10px 0 0 0;
         font-family: $opensansR;
       }
     }
   }
+
+
 
   .buttons {
     margin: 20px 0 50px 45px;

@@ -58,10 +58,14 @@ $.jblocks({
 
   events: {
     'b-inited': 'oninit',
+    'b-destroyed': 'ondestroy',
+
     'change .js-city-select': 'onChangeSelect',
     'click .remove-city': 'remove',
     'click .sel.seld-old': 'showCitiesDropdown',
-    'click .btn-rounded': 'hideCitiesDropdown'
+    'click .btn-rounded': 'hideCitiesDropdownOnOk',
+    // 'click body': 'hideCitiesDropdownOnFocusout',
+    'click .create-rezume': 'hideCitiesDropdownOnFocusout'
   },
 
   methods: {
@@ -70,6 +74,10 @@ $.jblocks({
       this.ajaxForm = this.$node.find('.js-ajax-form');
 
       this.fillSelect();
+    },
+
+    ondestroy: function() {
+
     },
 
     // Заполнение select'а
@@ -117,7 +125,7 @@ $.jblocks({
       this.$node.find('.all-city').show();
     },
 
-    hideCitiesDropdown: function() {
+    hideCitiesDropdownOnOk: function() {
       // непонятно почему контейнер не скрывается на .hide()
       // и на .css({display: "none"}), хотя 
       // .show() в функции выше прокатывает
@@ -141,12 +149,42 @@ $.jblocks({
       // };
     },
 
+    hideCitiesDropdownOnFocusout: function(e) {
+      console.log('focused out');
+      // if ( ($(e.target).hasClass('all-city') === true) ||
+      //       $(e.target).closest('.all-city').length > 0) {
+      //   // 
+      // } else {
+      //   $('.all-city').fadeOut(10);
+      // }
+    },
+
     remove: function() {
       this.$node.remove();
-      this.destroy();
     }
   }
 });
+
+
+
+//====================================================//
+//== Блок select-county для выбора округов в городе ==//
+//====================================================//
+
+$.jblocks({
+  name: 'select-county',
+
+  events: {
+    'b-inited': 'oninit'
+  },
+
+  methods: {
+    oninit: function() {
+      
+    },
+  }
+});
+
 
 
 //====================================================//
