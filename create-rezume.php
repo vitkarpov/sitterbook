@@ -36,7 +36,7 @@ include_once "libs/start.php";
 
 
 
-<body class='js-body-rezume'>
+<body data-b="space">
 
 	<div id="container">
 		<!-- Header -->
@@ -362,7 +362,7 @@ include_once "libs/start.php";
 								<p class="title">Курсы, повышение квалификации:</p>
 
 								<div class="inputs">
-									<input class="blured" type="text" name="cur" placeholder="Название"> 
+									<input class="blured" type="text" name="cur" placeholder="Название">
 									<input class="year blured" type="text" name="year" placeholder="Год окончания">
 								</div>
 
@@ -526,7 +526,7 @@ include_once "libs/start.php";
 
 							<div class="icons">
 								<div id="cropContainerOutput">
-									
+
 								</div>
 
 								<!-- <div class="img" >
