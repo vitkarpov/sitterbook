@@ -94,6 +94,7 @@ function openModal() {
 					// Берем path карты выбранного района, Raphael-фунцией path() рисуем её,
 					// складывая затем в переменную obj4
 					var obj4 = r.path(russia[map][country].path);
+					obj4.node.id = obj4.id;
 
 					// Raphael-объекту obj4 зададим атрибуты для рисования
 					obj4.attr(attributes);
@@ -135,9 +136,9 @@ function openModal() {
 					// });
 
 					obj4.click(function() {
-						if (this.attr('class') == 'map-not-checked') {
+						if (this.attr('class') === 'map-not-checked') {
 							// Добавляем класс
-							this.attr({'class': 'map-checked'});
+							this.attr('class', 'map-checked');
 							// Меняем цвет
 							this.animate({
 								fill: '#2495dd',
@@ -145,7 +146,7 @@ function openModal() {
 							}, 300);
 						} else {
 							// Удаляем класс
-							this.attr({'class': 'map-not-checked'});
+							this.attr('class', 'map-not-checked');
 							// Возвращаем цвета на исходное
 							this.animate({
 								fill: attributes.fill,
@@ -219,11 +220,13 @@ function openModal() {
 		}
 
 		// При клике на округ слева чекается соответствующая карта
-		$('.checkbox_box').on('click', function() {
-			var mapId = $(this).prev().attr('id');
-
-			$('path[id="' + mapId + '"]').click();
+		$('.parent-check').on('click', function(e) {
+			console.log('clicked');
+			e.stopPropagation;
+			$('path[id="' + $(this).find('input').attr('id') + '"]')
+				.toggleClass('map-checked').toggleClass('map-not-checked');
 		})
+
 	})
 }
 

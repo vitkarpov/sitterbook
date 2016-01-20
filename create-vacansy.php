@@ -92,22 +92,22 @@ include_once "libs/start.php";
 								<div class="select-city">
 									<p class="mb req">Город: <span>*</span></p>
 
-									<div class="wrap-sel" data-b="select-city">
+									<div class="wrap-sel" data-b="select-city-create-vacansy">
 										<div class="sel seld-title">
-											<select class="city" name="city">
+											<select class="city js-city-select" name="city">
 												<option disabled="disabled" selected="selected">-- Выберите город --</option>
 												<!-- Вывод списка городов -->
 											</select>
 										</div>
 
 										<!--Подгружаем сюда карты/округа/районы города-->
-										<div id="ajax-form"></div>
+										<div class="ajax-form js-ajax-form"></div>
 
 										<div class="clear"></div>
 									</div>
-								</div>
 
-								<div class="clear"></div>
+									<div class="clear"></div>
+								</div>
 							</div>
 
 							<!-- О вакансии -->
@@ -119,13 +119,13 @@ include_once "libs/start.php";
 									<input class="blured" type="text" placeholder="Виктория Сикрет" name="face">
 								</div>
 
-								<div class="textarea">
+								<div class="textarea" data-b="textarea-about">
 									<p class="title">Описание вакансии:</p>
 
 									<textarea class="blured" placeholder="Опишите, что вам нужно в нескольких словах, например: 'Необходима няня, чтобы встречать ребенка из школы и быть с ним до возвращения родителя с работы.'"></textarea>
 
 									<div class="counter-textarea">
-										<p class="bolshe">100</p>
+										<p class="bolshe">0</p>
 
 										<p>
 											<span>
@@ -646,143 +646,15 @@ include_once "libs/start.php";
 	<!-- JS -->
 
 	<script src="js/vendor/jquery.min.js"></script>
-	<script src="https://cdn.rawgit.com/vitkarpov/jblocks/master/dist/jblocks.js"></script>
 	<script src="js/vendor/jquery-ui.min.js"></script>
-	<script src="js/datepicker-ru-init.js"></script>
 	<script src="js/vendor/croppic.js"></script>
-	<script src="js/croppic-init.js"></script>
 	<script src="js/vendor/raphael.js"></script>
+	<script src="js/vendor/jblocks.js"></script>
+
+	<script src="js/jblocks-on-page.js"></script>
 	<script src="js/path.js"></script>
 	<script src="js/modal.js"></script>
-	<script src="js/polz.js"></script>
-	<script src="js/custom-scripts.js"></script>
-
-	<!-- Подгрузка городов/округов/районов -->
-
-	<!--
-	<script>
-	// 	function fetch_select(val) {
-	// 		$.ajax({
-	// 			type: 'post',
-	// 			url: 'act/vacansy-ajax2.php',
-	// 			data: {
-	// 				get_option: val
-	// 			},
-	// 			success: function (response) {
-	// 				document.getElementById("ajax-form").innerHTML = response;
-	// 				openModal();
-	// 			}
-	// 		});
-	// 	}
-	</script>
-
-	<script>
-		var i = 2;
-
-		$(document).on("click", ".auth a", function() {
-			if (i % 2 == 0) {
-				$(this).css({
-					background: 'url(img/arrow-bottom-active.png) left center no-repeat'
-				});
-				$(".form-auth").css({
-					display: 'block'
-				});
-				$(".auth").addClass("auth2");
-			} else {
-				$(this).css({
-					background: 'url(img/arrow-bottom.png) left center no-repeat'
-				});
-				$(".form-auth").css({
-					display: 'none'
-				});
-				$(".auth").removeClass("auth2");
-			}
-
-			i++;
-		});
-
-		var j = 2;
-
-		$(document).on("click", ".favorites", function() {
-			if (j % 2 == 0) {
-				$(this).css({
-					background: 'url(img/heart.png) left center no-repeat'
-				});
-				$(this).html("В избранном");
-			} else {
-				$(this).css({
-					background: 'url(img/heart2.png) left center no-repeat'
-				});
-				$(this).html("Добавить в избранное");
-			}
-
-			j++;
-		});
-
-		var k = 2;
-
-		$(document).on("click", ".button p a", function() {
-			if (k % 2 == 0) {
-				$(".dop").css({
-					display: "block"
-				});
-				$(this).html("Скрыть дополнительные фильтры");
-			} else {
-				$(".dop").css({
-					display: "none"
-				});
-				$(this).html("Показать все фильтры");
-			}
-
-			k++;
-		});
-
-		$(document).on("click", ".info-field a", function() {
-			$(this).css({
-				display: "none"
-			});
-
-			$(".inp").css({
-				display: "block"
-			});
-		});
-
-		$(document).on("click", ".mess .ch", function() {
-			if($(this).prop('checked')) {
-				$(this).parent().parent().parent().addClass("bg");
-			} else {
-				$(this).parent().parent().parent().removeClass("bg");
-			}
-		});
-
-		$(document).on("click", ".add-course", function() {
-			$(".course .add-course").before("<div class='inputs'><input class='blured' type='text' name='cur' value=''><input class='year blured' type='text' name='year' value=''><div class='remove'></div></div>");
-		});
-
-		$(document).on("click", ".course .inputs .remove", function() {
-			$(this).parent().remove();
-		});
-
-		$(document).on("click", ".add-recommend", function() {
-			$(".recommend .add-recommend").before("<div class='three-inp'><input class='named blured' type='text' name='name' value=''><input class='phones blured' type='text' name='phone' value=''><input class='mail blured' type='text' name='mail' value=''><div class='remove'></div></div>");
-		});
-		
-		$(document).on("click", ".recommend .three-inp .remove", function() {
-			$(this).parent().remove();
-		});
-
-		$(document).on("click", ".select-city .sel", function() {
-			$(".all-city", this).css({
-				display: "block"
-			});
-		});
-
-		$(document).on("click", ".cal", function() {
-			$(".calendar").toggleClass("open");
-		});
-	</script>
-
-	 -->
+	<script src="js/init-croppic.js"></script>
 
 </body>
 </html>

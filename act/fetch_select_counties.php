@@ -12,7 +12,7 @@ if( isset($_POST['get_option']) ) {
 		echo "<div class='sel seld-old'>
 						<span class='sel seld-old-title' data-b='select-county'>Округа</span>
 
-						<div class='all-city' data-b='all-city-dropdown'>
+						<div class='all-city' data-b='all-counties-dropdown'>
 							<p>Выберите округ(а)</p>
 
 							<div class='checkbox all'>

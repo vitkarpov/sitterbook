@@ -61,6 +61,222 @@
         color: #25343f;
         font-family: OpenSansSB;
       }
+      .wrap-sel {
+        padding-top: 10px;
+
+        .sel {
+          @include br(5px);
+          cursor: pointer;
+          margin: 0 10px 0 0;
+          position: relative;
+          float: left;
+
+          &.seld-old {
+            background-color: transparent;
+            border: 0;
+
+            &-title {
+              box-sizing: border-box;
+            }
+          }
+        }
+        .seld-title {
+          background: url("../img/arrow-select.png") 180px center no-repeat #fff;
+          border: 1px solid #dcdcdc;
+          margin: 0 10px 0 0;
+          overflow: hidden;
+          border: 1px solid #dcdcdc;
+          width: 203px;
+          border: 1px solid #dcdcdc;
+          @include br(5px);
+          cursor: pointer;
+          position: relative;
+          float: left;
+
+          select {
+            background: transparent none repeat scroll 0 0;
+            clip: rect(0px, 237px, 26px, 210px);
+            font-family: OpenSansR;
+            font-size: 16px;
+            padding: 5px 0 5px 5px;
+            height: 30px;
+            line-height: 30px;
+            @include br(5px);
+            overflow-y: hidden;
+            color: #25343f;
+            width: 230px;
+          }
+        }
+        .ajax-form {
+          float: left;
+          max-width: 624px;
+        }
+      }
+      .wrap-sel2 {
+        padding: 0 0 0 30px;
+        position: relative;
+        .remove {
+          background: url("../img/remove.png") no-repeat;
+          width: 19px;
+          height: 19px;
+          position: absolute;
+          left: 3px;
+          top: 9px;
+          cursor: pointer;
+        }
+        .remove:hover {
+          background: url("../img/remove-hover.png") no-repeat;
+          width: 19px;
+          height: 19px;
+          position: absolute;
+          left: 3px;
+          top: 9px;
+          cursor: pointer;
+        }
+      }
+      .sel {
+        background: url("../img/arrow-select.png") 159px center no-repeat #fff;
+        width: 182px;
+        border: 1px solid #dcdcdc;
+        @include br(3px);
+        cursor: pointer;
+        margin: 0 10px 2px 0;
+        position: relative;
+        float: left;
+        span {
+          color: #25343f;
+          @include fs(16px);
+          display: block;
+          padding: 4px 10px;
+        }
+      }
+      .sel2 {
+        background: url("../img/arrow-select.png") 150px center no-repeat #fff;
+        width: 173px;
+      }
+      .count-sel-and-map {
+        float: left;
+
+        span {
+          @include fs(12px);
+          color: #a9b2b9;
+          float: left;
+          margin: 9px 20px 0 0;
+        }
+        p {
+          position: relative;
+          padding: 0 10px 0 33px;
+          display: inline-block;
+          margin: 6px 0 0 0;
+
+          &::before {
+            content: '';
+            width: 25px;
+            height: 22px;
+            position: absolute;
+            top: -4px;
+            left: 0;
+            background: url("../img/map-icon.png") center no-repeat;
+          }
+          a {
+            color: #0098df;
+            @include fs(14px);
+            font-family: $opensansR;
+            border-bottom: 1px dashed #0098df;
+          }
+          a:hover {
+            text-decoration: none;
+          }
+        }
+      }
+      .count-sel-and-map2 {
+        margin: 10px 0 0 217px;
+      }
+      .count-sel-and-map3 {
+        margin: 10px 0 0 400px;
+      }
+      .all-city {
+        width: 215px;
+        background: #f6f6f6;
+        @include br(5px);
+        padding: 10px 25px 20px;
+        box-shadow: 1px 0 20px 0 rgba(50, 50, 50, 0.75);
+        margin: -35px 0 0;
+        z-index: 100;
+        position: absolute;
+        display: none;
+        cursor: default;
+        @include fs(16px);
+
+        p {
+          @include fs(16px);
+          color: #25343f;
+          font-family: $opensansSB;
+          margin: 5px 0;
+        }
+        span {
+          display: inline-block;
+          color: #25343f;
+          @include fs(13px);
+          font-family: $opensansR;
+          margin: 0 0 0 20px;
+          cursor: pointer;
+          padding: 0;
+        }
+        a {
+          display: block;
+          border: 2px solid #1ed88f;
+          color: #1ed88f;
+          @include fs(16px);
+          @include br(25px);
+          padding: 7px 0;
+          font-family: $opensansSB;
+          text-align: center;
+          margin: 15px 0 0 0;
+        }
+        a:hover {
+          text-decoration: none;
+          color: #fff;
+          background: #1ed88f;
+        }
+        .checkbox {
+          overflow: hidden;
+          margin: 0 0 0 12px;
+          label {
+            display: inline-block;
+            float: left;
+            height: 19px;
+            margin: 0 7px 7px 0;
+            position: relative;
+            width: 19px;
+
+            .checkbox_box {
+              background: transparent url("../img/ch.png") no-repeat scroll 0 0;
+              cursor: pointer;
+              float: left;
+              height: 100%;
+              left: 0;
+              position: absolute;
+              top: 5px;
+              width: 100%;
+              margin: 0;
+              pointer-events: none;
+            }
+          }
+          .lab {
+            @include fs(13px);
+            color: #25343f;
+            padding: 7px 0 0 26px;
+            margin: 0;
+          }
+          input[type="checkbox"] {
+            display: none;
+          }
+          input[type="checkbox"]:checked + span {
+            background: rgba(0, 0, 0, 0) url("../img/ch-active.png") no-repeat scroll 0 0;
+          }
+        }
+      }
     }
 
     .wrap-sel {

@@ -91,7 +91,7 @@ include_once "libs/start.php";
 							<div class="select-city">
 								<p class="mb req">Выберите город(а), где вы готовы работать:<span> *</span></p>
 
-								<div class="wrap-sel" data-b="select-city">
+								<div class="wrap-sel" data-b="select-city-create-rezume">
 									<div class="sel seld-title">
 										<select class="city js-city-select" name="city">
 											<option disabled="disabled" selected="selected">-- Выберите город --</option>
@@ -118,7 +118,7 @@ include_once "libs/start.php";
 						<div class="o-sebe">
 							<p class="title-border">О себе</p>
 
-							<div class="textarea">
+							<div class="textarea" data-b="textarea-about">
 								<textarea class="blured" placeholder="Расскажите о себе, о своем опыте и умениях, применяемых при работе няней, поделитесь почему и как вы решили стать няней, почему вы любите свою работу и так далее.."></textarea>
 
 								<div class="counter-textarea">
@@ -551,7 +551,7 @@ include_once "libs/start.php";
 						</div>
 
 						<!-- Рекомендации от родителей -->
-						<div class="recommend">
+						<div class="recommend" data-b="manage-recommends">
 							<p class="title-border">Рекомендации от родителей</p>
 
 							<div class="inputs">
@@ -689,15 +689,15 @@ include_once "libs/start.php";
 	<!-- JS -->
 
 	<script src="js/vendor/jquery.min.js"></script>
-	<script src="https://cdn.rawgit.com/vitkarpov/jblocks/master/dist/jblocks.js"></script>
 	<script src="js/vendor/jquery-ui.min.js"></script>
-	<script src="js/datepicker-ru-init.js"></script>
 	<script src="js/vendor/croppic.js"></script>
-	<script src="js/croppic-init.js"></script>
 	<script src="js/vendor/raphael.js"></script>
+	<script src="js/vendor/jblocks.js"></script>
+
+	<script src="js/jblocks-on-page.js"></script>
 	<script src="js/path.js"></script>
 	<script src="js/modal.js"></script>
-	<script src="js/custom-scripts.js"></script>
+	<script src="js/init-croppic.js"></script>
 
 </body>
 </html>
