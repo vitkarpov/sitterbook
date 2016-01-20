@@ -57,6 +57,9 @@ $.jblocks({
         type: 'post',
         url: 'act/fetch_select_cities.php',
         success: function(response) {
+          // где-то в этом месте нужно
+          // сформировать структуру и запомнить ее
+          // в this (this.citiesState)
           dfd.resolve(response);
         }
       });
@@ -117,6 +120,8 @@ $.jblocks({
 
       $('#get-cities').jblocks('get').each(function() {
         this.fetchCities().then(function(cities) {
+          // нужно проверить структуру citiesState:
+          // выбрать только те города, которые еще не были выбраны
           block.select.append(cities);
         })
       })
@@ -127,6 +132,13 @@ $.jblocks({
       this.fetchCounties();
 
       var isMoscow = this.select.val() === '1';
+
+      // нужно вызывать событие select-city-checked
+      // т.е. всегда, не только для Москвы
+      //
+      // $(document).trigger('select-city-checked');
+      //
+      // здесь нужно обновить citiesState!
 
       if (isMoscow) {
         $(document).trigger('select-city-moscow-checked', this);
@@ -161,6 +173,10 @@ $.jblocks({
     onMoscowChecked: function(e, initiator) {
       var space = $('body').jblocks('get')[0];
       space.moscowChecked = true;
+
+      // нужно сверяться с citiesState:
+      // скрывать или показывать опшини в соответствии
+      // с тем, что там лежит, но не трогать initiator
 
       if (initiator === this) {
         return;
@@ -206,6 +222,10 @@ $.jblocks({
 
         // TODO: найти остальные блоки (которые select-city) и дернуть у них метод «покажи москву»
         // @see https://github.com/vitkarpov/jblocks/issues/5
+        //
+        // нужно обновить citiesState:
+        // достать текущий выбранный option, его value и найти его значение в структуре и обновить
+        // и обновить сами селекты, т.е. кинуть события select-city-checked
         $('.select-city .city option[value="1"]').show();
       }
 
@@ -416,6 +436,22 @@ $.jblocks({
     }
   }
 });
+
+// 1. завести в блоке get-cities структуру вида
+//  {
+//    // value // checked
+//    "1": false,
+//    "2": false,
+//    "3": false
+//  }
+// 2. в блоке get-cities завести метод
+//    checkCity(value), который по переданному value (городу)
+//    скажет — он уже был выбран или нет
+// 3. в методе fillSelect, когда получили города,
+//    нужно сверяться с citiesState
+// 4. на изменение селекта нужно обновить citiesState и кинуть глобальное событие select-city-checked
+// 5. в обработчике этого события каждый селект должно обновить свои опшини (скрыть/показать)
+//    в соответсвии с тем, что лежит в citiesState
 
 
 
@@ -781,7 +817,7 @@ $(function() {
 
   $('#year').val($('#slider_price').slider("values",0));
   $('#year2').val($('#slider_price').slider("values",1));
-  
+
   $('#year3').val($('#slider_price3').slider("values",0));
   $('#year4').val($('#slider_price3').slider("values",1));
 });
