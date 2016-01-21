@@ -99,8 +99,8 @@ $.jblocks({
       $('body').on('click', this.hideCitiesDropdownOnFocusout);
 
       this.onMoscowChecked = this.onMoscowChecked.bind(this);
-
-      $(document).on('select-city-moscow-checked', this.onMoscowChecked);
+      this.space = $(document).jblocks('find', 'space')[0];
+      this.space.on('select-city-moscow-checked', this.onMoscowChecked);
 
       var space = $('body').jblocks('get')[0];
 
@@ -111,7 +111,7 @@ $.jblocks({
 
     ondestroy: function() {
       $('body').off('click', this.hideCitiesDropdownOnFocusout);
-      $(document).off('select-city-moscow-checked', this.onMoscowChecked);
+      this.space.off('select-city-moscow-checked', this.onMoscowChecked);
     },
 
     // Заполнение select'а
@@ -141,7 +141,7 @@ $.jblocks({
       // здесь нужно обновить citiesState!
 
       if (isMoscow) {
-        $(document).trigger('select-city-moscow-checked', this);
+        this.space.emit('select-city-moscow-checked', this);
       }
     },
 
@@ -190,6 +190,12 @@ $.jblocks({
       this.isMoscowHidden = true;
     },
 
+    showMoscow: function() {
+        var itemMoscow = this.select.find('option[value="1"]');
+        itemMoscow.show();
+        this.isMoscowHidden = false;
+    },
+
     showCitiesDropdown: function(e) {
       this.dropdown.open();
       e.stopPropagation();
@@ -226,7 +232,11 @@ $.jblocks({
         // нужно обновить citiesState:
         // достать текущий выбранный option, его value и найти его значение в структуре и обновить
         // и обновить сами селекты, т.е. кинуть события select-city-checked
-        $('.select-city .city option[value="1"]').show();
+        $(document).jblocks('find', 'select-city-create-rezume').each(function() {
+            // this - ссылка на определенный экземпляр компонента select-city-create-rezume,
+            // each пробегается по всем select-city-create-rezume в документе
+            this.showMoscow();
+        });
       }
 
       this.$node.remove();
@@ -409,7 +419,8 @@ $.jblocks({
   name: 'add-city',
 
   events: {
-    'b-inited': 'oninit'
+    'b-inited': 'oninit',
+    'click': 'onClickAddCity'
   },
 
   methods: {
@@ -427,7 +438,6 @@ $.jblocks({
                   "</div>";
 
       this.container = $('.js-container-wrap-sel');
-      this.$node.on('click', this.onClickAddCity.bind(this));
     },
 
     onClickAddCity: function() {
