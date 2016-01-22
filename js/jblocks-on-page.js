@@ -43,7 +43,7 @@ $.jblocks({
       // Первночальный запрос на получение городов из БД
       this.fetchCities();
       // Здесь хранится структура с еще нечекнутыми городами
-      this.citiesState = {};
+      this.unchecked = [];
     },
 
     // Забираем список городов из БД
@@ -66,9 +66,7 @@ $.jblocks({
         type: 'post',
         url: 'act/fetch_select_cities.php',
         success: function(response) {
-          // Передаем response в функцию, формирующую
-          // структуру чекнутых/анчекнутых городов
-          getCitiesBlock.createCitiesStateObject(response);
+          getCitiesBlock.fillUnchecked(response);
 
           // Резолвим response
           dfd.resolve(response);
@@ -79,24 +77,40 @@ $.jblocks({
       return promise;
     },
 
-    // Первоначальное заполнение структуры с чекнутыми/нечекнутыми городами
-    createCitiesStateObject: function(resHtml) {
-      var tempDiv = document.createElement('div');
-      tempDiv.innerHTML = resHtml;
+    fillUnchecked: function(options) {
+      var unchecked = this.unchecked;
 
-      // Сколько городов?
-      var countCities = tempDiv.childNodes.length;
-
-      // Заполняем структуру
-      for (var i = 0; i < countCities; i++) {
-        this.citiesState[i] = false;
-      };
+      $(options).each(function() {
+        unchecked.push(this.value);
+      })
     },
 
-    // Получение статуса текущего города:
-    // чекнут/анчекнут
-    getCityState: function(cityId) {
-      return this.cityState[cityId];
+    _setState: function(select, isChecked) {
+      var value = select.val();
+
+      // если это был выбор в селекте,
+      // то удалим из массива unchecked соответствующий опшин,
+      // иначе — добавим его назад
+      if (isChecked) {
+        this.unchecked = this.unchecked.filter(function(i) {
+          return i !== value;
+        })
+      } else {
+        this.unchecked.push(value);
+      }
+
+      this.emit('state-changed', {
+        unchecked: this.unchecked,
+        select: select
+      });
+    },
+
+    setChecked: function(select) {
+      this._setState(select, true);
+    },
+
+    setUnchecked: function(select) {
+      this._setState(select, false);
     }
   }
 });
@@ -114,7 +128,6 @@ $.jblocks({
     'b-inited': 'oninit',
     'b-destroyed': 'ondestroy',
 
-    'focus .js-city-select': 'onFocusSelect',
     'change .js-city-select': 'onChangeSelect',
     'click .remove-city': 'removeCity',
     'click .sel.seld-old': 'showCountiesDropdown',
@@ -128,6 +141,7 @@ $.jblocks({
       // и контейнер, куда мы будем подставлять полученные
       // для города округа/районы/ссылки на модальные окна
       this.ajaxForm = this.$node.find('.js-ajax-form');
+      this.getCities = $('#get-cities').jblocks('get')[0];
 
       // Фиксируем контекст внутри функции onCityChecked
       this.onCityChecked = this.onCityChecked.bind(this);
@@ -142,12 +156,16 @@ $.jblocks({
 
       // Запоняем селект с городами
       this.fillSelect();
+
+      this.onCitiesStateChanged = this.onCitiesStateChanged.bind(this);
+      this.getCities.on('state-changed', this.onCitiesStateChanged);
     },
 
     ondestroy: function() {
       // Отвязываем обработчики при удалении панели выбора города
       $('body').off('click', this.hideCountiesDropdownOnFocusout);
       $(document).off('select-city-checked', this.onCityChecked);
+      this.getCities.off('state-changed', this.onCitiesStateChanged);
     },
 
     // Заполнение select'а
@@ -157,35 +175,14 @@ $.jblocks({
       var // Ссылка на этот блок - select-city-create-rezume
           thisBlock = this,
           // Первый option это --Выберите город--
-          firstOption = '<option disabled="disabled" selected="selected">-- Выберите город --</option>',
-          // Ссылки на блоки get-cities 
-          getCitiesBlock = $('#get-cities').jblocks('get'),
-          // и citiesState
-          citiesState = getCitiesBlock[0].citiesState;
+          firstOption = '<option disabled="disabled" selected="selected">-- Выберите город --</option>';
 
       // Заполняем селект городами
-      getCitiesBlock.each(function() {
-        this.fetchCities()
-          .then( function(cities) {
-            thisBlock.select.html(firstOption + cities);
-          })
-          .then(function() {
-            // Скрываем те селекты, для которых в
-            // getCitiesBlock.citiesState
-            // установлено false
-            for( var state in citiesState ) {
-              if( citiesState[state] == true ) {
-                  thisBlock.select
-                    .find('option[value="' + state + '"]')
-                    .css({'display':'none'});
-              };
-            };
-
-            console.log("After fillSelect(), citiesState = ");
-            console.log(citiesState);
-            console.log('==================');
-          });
-      });
+      this.getCities.fetchCities()
+        .then(function(cities) {
+          thisBlock.select.html(firstOption + cities);
+          thisBlock.renderOptions(thisBlock.getCities.unchecked);
+        });
 
       // console.log('fillSelect() ended!');
     },
@@ -198,35 +195,9 @@ $.jblocks({
 
     // Вызывается при изменении селекта
     onChangeSelect: function(e) {
-      // console.log('onChangeSelect() started!');
+      var getCities = $('#get-cities').jblocks('get')[0];
 
-      var getCitiesBlock = $('#get-cities').jblocks('get'),
-          citiesState = getCitiesBlock[0].citiesState;
-
-      var prevSelectedOption = this.select.prop('selectedIndex');
-
-      // Бросаем событие select-city-checked,
-      // чтобы уведомить об изменении города
-      console.log('THIS: ');
-      console.log(this);
-      $(document).trigger('select-city-checked', this);
-
-      // Сначала удаляем selected у всех,
-      for (var i = 0; i < this.select[0].childElementCount; i++) {
-        this.select[0][i].removeAttribute('selected');
-      };
-      // а затем назначаем его активному элементу
-      this.select[0][this.select.prop('selectedIndex')]
-        .setAttribute('selected', 'selected');
-
-      // Запрашиваем округа для выбранного города
-      this.fetchCounties();
-
-      console.log("After onChangeSelect(), citiesState = ");
-      console.log(citiesState);
-      console.log('==================');
-
-      // console.log('onChangeSelect() ended!');
+      getCities.setChecked(this.select);
     },
 
     // Запрос округов
@@ -262,38 +233,11 @@ $.jblocks({
       // console.log('onSuccessCountiesRequest() ended!');
     },
 
-    onCityChecked: function(e, initiator) {
-      console.log('onCityChecked() started!');
-
-      // Ссылки на блоки get-cities и citiesState
-      var getCitiesBlock = $('#get-cities').jblocks('get'),
-          citiesState = getCitiesBlock[0].citiesState;
-
-      // Убираем выбранный ранее город из citiesState
-      citiesState[this.prevSelectedVal] = false;
-
-      console.log(e);
-
-      // Индекс выбранного города в select'е
-      var currentSelectedCity = e.currentTarget.activeElement.selectedIndex;
-
-      // В citiesState устанавливаем true для выбранного города
-      citiesState[currentSelectedCity] = true;
-
-      console.log(citiesState);
-
-      // Скрываем выбранный город
-      //this.hideCheckedCity(currentSelectedCity, e);
-      console.log('onCityChecked() ended!');
+    onCityChecked: function() {
+      this.getCities.setChecked(this.select);
     },
 
-    // Скрываем выбранный город
-    hideCheckedCity: function(currentSelectedCity, elementToHide) {
-      // console.log('hideCheckedCity() started!');
-      // console.log('hideCheckedCity() ended!');
-    },
-
-    // Показать выпадающий список округов 
+    // Показать выпадающий список округов
     showCountiesDropdown: function(e) {
       this.dropdown.open();
       e.stopPropagation();
@@ -325,16 +269,37 @@ $.jblocks({
     removeCity: function(e) {
       // console.log('removeCity() started!');
 
-      // Ссылки на блоки get-cities и citiesState
-      var getCitiesBlock = $('#get-cities').jblocks('get'),
-          citiesState = getCitiesBlock[0].citiesState;
-
-      citiesState[this.select.prop('selectedIndex')] = false;
-
+      this.getCities.setUnchecked(this.select);
       this.$node.remove();
       this.destroy();
 
       // console.log('removeCity() ended!');
+    },
+
+    /**
+     * Когда изменилось состояние городов,
+     * нужно отобразить это в интерфейсе:
+     * показать/скрыть соответствующие опшины
+     */
+    onCitiesStateChanged: function(e, data) {
+      if (this.select === data.select) {
+        return;
+      }
+      this.renderOptions(data.unchecked);
+    },
+
+    /**
+     * Обновляет видимость опшинов в соответствии
+     * с переданным стейтом
+     */
+    renderOptions: function(unchecked) {
+      this.select.find('option').each(function() {
+        var $option = $(this);
+
+        return (unchecked.indexOf(this.value) > -1)
+          ? $option.show()
+          : $option.hide();
+      });
     }
   }
 });
@@ -931,7 +896,7 @@ $(function() {
 
   $('#year').val($('#slider_price').slider("values",0));
   $('#year2').val($('#slider_price').slider("values",1));
-  
+
   $('#year3').val($('#slider_price3').slider("values",0));
   $('#year4').val($('#slider_price3').slider("values",1));
 });
