@@ -91,9 +91,6 @@ $.jblocks({
       for (var i = 0; i < countCities; i++) {
         this.citiesState[i] = false;
       };
-
-      //========== Тестовое изменение на true
-      // this.citiesState[1] = true;
     },
 
     // Получение статуса текущего города:
@@ -117,53 +114,53 @@ $.jblocks({
     'b-inited': 'oninit',
     'b-destroyed': 'ondestroy',
 
+    'focus .js-city-select': 'onFocusSelect',
     'change .js-city-select': 'onChangeSelect',
     'click .remove-city': 'removeCity',
-    'click .sel.seld-old': 'showCitiesDropdown',
-    'click .btn-rounded': 'hideCitiesDropdownOnOk'
+    'click .sel.seld-old': 'showCountiesDropdown',
+    'click .btn-rounded': 'hideCountiesDropdownOnOk'
   },
 
   methods: {
     oninit: function() {
-      // Нужные элементы
+      // Берем select
       this.select = this.$node.find('.js-city-select');
+      // и контейнер, куда мы будем подставлять полученные
+      // для города округа/районы/ссылки на модальные окна
       this.ajaxForm = this.$node.find('.js-ajax-form');
 
-      // Запоняем селект с городами
-      this.fillSelect();
-
-      // Скрытие окошка выбора округов
-      this.hideCitiesDropdownOnFocusout = this.hideCitiesDropdownOnFocusout.bind(this);
-      $('body').on('click', this.hideCitiesDropdownOnFocusout);
-
-      // Скрытие выбранных городов
+      // Фиксируем контекст внутри функции onCityChecked
       this.onCityChecked = this.onCityChecked.bind(this);
+      // Фиксируем контекст внутри функции hideCountiesDropdownOnFocusout
+      this.hideCountiesDropdownOnFocusout = this.hideCountiesDropdownOnFocusout.bind(this);
+      // Вешаем обработчик для скрытия окошка выбора округов при потере фокуса
+      $('body').on('click', this.hideCountiesDropdownOnFocusout);
 
       // На кастомное событие select-city-checked вешаем
       // функцию-обработчик onCityChecked
       $(document).on('select-city-checked', this.onCityChecked);
 
-      // var space = $('body').jblocks('get')[0];
-
-      // if (space.moscowChecked) {
-      //   this.hideMoscow();
-      // }
+      // Запоняем селект с городами
+      this.fillSelect();
     },
 
     ondestroy: function() {
       // Отвязываем обработчики при удалении панели выбора города
-      $('body').off('click', this.hideCitiesDropdownOnFocusout);
+      $('body').off('click', this.hideCountiesDropdownOnFocusout);
       $(document).off('select-city-checked', this.onCityChecked);
     },
 
     // Заполнение select'а
     fillSelect: function() {
-      // Ссылка на этот блок - select-city-create-rezume
-      var thisBlock = this;
-      // Первый option это --Выберите город--
-      var firstOption = '<option disabled="disabled" selected="selected">-- Выберите город --</option>';
-      // Ссылки на блоки get-cities и citiesState
-      var getCitiesBlock = $('#get-cities').jblocks('get'),
+      // console.log('fillSelect() started!');
+
+      var // Ссылка на этот блок - select-city-create-rezume
+          thisBlock = this,
+          // Первый option это --Выберите город--
+          firstOption = '<option disabled="disabled" selected="selected">-- Выберите город --</option>',
+          // Ссылки на блоки get-cities 
+          getCitiesBlock = $('#get-cities').jblocks('get'),
+          // и citiesState
           citiesState = getCitiesBlock[0].citiesState;
 
       // Заполняем селект городами
@@ -181,30 +178,61 @@ $.jblocks({
                   thisBlock.select
                     .find('option[value="' + state + '"]')
                     .css({'display':'none'});
-              }
-            }
+              };
+            };
+
+            console.log("After fillSelect(), citiesState = ");
+            console.log(citiesState);
+            console.log('==================');
           });
       });
+
+      // console.log('fillSelect() ended!');
+    },
+
+    // Вызывается при фокусе на селекте
+    onFocusSelect: function() {
+      this.prevSelectedVal = this.select[0].selectedIndex;
+      this.select.blur();
     },
 
     // Вызывается при изменении селекта
     onChangeSelect: function(e) {
+      // console.log('onChangeSelect() started!');
+
+      var getCitiesBlock = $('#get-cities').jblocks('get'),
+          citiesState = getCitiesBlock[0].citiesState;
+
+      var prevSelectedOption = this.select.prop('selectedIndex');
+
+      // Бросаем событие select-city-checked,
+      // чтобы уведомить об изменении города
+      console.log('THIS: ');
+      console.log(this);
+      $(document).trigger('select-city-checked', this);
+
+      // Сначала удаляем selected у всех,
+      for (var i = 0; i < this.select[0].childElementCount; i++) {
+        this.select[0][i].removeAttribute('selected');
+      };
+      // а затем назначаем его активному элементу
+      this.select[0][this.select.prop('selectedIndex')]
+        .setAttribute('selected', 'selected');
+
       // Запрашиваем округа для выбранного города
       this.fetchCounties();
 
-      // var isMoscow = this.select.val() === '1';
+      console.log("After onChangeSelect(), citiesState = ");
+      console.log(citiesState);
+      console.log('==================');
 
-      // $('#get-cities').jblocks('get').each(function() {
-      //   console.log(this.getCityState(1));
-      // })
-
-      // if (isMoscow) {
-      $(document).trigger('select-city-checked', this);
-      // }
+      // console.log('onChangeSelect() ended!');
     },
 
-    // Запросим округа
+    // Запрос округов
     fetchCounties: function() {
+      // console.log('fetchCounties() started!');
+
       $.ajax({
         type: 'post',
         url: 'act/fetch_select_counties.php',
@@ -213,10 +241,14 @@ $.jblocks({
         },
         success: this.onSuccessCountiesRequest.bind(this)
       });
+
+      // console.log('fetchCounties() ended!');
     },
 
     // Вызывается, когда приехали города
     onSuccessCountiesRequest: function(response) {
+      // console.log('onSuccessCountiesRequest() started!');
+
       // Сначала удаляем содержимое .ajax-form для данного города
       this.ajaxForm.html(response);
       this.$node.jblocks('init');
@@ -226,73 +258,83 @@ $.jblocks({
 
       // Инициализируем модальные окна
       openModal();
+
+      // console.log('onSuccessCountiesRequest() ended!');
     },
 
     onCityChecked: function(e, initiator) {
-      // var space = $('body').jblocks('get')[0];
-      //space.moscowChecked = true;
-
-      // здесь сверяемся со списком в citiesState:
+      console.log('onCityChecked() started!');
 
       // Ссылки на блоки get-cities и citiesState
       var getCitiesBlock = $('#get-cities').jblocks('get'),
           citiesState = getCitiesBlock[0].citiesState;
 
-      // Если инициатор не текущий элемент, то ничего не делаем
-      if (initiator === this) {
-        return;
-      }
+      // Убираем выбранный ранее город из citiesState
+      citiesState[this.prevSelectedVal] = false;
 
-      console.log(this.select.find('option:selected').prop('value'));
+      console.log(e);
 
-      //citiesState[]
+      // Индекс выбранного города в select'е
+      var currentSelectedCity = e.currentTarget.activeElement.selectedIndex;
 
-      this.hideCity();
+      // В citiesState устанавливаем true для выбранного города
+      citiesState[currentSelectedCity] = true;
+
+      console.log(citiesState);
+
+      // Скрываем выбранный город
+      //this.hideCheckedCity(currentSelectedCity, e);
+      console.log('onCityChecked() ended!');
     },
 
-    hideCity: function() {
-      //var itemMoscow = this.select.find('option[value="1"]');
-      //itemMoscow.hide();
-      //this.isMoscowHidden = true;
+    // Скрываем выбранный город
+    hideCheckedCity: function(currentSelectedCity, elementToHide) {
+      // console.log('hideCheckedCity() started!');
+      // console.log('hideCheckedCity() ended!');
     },
 
-    showCitiesDropdown: function(e) {
+    // Показать выпадающий список округов 
+    showCountiesDropdown: function(e) {
       this.dropdown.open();
       e.stopPropagation();
     },
 
-    hideCitiesDropdownOnOk: function() {
-      this.closeDropdown();
+    // Скрытие выпадающего списка городов на нажатие OK
+    hideCountiesDropdownOnOk: function() {
+      this.closeCountiesDropdown();
     },
 
-    hideCitiesDropdownOnFocusout: function(e) {
+    // Скрытие выпадающего списка городов на потерю фокуса
+    hideCountiesDropdownOnFocusout: function(e) {
       var hasClickedOut = !$(e.target).closest(this.dropdown).length;
 
       if (hasClickedOut) {
-        this.closeDropdown();
+        this.closeCountiesDropdown();
       }
     },
 
-    closeDropdown: function() {
+    // Скрыть выпадающий список округов
+    closeCountiesDropdown: function() {
       if (!this.dropdown) {
         return;
       }
       this.dropdown.close();
     },
 
-    removeCity: function() {
-      var space = $('body').jblocks('get')[0];
+    // Удаление города
+    removeCity: function(e) {
+      // console.log('removeCity() started!');
 
-      if (this.isMoscowHidden) {
-        space.moscowChecked = false;
+      // Ссылки на блоки get-cities и citiesState
+      var getCitiesBlock = $('#get-cities').jblocks('get'),
+          citiesState = getCitiesBlock[0].citiesState;
 
-        // TODO: найти остальные блоки (которые select-city) и дернуть у них метод «покажи москву»
-        // @see https://github.com/vitkarpov/jblocks/issues/5
-        $('.select-city .city option[value="1"]').show();
-      }
+      citiesState[this.select.prop('selectedIndex')] = false;
 
       this.$node.remove();
       this.destroy();
+
+      // console.log('removeCity() ended!');
     }
   }
 });
@@ -310,8 +352,8 @@ $.jblocks({
 //     'b-inited': 'oninit',
 
 //     'change .js-city-select': 'onChangeSelect',
-//     'click .sel.seld-old': 'showCitiesDropdown',
-//     'click .btn-rounded': 'hideCitiesDropdownOnOk'
+//     'click .sel.seld-old': 'showCountiesDropdown',
+//     'click .btn-rounded': 'hideCountiesDropdownOnOk'
 //   },
 
 //   methods: {
@@ -324,8 +366,8 @@ $.jblocks({
 //       this.fillSelect();
 
 //       // Вешаем обработчики, скрывающие выпадашку с округами
-//       this.hideCitiesDropdownOnFocusout = this.hideCitiesDropdownOnFocusout.bind(this);
-//       $('body').on('click', this.hideCitiesDropdownOnFocusout);
+//       this.hideCountiesDropdownOnFocusout = this.hideCountiesDropdownOnFocusout.bind(this);
+//       $('body').on('click', this.hideCountiesDropdownOnFocusout);
 //     },
 
 //     // Заполнение select'а
@@ -369,24 +411,24 @@ $.jblocks({
 //       openModal();
 //     },
 
-//     showCitiesDropdown: function(e) {
+//     showCountiesDropdown: function(e) {
 //       this.dropdown.open();
 //       e.stopPropagation();
 //     },
 
-//     hideCitiesDropdownOnOk: function() {
-//       this.closeDropdown();
+//     hideCountiesDropdownOnOk: function() {
+//       this.closeCountiesDropdown();
 //     },
 
-//     hideCitiesDropdownOnFocusout: function(e) {
+//     hideCountiesDropdownOnFocusout: function(e) {
 //       var hasClickedOut = !$(e.target).closest(this.dropdown).length;
 
 //       if (hasClickedOut) {
-//         this.closeDropdown();
+//         this.closeCountiesDropdown();
 //       }
 //     },
 
-//     closeDropdown: function() {
+//     closeCountiesDropdown: function() {
 //       if (!this.dropdown) {
 //         return;
 //       }
