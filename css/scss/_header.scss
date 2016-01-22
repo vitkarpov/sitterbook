@@ -41,6 +41,14 @@
     margin: 0 0 0 5px;
     padding: 9px 15px 24px 15px;
     top: 0;
+
+    .auth-popup-link-opened {
+      background: url(../img/arrow-bottom-active.png) left center no-repeat;
+    }
+
+    .auth-popup-link-closed {
+      background: url(../img/arrow-bottom.png) left center no-repeat;
+    }
   }
 
   .registration .success-auth {
@@ -70,6 +78,14 @@
     padding: 17px 10px;
     display: none;
     z-index: 100;
+
+    &.auth-popup-hid {
+      display: none;
+    }
+
+    &.auth-popup-vis {
+      display: block;
+    }
   }
 
   .registration .form-auth input {

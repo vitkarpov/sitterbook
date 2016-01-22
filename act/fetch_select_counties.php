@@ -10,7 +10,7 @@ if( isset($_POST['get_option']) ) {
 
 	if($option === "1") {
 		echo "<div class='sel seld-old'>
-						<span class='sel seld-old-title' data-b='select-county'>Округа</span>
+						<span class='sel seld-old-title'>Округа</span>
 
 						<div class='all-city' data-b='all-counties-dropdown'>
 							<p>Выберите округ(а)</p>

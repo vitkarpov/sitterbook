@@ -6,6 +6,13 @@
 $(document).ready(function() {
   // Инициализируем jblocks
   $(document).jblocks('init');
+
+  // Навешиваем на jQuery свой метод для переключения текста
+  $.fn.toggleText = function(t1, t2){
+    if (this.text() == t1) this.text(t2);
+    else this.text(t1);
+    return this;
+  };
 });
 
 
@@ -17,13 +24,6 @@ $(document).ready(function() {
 $.jblocks({
   name: 'space'
 });
-
-// 1. на инит каждого селекта нужно посмотреть в хранилище,
-//    если есть уже выбранный, то скрыть сразу Москву
-// 2. на change каждого селекта нужно положить в хранилище флаг
-//    и обновить все селекты, кроме текущего
-// 3. на удаление нужно проверить: если была выбрана Москва в текущем селекте,
-//    то нужно назад обновить сторе (удалить moscowChecked)
 
 
 
@@ -40,10 +40,18 @@ $.jblocks({
 
   methods: {
     oninit: function() {
+      // Первночальный запрос на получение городов из БД
       this.fetchCities();
+      // Здесь хранится структура с еще нечекнутыми городами
+      this.citiesState = {};
     },
 
+    // Забираем список городов из БД
     fetchCities: function() {
+      // Сохраняем ссылку на блок get-cities
+      var getCitiesBlock = this;
+
+      // Работаем с promise
       var dfd = jQuery.Deferred();
       var promise = dfd.promise();
 
@@ -53,18 +61,45 @@ $.jblocks({
 
       this.promise = promise;
 
+      // AJAX-запрос
       $.ajax({
         type: 'post',
         url: 'act/fetch_select_cities.php',
         success: function(response) {
-          // где-то в этом месте нужно
-          // сформировать структуру и запомнить ее
-          // в this (this.citiesState)
+          // Передаем response в функцию, формирующую
+          // структуру чекнутых/анчекнутых городов
+          getCitiesBlock.createCitiesStateObject(response);
+
+          // Резолвим response
           dfd.resolve(response);
         }
       });
 
+      // Возвращаем promise
       return promise;
+    },
+
+    // Первоначальное заполнение структуры с чекнутыми/нечекнутыми городами
+    createCitiesStateObject: function(resHtml) {
+      var tempDiv = document.createElement('div');
+      tempDiv.innerHTML = resHtml;
+
+      // Сколько городов?
+      var countCities = tempDiv.childNodes.length;
+
+      // Заполняем структуру
+      for (var i = 0; i < countCities; i++) {
+        this.citiesState[i] = false;
+      };
+
+      //========== Тестовое изменение на true
+      // this.citiesState[1] = true;
+    },
+
+    // Получение статуса текущего города:
+    // чекнут/анчекнут
+    getCityState: function(cityId) {
+      return this.cityState[cityId];
     }
   }
 });
@@ -83,66 +118,89 @@ $.jblocks({
     'b-destroyed': 'ondestroy',
 
     'change .js-city-select': 'onChangeSelect',
-    'click .remove-city': 'remove',
+    'click .remove-city': 'removeCity',
     'click .sel.seld-old': 'showCitiesDropdown',
     'click .btn-rounded': 'hideCitiesDropdownOnOk'
   },
 
   methods: {
     oninit: function() {
+      // Нужные элементы
       this.select = this.$node.find('.js-city-select');
       this.ajaxForm = this.$node.find('.js-ajax-form');
 
+      // Запоняем селект с городами
       this.fillSelect();
 
+      // Скрытие окошка выбора округов
       this.hideCitiesDropdownOnFocusout = this.hideCitiesDropdownOnFocusout.bind(this);
       $('body').on('click', this.hideCitiesDropdownOnFocusout);
 
-      this.onMoscowChecked = this.onMoscowChecked.bind(this);
-      this.space = $(document).jblocks('find', 'space')[0];
-      this.space.on('select-city-moscow-checked', this.onMoscowChecked);
+      // Скрытие выбранных городов
+      this.onCityChecked = this.onCityChecked.bind(this);
 
-      var space = $('body').jblocks('get')[0];
+      // На кастомное событие select-city-checked вешаем
+      // функцию-обработчик onCityChecked
+      $(document).on('select-city-checked', this.onCityChecked);
 
-      if (space.moscowChecked) {
-        this.hideMoscow();
-      }
+      // var space = $('body').jblocks('get')[0];
+
+      // if (space.moscowChecked) {
+      //   this.hideMoscow();
+      // }
     },
 
     ondestroy: function() {
+      // Отвязываем обработчики при удалении панели выбора города
       $('body').off('click', this.hideCitiesDropdownOnFocusout);
-      this.space.off('select-city-moscow-checked', this.onMoscowChecked);
+      $(document).off('select-city-checked', this.onCityChecked);
     },
 
     // Заполнение select'а
     fillSelect: function() {
-      var block = this;
+      // Ссылка на этот блок - select-city-create-rezume
+      var thisBlock = this;
+      // Первый option это --Выберите город--
+      var firstOption = '<option disabled="disabled" selected="selected">-- Выберите город --</option>';
+      // Ссылки на блоки get-cities и citiesState
+      var getCitiesBlock = $('#get-cities').jblocks('get'),
+          citiesState = getCitiesBlock[0].citiesState;
 
-      $('#get-cities').jblocks('get').each(function() {
-        this.fetchCities().then(function(cities) {
-          // нужно проверить структуру citiesState:
-          // выбрать только те города, которые еще не были выбраны
-          block.select.append(cities);
-        })
-      })
+      // Заполняем селект городами
+      getCitiesBlock.each(function() {
+        this.fetchCities()
+          .then( function(cities) {
+            thisBlock.select.html(firstOption + cities);
+          })
+          .then(function() {
+            // Скрываем те селекты, для которых в
+            // getCitiesBlock.citiesState
+            // установлено false
+            for( var state in citiesState ) {
+              if( citiesState[state] == true ) {
+                  thisBlock.select
+                    .find('option[value="' + state + '"]')
+                    .css({'display':'none'});
+              }
+            }
+          });
+      });
     },
 
     // Вызывается при изменении селекта
     onChangeSelect: function(e) {
+      // Запрашиваем округа для выбранного города
       this.fetchCounties();
 
-      var isMoscow = this.select.val() === '1';
+      // var isMoscow = this.select.val() === '1';
 
-      // нужно вызывать событие select-city-checked
-      // т.е. всегда, не только для Москвы
-      //
-      // $(document).trigger('select-city-checked');
-      //
-      // здесь нужно обновить citiesState!
+      // $('#get-cities').jblocks('get').each(function() {
+      //   console.log(this.getCityState(1));
+      // })
 
-      if (isMoscow) {
-        this.space.emit('select-city-moscow-checked', this);
-      }
+      // if (isMoscow) {
+      $(document).trigger('select-city-checked', this);
+      // }
     },
 
     // Запросим округа
@@ -170,30 +228,32 @@ $.jblocks({
       openModal();
     },
 
-    onMoscowChecked: function(e, initiator) {
-      var space = $('body').jblocks('get')[0];
-      space.moscowChecked = true;
+    onCityChecked: function(e, initiator) {
+      // var space = $('body').jblocks('get')[0];
+      //space.moscowChecked = true;
 
-      // нужно сверяться с citiesState:
-      // скрывать или показывать опшини в соответствии
-      // с тем, что там лежит, но не трогать initiator
+      // здесь сверяемся со списком в citiesState:
 
+      // Ссылки на блоки get-cities и citiesState
+      var getCitiesBlock = $('#get-cities').jblocks('get'),
+          citiesState = getCitiesBlock[0].citiesState;
+
+      // Если инициатор не текущий элемент, то ничего не делаем
       if (initiator === this) {
         return;
       }
-      this.hideMoscow();
+
+      console.log(this.select.find('option:selected').prop('value'));
+
+      //citiesState[]
+
+      this.hideCity();
     },
 
-    hideMoscow: function() {
-      var itemMoscow = this.select.find('option[value="1"]');
-      itemMoscow.hide();
-      this.isMoscowHidden = true;
-    },
-
-    showMoscow: function() {
-        var itemMoscow = this.select.find('option[value="1"]');
-        itemMoscow.show();
-        this.isMoscowHidden = false;
+    hideCity: function() {
+      //var itemMoscow = this.select.find('option[value="1"]');
+      //itemMoscow.hide();
+      //this.isMoscowHidden = true;
     },
 
     showCitiesDropdown: function(e) {
@@ -220,7 +280,7 @@ $.jblocks({
       this.dropdown.close();
     },
 
-    remove: function() {
+    removeCity: function() {
       var space = $('body').jblocks('get')[0];
 
       if (this.isMoscowHidden) {
@@ -228,15 +288,7 @@ $.jblocks({
 
         // TODO: найти остальные блоки (которые select-city) и дернуть у них метод «покажи москву»
         // @see https://github.com/vitkarpov/jblocks/issues/5
-        //
-        // нужно обновить citiesState:
-        // достать текущий выбранный option, его value и найти его значение в структуре и обновить
-        // и обновить сами селекты, т.е. кинуть события select-city-checked
-        $(document).jblocks('find', 'select-city-create-rezume').each(function() {
-            // this - ссылка на определенный экземпляр компонента select-city-create-rezume,
-            // each пробегается по всем select-city-create-rezume в документе
-            this.showMoscow();
-        });
+        $('.select-city .city option[value="1"]').show();
       }
 
       this.$node.remove();
@@ -251,114 +303,97 @@ $.jblocks({
 //== Блок select-city-create-vacansy для выбора города на create-vacansy ==//
 //=========================================================================//
 
-$.jblocks({
-  name: 'select-city-create-vacansy',
+// $.jblocks({
+//   name: 'select-city-create-vacansy',
 
-  events: {
-    'b-inited': 'oninit',
+//   events: {
+//     'b-inited': 'oninit',
 
-    'change .js-city-select': 'onChangeSelect',
-    'click .sel.seld-old': 'showCitiesDropdown',
-    'click .btn-rounded': 'hideCitiesDropdownOnOk'
-  },
+//     'change .js-city-select': 'onChangeSelect',
+//     'click .sel.seld-old': 'showCitiesDropdown',
+//     'click .btn-rounded': 'hideCitiesDropdownOnOk'
+//   },
 
-  methods: {
-    oninit: function() {
-      this.select = this.$node.find('.js-city-select');
-      this.ajaxForm = this.$node.find('.js-ajax-form');
+//   methods: {
+//     oninit: function() {
+//       // Находим select и место куда будем вставлять округа и остальное
+//       this.select = this.$node.find('.js-city-select');
+//       this.ajaxForm = this.$node.find('.js-ajax-form');
 
-      this.fillSelect();
+//       // Заполняем select
+//       this.fillSelect();
 
-      this.hideCitiesDropdownOnFocusout = this.hideCitiesDropdownOnFocusout.bind(this);
-      $('body').on('click', this.hideCitiesDropdownOnFocusout);
-    },
+//       // Вешаем обработчики, скрывающие выпадашку с округами
+//       this.hideCitiesDropdownOnFocusout = this.hideCitiesDropdownOnFocusout.bind(this);
+//       $('body').on('click', this.hideCitiesDropdownOnFocusout);
+//     },
 
-    // Заполнение select'а
-    fillSelect: function() {
-      var block = this;
+//     // Заполнение select'а
+//     fillSelect: function() {
+//       var block = this;
 
-      $('#get-cities').jblocks('get').each(function() {
-        this.fetchCities().then(function(cities) {
-          block.select.html(cities);
-        })
-      })
-    },
+//       $('#get-cities').jblocks('get').each(function() {
+//         this.fetchCities().then(function(cities) {
+//           block.select.html(cities);
+//         })
+//       })
+//     },
 
-    // Вызывается при изменении селекта
-    onChangeSelect: function() {
-      this.fetchCounties();
-    },
+//     // Вызывается при изменении селекта
+//     onChangeSelect: function() {
+//       this.fetchCounties();
+//     },
 
-    // Запросим округа
-    fetchCounties: function() {
-      $.ajax({
-        type: 'post',
-        url: 'act/fetch_select_counties.php',
-        data: {
-          get_option: this.select.val()
-        },
-        success: this.onSuccessCountiesRequest.bind(this)
-      });
-    },
+//     // Запрос округов для выбранного города
+//     fetchCounties: function() {
+//       $.ajax({
+//         type: 'post',
+//         url: 'act/fetch_select_counties.php',
+//         data: {
+//           get_option: this.select.val()
+//         },
+//         success: this.onSuccessCountiesRequest.bind(this)
+//       });
+//     },
 
-    // Вызывается, когда приехали города
-    onSuccessCountiesRequest: function(response) {
-      // Сначала удаляем содержимое .ajax-form для данного города
-      this.ajaxForm.html(response);
-      this.$node.jblocks('init');
+//     // Вызывается, когда приехали города
+//     onSuccessCountiesRequest: function(response) {
+//       // Сначала удаляем содержимое .ajax-form для данного города
+//       this.ajaxForm.html(response);
+//       this.$node.jblocks('init');
 
-      // запомним ссылку на вложенный компонент
-      this.dropdown = this.$node.find('.all-city').jblocks('get')[0];
+//       // запомним ссылку на вложенный компонент
+//       this.dropdown = this.$node.find('.all-city').jblocks('get')[0];
 
-      // Инициализируем модальные окна
-      openModal();
-    },
+//       // Инициализируем модальные окна
+//       openModal();
+//     },
 
-    showCitiesDropdown: function(e) {
-      this.dropdown.open();
-      e.stopPropagation();
-    },
+//     showCitiesDropdown: function(e) {
+//       this.dropdown.open();
+//       e.stopPropagation();
+//     },
 
-    hideCitiesDropdownOnOk: function() {
-      this.closeDropdown();
-    },
+//     hideCitiesDropdownOnOk: function() {
+//       this.closeDropdown();
+//     },
 
-    hideCitiesDropdownOnFocusout: function(e) {
-      var hasClickedOut = !$(e.target).closest(this.dropdown).length;
+//     hideCitiesDropdownOnFocusout: function(e) {
+//       var hasClickedOut = !$(e.target).closest(this.dropdown).length;
 
-      if (hasClickedOut) {
-        this.closeDropdown();
-      }
-    },
+//       if (hasClickedOut) {
+//         this.closeDropdown();
+//       }
+//     },
 
-    closeDropdown: function() {
-      if (!this.dropdown) {
-        return;
-      }
-      this.dropdown.close();
-    }
-  }
-});
-
-
-
-//====================================================//
-//== Блок select-county для выбора округов в городе ==//
-//====================================================//
-
-$.jblocks({
-  name: 'select-county',
-
-  events: {
-    'b-inited': 'oninit'
-  },
-
-  methods: {
-    oninit: function() {
-
-    },
-  }
-});
+//     closeDropdown: function() {
+//       if (!this.dropdown) {
+//         return;
+//       }
+//       this.dropdown.close();
+//     }
+//   }
+// });
 
 
 
@@ -419,8 +454,7 @@ $.jblocks({
   name: 'add-city',
 
   events: {
-    'b-inited': 'oninit',
-    'click': 'onClickAddCity'
+    'b-inited': 'oninit'
   },
 
   methods: {
@@ -438,6 +472,7 @@ $.jblocks({
                   "</div>";
 
       this.container = $('.js-container-wrap-sel');
+      this.$node.on('click', this.onClickAddCity.bind(this));
     },
 
     onClickAddCity: function() {
@@ -446,22 +481,6 @@ $.jblocks({
     }
   }
 });
-
-// 1. завести в блоке get-cities структуру вида
-//  {
-//    // value // checked
-//    "1": false,
-//    "2": false,
-//    "3": false
-//  }
-// 2. в блоке get-cities завести метод
-//    checkCity(value), который по переданному value (городу)
-//    скажет — он уже был выбран или нет
-// 3. в методе fillSelect, когда получили города,
-//    нужно сверяться с citiesState
-// 4. на изменение селекта нужно обновить citiesState и кинуть глобальное событие select-city-checked
-// 5. в обработчике этого события каждый селект должно обновить свои опшини (скрыть/показать)
-//    в соответсвии с тем, что лежит в citiesState
 
 
 
@@ -544,6 +563,196 @@ $.jblocks({
 
 
 
+//===========================================================//
+//== Блок manage-courses для управлениям полями доп.курсов ==//
+//===========================================================//
+
+$.jblocks({
+  name: 'manage-courses',
+
+  events: {
+    'b-inited': 'oninit',
+    'click .add-course': 'addCourse'
+    // ,
+    // 'click .remove': 'removeCourse'
+  },
+
+  methods: {
+    oninit: function() {
+      this.addCourse = this.$node.find('.add-course');
+
+      $(document).on("click", ".course .inputs .remove", function() {
+        $(this).parent().remove();
+      });
+    },
+
+    addCourse: function() {
+      this.addCourse.before("<div class='inputs'>" +
+                              "<input class='blured' type='text' name='cur' value=''>" +
+                              "<input class='year blured' type='text' name='year' value=''>" +
+                              "<div class='remove'></div>" +
+                            "</div>");
+    }
+  }
+});
+
+
+
+//===================================================================//
+//== Блок main-menu-auth-popup для показа/скрытия меню авторизации ==//
+//===================================================================//
+
+$.jblocks({
+  name: 'main-menu-auth-popup',
+
+  events: {
+    'b-inited': 'oninit',
+    'click .js-auth-popup': 'toggleAuthPopup'
+  },
+
+  methods: {
+    oninit: function() {
+      this.toggleAuthPopupLink = this.$node.find('.js-auth-popup');
+      this.authPopup = this.$node.find('.js-form-auth');
+    },
+
+    toggleAuthPopup: function() {
+      this.toggleAuthPopupLink.toggleClass('auth-popup-link-closed auth-popup-link-opened');
+      this.authPopup.toggleClass('auth-popup-vis auth-popup-hid');
+      this.$node.toggleClass('auth2');
+    }
+  }
+});
+
+
+
+//===========================================================//
+//== Блок input-with-calendar для показа/скрытия календаря ==//
+//===========================================================//
+
+$.jblocks({
+  name: 'input-with-calendar',
+
+  events: {
+    'b-inited': 'oninit',
+    'click .cal': 'toggleCal'
+  },
+
+  methods: {
+    oninit: function() {
+      // Локализация календаря
+      ( function(factory) {
+        if (typeof define === "function" && define.amd) {
+          // AMD. Register as an anonymous module.
+          define([ "../widgets/datepicker" ], factory);
+        } else {
+          // Browser globals
+          factory(jQuery.datepicker);
+        }
+      } (function(datepicker) {
+          datepicker.regional.ru = {
+            closeText: "Закрыть",
+            prevText: "&#x3C;Пред",
+            nextText: "След&#x3E;",
+            currentText: "Сегодня",
+            monthNames: [ "января","февраля","марта","апреля","мая","июня",
+            "июля","августа","сентября","октября","ноября","декабря" ],
+            monthNamesShort: [ "Январь","Февраль","Март","Апрель","Май","Июнь",
+            "Июль","Август","Сентябрь","Октябрь","Ноябрь","Декабрь" ],
+            dayNames: [ "воскресенье","понедельник","вторник","среда","четверг","пятница","суббота" ],
+            dayNamesShort: [ "вск","пнд","втр","срд","чтв","птн","сбт" ],
+            dayNamesMin: [ "Вс","Пн","Вт","Ср","Чт","Пт","Сб" ],
+            weekHeader: "Нед",
+            dateFormat: "d MM yy",
+            firstDay: 1,
+            isRTL: false,
+            showMonthAfterYear: false,
+            yearSuffix: ""
+          };
+
+          datepicker.setDefaults( datepicker.regional.ru );
+
+          return datepicker.regional.ru;
+        })
+      );
+
+      $.datepicker.setDefaults( $.datepicker.regional[ "ru" ] );
+
+      // Инициализация календаря
+      $(function() {
+        $( "#datepicker" ).datepicker({
+          changeMonth: true,
+          changeYear: true,
+          showOtherMonths: true,
+          showAnim: "slideDown",
+          yearRange: '-90:-16'
+        })
+      });
+    },
+
+    toggleCal: function() {
+      this.$node.find('.calendar').toggleClass('open');
+    }
+  }
+});
+
+
+
+//========================================================================//
+//== Блок toggle-filters-on-find для показа/скрытия доп.фильтров поиска ==//
+//========================================================================//
+
+$.jblocks({
+  name: 'toggle-filters-on-find',
+
+  events: {
+    'b-inited': 'oninit',
+    'click .js-toggle-filters': 'toggleFilters'
+  },
+
+  methods: {
+    oninit: function() {
+      this.additionalFields = this.$node.find('.js-toggle-filters');
+    },
+
+    toggleFilters: function(e) {
+      e.preventDefault();
+
+      this.additionalFields.toggleText('Скрыть дополнительные фильтры', 'Показать все фильтры');
+
+      $('#form-find-filters').children('.dop').toggle();
+    }
+  }
+});
+
+
+
+//===================================================//
+//== Блок toggle-favorites для отметок в избранное ==//
+//===================================================//
+
+$.jblocks({
+  name: 'toggle-favorites',
+
+  events: {
+    'b-inited': 'oninit',
+    'click': 'toggleFavorites'
+  },
+
+  methods: {
+    oninit: function() {
+
+    },
+
+    toggleFavorites: function(e) {
+      e.preventDefault();
+
+      this.$node.toggleText('Добавить в избранное', 'В избранном');
+
+      this.$node.toggleClass('hearted not-hearted');
+    }
+  }
+});
 
 
 
@@ -571,66 +780,6 @@ $.jblocks({
 
 
 
-
-// Авторизация
-var i = 2;
-
-$(document).on("click", ".auth a", function() {
-  if (i % 2 == 0) {
-    $(this).css({
-      background: 'url(img/arrow-bottom-active.png) left center no-repeat'
-    });
-    $(".form-auth").css({
-      display: 'block'
-    });
-    $(".auth").addClass("auth2");
-  } else {
-    $(this).css({
-      background: 'url(img/arrow-bottom.png) left center no-repeat'
-    });
-    $(".form-auth").css({
-      display: 'none'
-    });
-    $(".auth").removeClass("auth2");
-  }
-
-  i++;
-});
-
-// Курсы
-
-$(document).on("click", ".add-course", function() {
-  $(".course .add-course").before("<div class='inputs'><input class='blured' type='text' name='cur' value=''><input class='year blured' type='text' name='year' value=''><div class='remove'></div></div>");
-});
-
-$(document).on("click", ".course .inputs .remove", function() {
-  $(this).parent().remove();
-});
-
-
-
-// Календарь
-
-$.datepicker.setDefaults( $.datepicker.regional[ "" ] );
-$.datepicker.setDefaults( $.datepicker.regional[ "ru" ] );
-$(function() {
-  $( "#datepicker" ).datepicker({
-    changeMonth: true,
-    changeYear: true,
-    showOtherMonths: true,
-    showAnim: "slideDown",
-    yearRange: '-90:-16'
-  })
-});
-
-// Открыть календарь
-
-$(document).on("click", ".cal", function() {
-  $(".calendar").toggleClass("open");
-});
-
-
-
 // Показать/скрыть информационное поле
 
 $(document).on("click", ".info-field a", function() {
@@ -642,7 +791,6 @@ $(document).on("click", ".info-field a", function() {
     display: "block"
   });
 });
-
 
 
 
@@ -658,93 +806,7 @@ $(document).on("click", ".mess .ch", function() {
 
 
 
-//== Скрипты для страниц поиска резюме/вакансий
-
-
-// Показать/скрыть фильтры
-$(document).on("click", ".button p a", function() {
-  var k = 2;
-
-  if (k % 2 == 0) {
-    $(".dop").css({
-      display: "block"
-    });
-    $(this).html("Скрыть дополнительные фильтры");
-  } else {
-    $(".dop").css({
-      display: "none"
-    });
-    $(this).html("Показать все фильтры");
-  }
-
-  k++;
-});
-
-// Избранное
-$(document).on("click", ".favorites", function() {
-  var j = 2;
-
-  if (j % 2 == 0) {
-    $(this).css({
-      background: 'url(img/heart.png) left center no-repeat'
-    });
-    $(this).html("В избранном");
-  } else {
-    $(this).css({
-      background: 'url(img/heart2.png) left center no-repeat'
-    });
-    $(this).html("Добавить в избранное");
-  }
-
-  j++;
-});
-
-
-
-
-/* Russian (UTF-8) initialisation for the jQuery UI date picker plugin. */
-/* Written by Andrew Stromnov (stromnov@gmail.com). */
-( function(factory) {
-  if (typeof define === "function" && define.amd) {
-    // AMD. Register as an anonymous module.
-    define([ "../widgets/datepicker" ], factory);
-  } else {
-    // Browser globals
-    factory(jQuery.datepicker);
-  }
-} (function(datepicker) {
-    datepicker.regional.ru = {
-      closeText: "Закрыть",
-      prevText: "&#x3C;Пред",
-      nextText: "След&#x3E;",
-      currentText: "Сегодня",
-      monthNames: [ "января","февраля","марта","апреля","мая","июня",
-      "июля","августа","сентября","октября","ноября","декабря" ],
-      monthNamesShort: [ "Январь","Февраль","Март","Апрель","Май","Июнь",
-      "Июль","Август","Сентябрь","Октябрь","Ноябрь","Декабрь" ],
-      dayNames: [ "воскресенье","понедельник","вторник","среда","четверг","пятница","суббота" ],
-      dayNamesShort: [ "вск","пнд","втр","срд","чтв","птн","сбт" ],
-      dayNamesMin: [ "Вс","Пн","Вт","Ср","Чт","Пт","Сб" ],
-      weekHeader: "Нед",
-      dateFormat: "d MM yy",
-      firstDay: 1,
-      isRTL: false,
-      showMonthAfterYear: false,
-      yearSuffix: ""
-    };
-
-    datepicker.setDefaults( datepicker.regional.ru );
-
-    return datepicker.regional.ru;
-  })
-);
-
-
-
-
-
 // Ползунки
-
 
 $(function() {
   $('#price').change(function () {
@@ -827,7 +889,7 @@ $(function() {
 
   $('#year').val($('#slider_price').slider("values",0));
   $('#year2').val($('#slider_price').slider("values",1));
-
+  
   $('#year3').val($('#slider_price3').slider("values",0));
   $('#year4').val($('#slider_price3').slider("values",1));
 });

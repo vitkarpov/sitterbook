@@ -28,9 +28,7 @@ include_once "libs/start.php";
 	<!-- CSS -->
 	<link rel="stylesheet" href="css/fonts.css">
 	<link rel="stylesheet" href="css/jquery-ui.css">
-	<link rel="stylesheet" href="css/croppic.css">
 	<link rel="stylesheet" href="css/main.css">
-	<link rel="stylesheet" href="css/mobile-style.css">
 
 </head>
 
@@ -83,7 +81,7 @@ include_once "libs/start.php";
 					<h1>Создание резюме</h1>
 
 					<!-- Начало формы -->
-					<form action="#" method="POST">
+					<form action="#" method="POST" id="create-rezume-form">
 						<!-- Возможное место работы -->
 						<div class="work-map">
 							<p class="title-border">Возможное место работы</p>
@@ -150,9 +148,9 @@ include_once "libs/start.php";
 								</div>
 
 								<!-- Календарь -->
-								<div class="birthday">
+								<div class="birthday" data-b="input-with-calendar">
 									<p class="title req">Дата рождения:<span> *</span></p>
-									<input type="text" name="birthday" id="datepicker" class="blured cal" placeholder="-- Выберите дату --" value=""/>
+									<input type="text" name="birthday" id="datepicker" class="blured cal" placeholder="-- Выберите дату --">
 								</div>
 							</div>
 
@@ -358,7 +356,7 @@ include_once "libs/start.php";
 						<div class="education">
 							<p class="title-border">Образование</p>
 
-							<div class="course">
+							<div class="course" data-b="manage-courses">
 								<p class="title">Курсы, повышение квалификации:</p>
 
 								<div class="inputs">
@@ -591,7 +589,7 @@ include_once "libs/start.php";
 							<div class="two-block">
 								<div class="in">
 									<p class="title req">Зарплата, руб:<span> *</span></p>
-									<input class="blured" type="text" name="pay" placeholder="от 200">
+									<input class="blured required" type="text" name="pay" placeholder="от 200" data-rule-required="true">
 								</div>
 
 								<div class="inp-rad">
@@ -690,14 +688,14 @@ include_once "libs/start.php";
 
 	<script src="js/vendor/jquery.min.js"></script>
 	<script src="js/vendor/jquery-ui.min.js"></script>
-	<script src="js/vendor/croppic.js"></script>
+	<script src="js/vendor/jquery.picture.cut.js"></script>
 	<script src="js/vendor/raphael.js"></script>
 	<script src="js/vendor/jblocks.js"></script>
 
 	<script src="js/jblocks-on-page.js"></script>
 	<script src="js/path.js"></script>
 	<script src="js/modal.js"></script>
-	<script src="js/init-croppic.js"></script>
+	<script src="js/init-jquery.picture.cut.js"></script>
 
 </body>
 </html>

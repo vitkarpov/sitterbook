@@ -2856,3 +2856,9 @@
     pointer-events: all;
   }
 }
+
+#boxes1 .point p {
+  position: static;
+  padding-top: 8px;
+  text-align: center;
+}

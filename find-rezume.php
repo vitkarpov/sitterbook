@@ -51,9 +51,10 @@ include_once "libs/start.php";
         <!-- Блок регистрации -->
         <div class="registration">
           <a class="hov" href="#">Регистрация</a>
-          <div class="auth">
-            <a href="#">Войти</a>
-            <div class="form-auth">
+          <div class="auth" data-b="main-menu-auth-popup">
+            <a class="js-auth-popup auth-popup-link-closed" href="#">Войти</a>
+
+            <div class="form-auth js-form-auth auth-popup-hid">
               <form name="myform" action="#" method="post">
                 <input type="text" name="login" value="example@sitterbook.ru">
                 <input type="password" name="pass" value="12345678">
@@ -109,29 +110,27 @@ include_once "libs/start.php";
     <div class="content">
       <div class="find-rezume-and-vacansy">
         <div class="wrap">
+          <h1>Поиск резюме</h1>
+
           <div class="form-rezume">
-            <form name="myform" action="#" method="post">
+            <form name="myform" action="#" method="post" id="form-find-filters">
               <div class="work workadd">
                 <p>Место работы</p>
 
                 <div class="styled-select">
                   <select name="city">
-                    <option>Город</option>
-                    <option>Москва</option>
-                    <option>Санкт-Петербург</option>
-                    <option>Самара</option>
+                    <option>-- Выберите город --</option>
                   </select>
                 </div>
                 
                 <div class="index">
                   <p>Индекс</p>
-                  <input type="text" name="indx" value="141077" />
+                  <input type="text" name="indx" placeholder="141077">
                 </div>
                 
                 <div class="cl">
                   <a class="clear" href="#">Очистить</a>
                 </div>
-                
               </div>
               
               <div id="options">
@@ -145,22 +144,25 @@ include_once "libs/start.php";
                 </label>
                 <div id="slider_price3"></div>
               </div>
+
               <div class="sex">
                 <p class="pol">Пол</p>
                 <p>
-                  <label><input type="radio" name="s" value="female" /><span></span></label>
+                  <label><input type="radio" name="s" value="female"><span></span></label>
                   <span>Жен</span>
                 </p>
                 <p>
-                  <label><input type="radio" name="s" value="male" /><span></span></label>
+                  <label><input type="radio" name="s" value="male"><span></span></label>
                   <span>Муж</span>
                 </p>
                 <p class="last">
-                  <label><input type="radio" name="s" value="all" /><span></span></label>
+                  <label><input type="radio" name="s" value="all"><span></span></label>
                   <span>Любой</span>
                 </p>
               </div>
+
               <div class="clear"></div>
+
               <div class="work">
                 <p>Гражданство</p>
                 <div class="styled-select styled-select2">
@@ -169,6 +171,7 @@ include_once "libs/start.php";
                   </select>
                 </div>
               </div>
+
               <div class="work">
                 <p>Знание языков</p>
                 <div class="styled-select styled-select2">
@@ -177,6 +180,7 @@ include_once "libs/start.php";
                   </select>
                 </div>
               </div>
+
               <div id="options2">
                 <p>Зарплата, руб.</p>
                 <label class="m-l" for="price">от:
@@ -188,17 +192,20 @@ include_once "libs/start.php";
                 </label>
                 <div id="slider_price2"></div>
               </div>
+
               <div class="sex">
                 <p>
-                  <label><input type="radio" name="c" value="chas" /><span></span></label>
+                  <label><input type="radio" name="c" value="chas"><span></span></label>
                   <span>В час</span>
                 </p>
                 <p class="last">
-                  <label><input type="radio" name="c" value="mes" /><span></span></label>
+                  <label><input type="radio" name="c" value="mes"><span></span></label>
                   <span>В месяц</span>
                 </p>
               </div>
+
               <div class="clear"></div>
+
               <div class="work">
                 <p>Режим работы</p>
                 <div class="styled-select styled-select2">
@@ -207,6 +214,7 @@ include_once "libs/start.php";
                   </select>
                 </div>
               </div>
+
               <div class="work dop">
                 <p>Опыт работы</p>
                 <div class="styled-select styled-select2">
@@ -215,29 +223,31 @@ include_once "libs/start.php";
                   </select>
                 </div>
               </div>
+
               <div class="check dop">
                 <p class="title">Опыт ухода за детьми возрастных групп</p>
                 <p>
-                  <label><input type="checkbox" name="check" value="1" /><span></span></label>
+                  <label><input type="checkbox" name="check" value="1"><span></span></label>
                   <span>новорожденный - 3 месяца</span>
                 </p>
                 <p>
-                  <label><input type="checkbox" name="check" value="2" /><span></span></label>
+                  <label><input type="checkbox" name="check" value="2"><span></span></label>
                   <span>от 3 до 12 месяцев</span>
                 </p>
                 <p>
-                  <label><input type="checkbox" name="check" value="3" /><span></span></label>
+                  <label><input type="checkbox" name="check" value="3"><span></span></label>
                   <span>от 1 до 2 года</span>
                 </p>
                 <p>
-                  <label><input type="checkbox" name="check" value="4" /><span></span></label>
+                  <label><input type="checkbox" name="check" value="4"><span></span></label>
                   <span>от 2 до 5 лет</span>
                 </p>
                 <p>
-                  <label><input type="checkbox" name="check" value="5" /><span></span></label>
+                  <label><input type="checkbox" name="check" value="5"><span></span></label>
                   <span>от 5 до 10 лет</span>
                 </p>
               </div>
+
               <div class="work dop">
                 <p>Количество детей для ухода</p>
                 <div class="styled-select styled-select2">
@@ -246,52 +256,61 @@ include_once "libs/start.php";
                   </select>
                 </div>
               </div>
+
               <div class="check dop">
                 <p>
-                  <label><input type="checkbox" name="check" value="6" /><span></span></label>
+                  <label><input type="checkbox" name="check" value="6"><span></span></label>
                   <span>Готовность ухаживать за детьми, которые требуют особого ухода по медицинским и/или иным показателям</span>
                 </p>
               </div>
+
               <div class="check bb">
                 <p class="title">Дополнительные требования</p>
                 <p class="dop">
-                  <label><input type="checkbox" name="check" value="7" /><span></span></label>
+                  <label><input type="checkbox" name="check" value="7"><span></span></label>
                   <span>Работа за рубежом</span>
                 </p>
                 <p class="dop">
-                  <label><input type="checkbox" name="check" value="8" /><span></span></label>
+                  <label><input type="checkbox" name="check" value="8"><span></span></label>
                   <span>Отсутствие аллергии и стресса к домашним животным</span>
                 </p>
                 <p class="dop">
-                  <label><input type="checkbox" name="check" value="9" /><span></span></label>
+                  <label><input type="checkbox" name="check" value="9"><span></span></label>
                   <span>Некурящий(ая)</span>
                 </p>
                 <p class="dop">
-                  <label><input type="checkbox" name="check" value="10" /><span></span></label>
+                  <label><input type="checkbox" name="check" value="10"><span></span></label>
                   <span>Наличие автотранспорта</span>
                 </p>
                 <p class="dop">
-                  <label><input type="checkbox" name="check" value="11" /><span></span></label>
+                  <label><input type="checkbox" name="check" value="11"><span></span></label>
                   <span>Готовность приступить к работе в кратчайшие сроки</span>
                 </p>
                 <p>
-                  <label><input type="checkbox" name="check" value="12" /><span></span></label>
+                  <label><input type="checkbox" name="check" value="12"><span></span></label>
                   <span>Скрыть в результатах поиска резюме агентств</span>
                 </p>
               </div>
-              <div class="button">
-                <input type="button" name="send" value="Применить" />
-                <p><a onclick="return false" href="#">Показать все фильтры</a></p>
+
+              <div class="button" data-b="toggle-filters-on-find">
+                <input type="button" name="send" value="Применить">
+
+                <p>
+                  <a href="#" class="js-toggle-filters">
+                    Показать все фильтры
+                  </a>
+                </p>
               </div>
             </form>
           </div>
+
           <div class="agent-rezume">
             <div class="rezume-block">
               <div class="block-img-left">
-                <img class="rec" src="img/recom.png" alt="" />
-                <img src="img/avatar.png" alt="" />
+                <img class="rec" src="img/recom.png" alt="">
+                <img src="img/avatar.png" alt="">
                 <div class="recomend">
-                <p><span class="one"><img src="img/one.png" alt="" /></span> <span class="two"><img src="img/two.png" alt="" /></span> <span class="three"><img src="img/three.png" alt="" /></span> <span class="four"><img src="img/four.png" alt="" /></span> <span class="five"><img src="img/five.png" alt="" /></span>
+                <p><span class="one"><img src="img/one.png" alt=""></span> <span class="two"><img src="img/two.png" alt=""></span> <span class="three"><img src="img/three.png" alt=""></span> <span class="four"><img src="img/four.png" alt=""></span> <span class="five"><img src="img/five.png" alt=""></span>
                   <span class="counts">(45 оценок)</span></p>
                 </div>
               </div>
@@ -319,17 +338,17 @@ include_once "libs/start.php";
                 <p class="start-vacansy">Готовность приступить в кратчайшее сроки</p>
                 <div class="buts">
                   <a class="buttons" href="#">Смотреть полностью</a>
-                  <a class="favorites" onclick="return false" href="#">Добавить в избранное</a>
+                  <a class="favorites not-hearted" href="#" data-b="toggle-favorites">Добавить в избранное</a>
                 </div>
               </div>
             </div>
             
             <div class="rezume-block">
               <div class="block-img-left">
-                <img class="rec" src="img/recom.png" alt="" />
-                <img src="img/avatar.png" alt="" />
+                <img class="rec" src="img/recom.png" alt="">
+                <img src="img/avatar.png" alt="">
                 <div class="recomend">
-                <p><span class="one"><img src="img/one.png" alt="" /></span> <span class="two"><img src="img/two.png" alt="" /></span> <span class="three"><img src="img/three.png" alt="" /></span> <span class="four"><img src="img/four.png" alt="" /></span> <span class="five"><img src="img/five.png" alt="" /></span>
+                <p><span class="one"><img src="img/one.png" alt=""></span> <span class="two"><img src="img/two.png" alt=""></span> <span class="three"><img src="img/three.png" alt=""></span> <span class="four"><img src="img/four.png" alt=""></span> <span class="five"><img src="img/five.png" alt=""></span>
                   <span class="counts">(12 оценок)</span></p>
                 </div>
               </div>
@@ -355,16 +374,16 @@ include_once "libs/start.php";
                 <p class="price-vacansy">Стоимость оказания услуг: <span>от 200 - 250 руб / час</span></p>
                 <div class="buts">
                   <a class="buttons" href="#">Смотреть полностью</a>
-                  <a class="favorites" onclick="return false" href="#">Добавить в избранное</a>
+                  <a class="favorites not-hearted" href="#" data-b="toggle-favorites">Добавить в избранное</a>
                 </div>
               </div>
             </div>
             
             <div class="rezume-block">
               <div class="block-img-left">
-                <img src="img/avatar.png" alt="" />
+                <img src="img/avatar.png" alt="">
                 <div class="recomend">
-                <p><span class="one"><img src="img/one.png" alt="" /></span> <span class="two"><img src="img/two.png" alt="" /></span> <span class="three"><img src="img/three.png" alt="" /></span> <span class="four"><img src="img/none.png" alt="" /></span> <span class="five"><img src="img/none.png" alt="" /></span>
+                <p><span class="one"><img src="img/one.png" alt=""></span> <span class="two"><img src="img/two.png" alt=""></span> <span class="three"><img src="img/three.png" alt=""></span> <span class="four"><img src="img/none.png" alt=""></span> <span class="five"><img src="img/none.png" alt=""></span>
                   <span class="counts">(6 оценок)</span></p>
                 </div>
               </div>
@@ -392,16 +411,16 @@ include_once "libs/start.php";
                 <p class="start-vacansy">Готовность приступить в кратчайшее сроки</p>
                 <div class="buts">
                   <a class="buttons" href="#">Смотреть полностью</a>
-                  <a class="favorites" onclick="return false" href="#">Добавить в избранное</a>
+                  <a class="favorites not-hearted" href="#" data-b="toggle-favorites">Добавить в избранное</a>
                 </div>
               </div>
             </div>
             
             <div class="rezume-block">
               <div class="block-img-left">
-                <img src="img/avatar.png" alt="" />
+                <img src="img/avatar.png" alt="">
                 <div class="recomend">
-                <p><span class="one"><img src="img/one.png" alt="" /></span> <span class="two"><img src="img/two.png" alt="" /></span> <span class="three"><img src="img/three.png" alt="" /></span> <span class="four"><img src="img/none.png" alt="" /></span> <span class="five"><img src="img/none.png" alt="" /></span>
+                <p><span class="one"><img src="img/one.png" alt=""></span> <span class="two"><img src="img/two.png" alt=""></span> <span class="three"><img src="img/three.png" alt=""></span> <span class="four"><img src="img/none.png" alt=""></span> <span class="five"><img src="img/none.png" alt=""></span>
                   <span class="counts">(6 оценок)</span></p>
                 </div>
               </div>
@@ -429,16 +448,16 @@ include_once "libs/start.php";
                 <p class="start-vacansy">Готовность приступить в кратчайшее сроки</p>
                 <div class="buts">
                   <a class="buttons" href="#">Смотреть полностью</a>
-                  <a class="favorites" onclick="return false" href="#">Добавить в избранное</a>
+                  <a class="favorites not-hearted" href="#" data-b="toggle-favorites">Добавить в избранное</a>
                 </div>
               </div>
             </div>
             
             <div class="rezume-block">
               <div class="block-img-left">
-                <img src="img/avatar.png" alt="" />
+                <img src="img/avatar.png" alt="">
                 <div class="recomend">
-                <p><span class="one"><img src="img/one.png" alt="" /></span> <span class="two"><img src="img/two.png" alt="" /></span> <span class="three"><img src="img/three.png" alt="" /></span> <span class="four"><img src="img/none.png" alt="" /></span> <span class="five"><img src="img/none.png" alt="" /></span>
+                <p><span class="one"><img src="img/one.png" alt=""></span> <span class="two"><img src="img/two.png" alt=""></span> <span class="three"><img src="img/three.png" alt=""></span> <span class="four"><img src="img/none.png" alt=""></span> <span class="five"><img src="img/none.png" alt=""></span>
                   <span class="counts">(6 оценок)</span></p>
                 </div>
               </div>
@@ -466,11 +485,10 @@ include_once "libs/start.php";
                 <p class="start-vacansy">Готовность приступить в кратчайшее сроки</p>
                 <div class="buts">
                   <a class="buttons" href="#">Смотреть полностью</a>
-                  <a class="favorites" onclick="return false" href="#">Добавить в избранное</a>
+                  <a class="favorites not-hearted" href="#" data-b="toggle-favorites">Добавить в избранное</a>
                 </div>
               </div>
             </div>
-            
           </div>
         </div>
       </div>

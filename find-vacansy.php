@@ -109,8 +109,10 @@ include_once "libs/start.php";
     <div class="content">
       <div class="find-rezume-and-vacansy">
         <div class="wrap">
+          <h1>Поиск вакансий</h1>
+
           <div class="form-rezume">
-            <form name="myform" action="#" method="post">
+            <form name="myform" action="#" method="post" id="form-find-filters">
               <div class="work workadd">
                 <p>Возможное место работы</p>
 
@@ -130,15 +132,15 @@ include_once "libs/start.php";
               <div class="sex">
                 <p class="pol">Пол</p>
                 <p>
-                  <label><input type="radio" name="s" value="female" /><span></span></label>
+                  <label><input type="radio" name="s" value="female"><span></span></label>
                   <span>Жен</span>
                 </p>
                 <p>
-                  <label><input type="radio" name="s" value="male" /><span></span></label>
+                  <label><input type="radio" name="s" value="male"><span></span></label>
                   <span>Муж</span>
                 </p>
                 <p class="last">
-                  <label><input type="radio" name="s" value="all" /><span></span></label>
+                  <label><input type="radio" name="s" value="all"><span></span></label>
                   <span>Любой</span>
                 </p>
               </div>
@@ -172,11 +174,11 @@ include_once "libs/start.php";
               </div>
               <div class="sex">
                 <p>
-                  <label><input type="radio" name="c" value="chas" /><span></span></label>
+                  <label><input type="radio" name="c" value="chas"><span></span></label>
                   <span>В час</span>
                 </p>
                 <p class="last">
-                  <label><input type="radio" name="c" value="mes" /><span></span></label>
+                  <label><input type="radio" name="c" value="mes"><span></span></label>
                   <span>В месяц</span>
                 </p>
               </div>
@@ -200,23 +202,23 @@ include_once "libs/start.php";
               <div class="check dop">
                 <p class="title">Опыт ухода за детьми возрастных групп</p>
                 <p>
-                  <label><input type="checkbox" name="check" value="1" /><span></span></label>
+                  <label><input type="checkbox" name="check" value="1"><span></span></label>
                   <span>новорожденный - 3 месяца</span>
                 </p>
                 <p>
-                  <label><input type="checkbox" name="check" value="2" /><span></span></label>
+                  <label><input type="checkbox" name="check" value="2"><span></span></label>
                   <span>от 3 до 12 месяцев</span>
                 </p>
                 <p>
-                  <label><input type="checkbox" name="check" value="3" /><span></span></label>
+                  <label><input type="checkbox" name="check" value="3"><span></span></label>
                   <span>от 1 до 2 года</span>
                 </p>
                 <p>
-                  <label><input type="checkbox" name="check" value="4" /><span></span></label>
+                  <label><input type="checkbox" name="check" value="4"><span></span></label>
                   <span>от 2 до 5 лет</span>
                 </p>
                 <p>
-                  <label><input type="checkbox" name="check" value="5" /><span></span></label>
+                  <label><input type="checkbox" name="check" value="5"><span></span></label>
                   <span>от 5 до 10 лет</span>
                 </p>
               </div>
@@ -230,40 +232,44 @@ include_once "libs/start.php";
               </div>
               <div class="check dop">
                 <p>
-                  <label><input type="checkbox" name="check" value="6" /><span></span></label>
+                  <label><input type="checkbox" name="check" value="6"><span></span></label>
                   <span>Готовность ухаживать за детьми, которые требуют особого ухода по медицинским и/или иным показателям</span>
                 </p>
               </div>
               <div class="check bb">
                 <p class="title">Дополнительные требования</p>
                 <p class="dop">
-                  <label><input type="checkbox" name="check" value="7" /><span></span></label>
+                  <label><input type="checkbox" name="check" value="7"><span></span></label>
                   <span>Работа за рубежом</span>
                 </p>
                 <p class="dop">
-                  <label><input type="checkbox" name="check" value="8" /><span></span></label>
+                  <label><input type="checkbox" name="check" value="8"><span></span></label>
                   <span>Отсутствие аллергии и стресса к домашним животным</span>
                 </p>
                 <p class="dop">
-                  <label><input type="checkbox" name="check" value="9" /><span></span></label>
+                  <label><input type="checkbox" name="check" value="9"><span></span></label>
                   <span>Некурящий(ая)</span>
                 </p>
                 <p class="dop">
-                  <label><input type="checkbox" name="check" value="10" /><span></span></label>
+                  <label><input type="checkbox" name="check" value="10"><span></span></label>
                   <span>Наличие автотранспорта</span>
                 </p>
                 <p class="dop">
-                  <label><input type="checkbox" name="check" value="11" /><span></span></label>
+                  <label><input type="checkbox" name="check" value="11"><span></span></label>
                   <span>Готовность приступить к работе в кратчайшие сроки</span>
                 </p>
                 <p>
-                  <label><input type="checkbox" name="check" value="12" /><span></span></label>
+                  <label><input type="checkbox" name="check" value="12"><span></span></label>
                   <span>Скрыть в результатах поиска резюме агентств</span>
                 </p>
               </div>
-              <div class="button">
-                <input type="button" name="send" value="Применить" />
-                <p><a onclick="return false" href="#">Показать все фильтры</a></p>
+              <div class="button" data-b="toggle-filters-on-find">
+                <input type="button" name="send" value="Применить">
+                <p>
+                  <a class="js-toggle-filters" href="#">
+                    Показать все фильтры
+                  </a>
+                </p>
               </div>
             </form>
           </div>
@@ -293,7 +299,7 @@ include_once "libs/start.php";
                 <p class="start-vacansy">Готовность приступить в кратчайшее сроки</p>
                 <div class="buts">
                   <a class="buttons" href="#">Смотреть полностью</a>
-                  <a class="favorites" onclick="return false" href="#">Добавить в избранное</a>
+                  <a class="favorites not-hearted" href="#" data-b="toggle-favorites">Добавить в избранное</a>
                 </div>
               </div>
             </div>
@@ -302,7 +308,7 @@ include_once "libs/start.php";
               <div class="block-img-right block-img-last">
                 <div class="contacts-vacansy">
                   <p class="title">Резюме предоставлено Кадровым агентством <a href="#">«Best-consult»</a></p>
-                  <a href="#">Няна для мальчика 9-ти лет</a>
+                  <a href="#">Няня для мальчика 9-ти лет</a>
                   <p class="info-contact info-contact-bold">Контактное лицо: <span>Анна Владимировна</span></p>
                 </div>
                 <div class="information">
@@ -323,7 +329,7 @@ include_once "libs/start.php";
                 <p class="start-vacansy">Готовность приступить в кратчайшее сроки</p>
                 <div class="buts">
                   <a class="buttons" href="#">Смотреть полностью</a>
-                  <a class="favorites" onclick="return false" href="#">Добавить в избранное</a>
+                  <a class="favorites not-hearted" href="#" data-b="toggle-favorites">Добавить в избранное</a>
                 </div>
               </div>
             </div>
@@ -353,7 +359,7 @@ include_once "libs/start.php";
                 <p class="start-vacansy">Готовность приступить в кратчайшее сроки</p>
                 <div class="buts">
                   <a class="buttons" href="#">Смотреть полностью</a>
-                  <a class="favorites" onclick="return false" href="#">Добавить в избранное</a>
+                  <a class="favorites not-hearted" href="#" data-b="toggle-favorites">Добавить в избранное</a>
                 </div>
               </div>
             </div>
@@ -362,7 +368,7 @@ include_once "libs/start.php";
               <div class="block-img-right block-img-last">
                 <div class="contacts-vacansy">
                   <p class="title">Резюме предоставлено Кадровым агентством <a href="#">«Best-consult»</a></p>
-                  <a href="#">Няна для мальчика 9-ти лет</a>
+                  <a href="#">Няня для мальчика 9-ти лет</a>
                   <p class="info-contact info-contact-bold">Контактное лицо: <span>Анна Владимировна</span></p>
                 </div>
                 <div class="information">
@@ -383,7 +389,7 @@ include_once "libs/start.php";
                 <p class="start-vacansy">Готовность приступить в кратчайшее сроки</p>
                 <div class="buts">
                   <a class="buttons" href="#">Смотреть полностью</a>
-                  <a class="favorites" onclick="return false" href="#">Добавить в избранное</a>
+                  <a class="favorites not-hearted" href="#" data-b="toggle-favorites">Добавить в избранное</a>
                 </div>
               </div>
             </div>    
@@ -392,7 +398,7 @@ include_once "libs/start.php";
               <div class="block-img-right block-img-last">
                 <div class="contacts-vacansy">
                   <p class="title">Резюме предоставлено Кадровым агентством <a href="#">«Best-consult»</a></p>
-                  <a href="#">Няна для мальчика 9-ти лет</a>
+                  <a href="#">Няня для мальчика 9-ти лет</a>
                   <p class="info-contact info-contact-bold">Контактное лицо: <span>Анна Владимировна</span></p>
                 </div>
                 <div class="information">
@@ -413,7 +419,7 @@ include_once "libs/start.php";
                 <p class="start-vacansy">Готовность приступить в кратчайшее сроки</p>
                 <div class="buts">
                   <a class="buttons" href="#">Смотреть полностью</a>
-                  <a class="favorites" onclick="return false" href="#">Добавить в избранное</a>
+                  <a class="favorites not-hearted" href="#" data-b="toggle-favorites">Добавить в избранное</a>
                 </div>
               </div>
             </div>

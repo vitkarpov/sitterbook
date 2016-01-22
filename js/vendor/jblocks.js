@@ -23,36 +23,7 @@ var Block = function(block) {
 
     this._addEvents();
     this._setInited();
-    this.$node.trigger('b-inited');
-};
-
-/**
- * Adds handler for block's event
- * @param  {string} name
- * @param  {function} callback
- */
-Block.prototype.on = function(name, callback) {
-    this.$node.on(this._getEventName(name), callback);
-    return this;
-};
-
-/**
- * Removes handler for block's event
- * @param  {string} name
- * @param  {function} callback
- */
-Block.prototype.off = function(name, callback) {
-    var event = this._getEventName(name);
-
-    if (!name) {
-        this.$node.off();
-    } else if (!callback) {
-        this.$node.off(event);
-    } else {
-        this.$node.off(event, callback);
-    }
-
-    return this;
+    this._trigger('b-inited');
 };
 
 /**
@@ -64,9 +35,8 @@ Block.prototype._addEvents = function() {
 
     for (var e in events) {
         if (events.hasOwnProperty(e)) {
-            var p = e.split(' ', 2);
+            var p = e.split(' ',2);
             var handler = events[e];
-
             if (typeof handler === 'string') {
                 handler = decl.methods[handler];
             }
@@ -85,11 +55,9 @@ Block.prototype._setInited = function() {
 
 /**
  * Triggers specified event
- * @param {string} name
  */
-Block.prototype.emit = function(name) {
-    this.$node.trigger(this._getEventName(name));
-    return this;
+Block.prototype._trigger = function(name) {
+    this.$node.trigger(name);
 };
 
 /**
@@ -98,17 +66,8 @@ Block.prototype.emit = function(name) {
 Block.prototype.destroy = function() {
     helpers.cache[this._id] = null;
     this.$node.removeClass('jb-inited');
-    this.off();
-    this.$node.trigger('b-destroyed');
-};
-
-/**
- * Возвращает имя события с учетом пространства имен
- * @param  {string} name
- * @return {string}
- */
-Block.prototype._getEventName = function(name) {
-    return this._id + ':' + name;
+    this.$node.off();
+    this._trigger('b-destroyed');
 };
 
 module.exports = Block;
@@ -134,7 +93,7 @@ var methods = {
     },
     /**
      * Returns block from cache or create it if doesn't exist
-     * @return {jQuery}
+     * @return {Block} block
      */
     'get': function () {
         return this.map(function () {
@@ -152,19 +111,6 @@ var methods = {
             helpers.cache[bid] = block;
 
             return block;
-        });
-    },
-    /**
-     * Returns blocks inside
-     * @return {jQuery}
-     */
-    'find': function(filter) {
-        var selector = '[data-b]';
-        if (filter) {
-            selector = '[data-b="' + filter + '"]';
-        }
-        return this.find(selector).map(function() {
-            return $(this).jblocks('get')[0];
         });
     }
 };
@@ -195,7 +141,6 @@ $.jblocks = function (proto) {
 
 // to get Block from global outspace
 $.Block = Block;
-
 },{"./Block":1,"./helpers":3}],3:[function(require,module,exports){
 var id = 0;
 

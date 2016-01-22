@@ -27,10 +27,9 @@ include_once "libs/start.php";
 
 	<!-- CSS -->
 	<link rel="stylesheet" href="css/fonts.css">
-	<link rel="stylesheet" href="css/jquery-ui.custom.css">
-	<link rel="stylesheet" href="css/croppic.css">
+	<link rel="stylesheet" href="css/jquery-ui.css">
+	<!-- <link rel="stylesheet" href="css/jquery-ui.custom.css"> -->
 	<link rel="stylesheet" href="css/main.css">
-	<link rel="stylesheet" href="css/mobile-style.css">
 
 </head>
 
@@ -539,16 +538,9 @@ include_once "libs/start.php";
 								<div class="clear"></div>
 
 								<div class="icons">
-									<div class="img">
-										<img src="img/avass.png" alt="">
-										<div class="del">
-											<a href="#">Удалить Х</a>
-										</div>
-									</div>
+									<div id="cropContainerOutput">
 
-									<a href="#">
-										<img src="img/add-photos.png" alt="">
-									</a>
+									</div>
 								</div>
 
 								<div class="info" id="nota">
@@ -647,14 +639,14 @@ include_once "libs/start.php";
 
 	<script src="js/vendor/jquery.min.js"></script>
 	<script src="js/vendor/jquery-ui.min.js"></script>
-	<script src="js/vendor/croppic.js"></script>
+	<script src="js/vendor/jquery.picture.cut.js"></script>
 	<script src="js/vendor/raphael.js"></script>
 	<script src="js/vendor/jblocks.js"></script>
 
 	<script src="js/jblocks-on-page.js"></script>
 	<script src="js/path.js"></script>
 	<script src="js/modal.js"></script>
-	<script src="js/init-croppic.js"></script>
+	<script src="js/init-jquery.picture.cut.js"></script>
 
 </body>
 </html>

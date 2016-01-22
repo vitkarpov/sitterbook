@@ -88,3 +88,19 @@ body {
 .lft {
   float: left;
 }
+
+.buttons p {
+  color: #c71b11;
+  margin-bottom: 13px;
+}
+
+#mask {
+  width: 100%;
+  height: 100vh;
+}
+
+#cropContainerOutput {
+  width: 200px;
+  height: 150px;
+  position:relative;
+}

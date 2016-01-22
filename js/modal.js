@@ -12,15 +12,6 @@ function openModal() {
 		// Показываем с анимацией модальное окно с нужной картой
 		$(id).show('fast');
 
-		// Получаем размеры затеннённой области модального окна
-		var maskHeight = $(document).height(),
-				maskWidth = $(window).width();
-
-		// Получаем размеры маски модального окна 
-		$('#mask').css({
-			'width':maskWidth,
-			'height':maskHeight
-		});
 		// и плавно его показываем
 		$('#mask').fadeIn(1000);
 		$('#mask').fadeTo("slow", 0.8);
@@ -231,6 +222,12 @@ function openModal() {
 }
 
 
+
+
+
+
+
+
 // ===========================================================
 // Открытие модального окна с картой районов по нажатию на
 // "Выберите районы в данном округе" в модальном окне округов.
@@ -242,11 +239,6 @@ $(document).on("click", 'a[name=premodal]', function() {
 			maskHeight = $(document).height(),
 			maskWidth = $(window).width();
 
-	// Задаем размеры маски
-	$('#mask').css({
-		'width':maskWidth,
-		'height':maskHeight
-	});
 	// И показываем её
 	$('#mask').fadeIn(1000);
 	$('#mask').fadeTo("slow",0.8);
